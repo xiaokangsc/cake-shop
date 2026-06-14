@@ -3,114 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>许仁康 - AI 全栈开发</title>
+<title>许仁康 · AI 全栈开发</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f0f0f;color:#e0e0e0;line-height:1.6}
-.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)}
-.avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:42px;color:#fff;margin:0 auto 20px;font-weight:bold}
-.hero h1{font-size:36px;color:#fff;margin-bottom:8px}
-.hero .tag{font-size:16px;color:#8892b0;letter-spacing:4px}
-.hero .contact{display:flex;justify-content:center;gap:24px;margin-top:24px;flex-wrap:wrap}
-.hero .contact span{background:rgba(255,255,255,.08);padding:8px 18px;border-radius:20px;font-size:14px;color:#ccd6f6}
-.container{max-width:800px;margin:0 auto;padding:40px 20px}
-.section{margin-bottom:48px}
-.section h2{font-size:24px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.section h2::before{content:'';width:4px;height:24px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:2px}
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.skill-card{background:#1a1a2e;border-radius:16px;padding:24px;border:1px solid #2a2a3e;transition:transform.2s,border-color.2s}
-.skill-card:hover{transform:translateY(-4px);border-color:#667eea}
-.skill-card .icon{font-size:36px;margin-bottom:12px}
-.skill-card h3{font-size:16px;color:#fff;margin-bottom:8px}
-.skill-card p{font-size:13px;color:#8892b0;line-height:1.5}
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.service-item{background:#1a1a2e;border-radius:12px;padding:20px;text-align:center;border:1px solid #2a2a3e;font-size:14px;color:#ccd6f6}
-.service-item .emoji{font-size:32px;display:block;margin-bottom:8px}
-.projects{display:grid;gap:16px}
-.project-card{background:#1a1a2e;border-radius:16px;padding:24px;border:1px solid #2a2a3e;display:flex;gap:16px;align-items:center;transition:transform.2s}
-.project-card:hover{transform:translateY(-2px)}
-.project-icon{font-size:40px;flex-shrink:0}
-.project-info h3{font-size:16px;color:#fff;margin-bottom:4px}
-.project-info p{font-size:13px;color:#8892b0}
-.cta{text-align:center;padding:60px 20px;background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:24px;margin-top:20px}
-.cta h2{font-size:28px;color:#fff;margin-bottom:12px}
-.cta p{color:#8892b0;margin-bottom:24px}
-.cta .phone{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 36px;border-radius:30px;font-size:20px;text-decoration:none;letter-spacing:2px;font-weight:bold}
-.footer{text-align:center;padding:40px 20px;color:#555;font-size:13px}
-@media(max-width:600px){.hero h1{font-size:28px}.skills{grid-template-columns:repeat(2,1fr)}.services{grid-template-columns:repeat(2,1fr)}}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#080810;color:#e0e0e0;overflow-x:hidden}
+::selection{background:#764ba2;color:#fff}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 32px;display:flex;justify-content:center;gap:40px;backdrop-filter:blur(20px);background:rgba(8,8,16,.85);border-bottom:1px solid rgba(255,255,255,.05)}
+.nav a{color:#8892b0;text-decoration:none;font-size:14px;letter-spacing:1px;transition:color.3s}
+.nav a:hover{color:#fff}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 32px 80px}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(102,126,234,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(118,75,162,.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(102,126,234,.08) 0%,transparent 50%);animation:float 20s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(-2%,1%)}66%{transform:translate(2%,-1%)}}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:900px}
+.hero-badge{display:inline-block;padding:6px 20px;border-radius:20px;border:1px solid rgba(102,126,234,.3);background:rgba(102,126,234,.1);color:#a5b4fc;font-size:13px;letter-spacing:4px;margin-bottom:32px}
+.hero h1{font-size:clamp(40px,8vw,80px);font-weight:800;background:linear-gradient(135deg,#fff 0%,#a5b4fc 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;margin-bottom:20px}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:#64748b;max-width:600px;margin:0 auto 40px;line-height:1.8}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:16px 36px;border-radius:40px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:1px;transition:all.3s;box-shadow:0 8px 32px rgba(102,126,234,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(102,126,234,.45)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);padding:16px 36px;border-radius:40px;font-size:16px;cursor:pointer;text-decoration:none;letter-spacing:1px;transition:all.3s}
+.btn-ghost:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.4)}
+
+/* ===== STATS ===== */
+.stats{display:flex;justify-content:center;gap:60px;padding:60px 32px;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:48px;font-weight:800;background:linear-gradient(135deg,#667eea,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:14px;color:#64748b;margin-top:8px;letter-spacing:2px}
+
+/* ===== CONTAINER ===== */
+.container{max-width:1100px;margin:0 auto;padding:80px 32px}
+.section-header{text-align:center;margin-bottom:60px}
+.section-tag{color:#667eea;font-size:13px;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
+.section-header h2{font-size:clamp(28px,4vw,42px);font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+.section-header p{color:#64748b;font-size:16px;max-width:500px;margin:0 auto}
+
+/* ===== GRID CARDS ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.card{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.06);transition:all.4s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
+.card:hover{transform:translateY(-8px);border-color:rgba(102,126,234,.3);background:linear-gradient(135deg,rgba(102,126,234,.08),rgba(118,75,162,.04))}
+.card-icon{font-size:44px;margin-bottom:20px}
+.card h3{font-size:20px;color:#fff;margin-bottom:12px}
+.card p{color:#8892b0;font-size:14px;line-height:1.7}
+
+/* ===== PROJECTS ===== */
+.project{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.project-card{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:24px;padding:40px;border:1px solid rgba(255,255,255,.06);transition:all.4s;display:flex;gap:24px;align-items:center}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(102,126,234,.2)}
+.project-icon{font-size:56px;flex-shrink:0}
+.project-info h3{font-size:20px;color:#fff;margin-bottom:8px}
+.project-info p{color:#8892b0;font-size:14px;line-height:1.6}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.project-tag{padding:4px 12px;border-radius:12px;background:rgba(102,126,234,.1);color:#a5b4fc;font-size:12px}
+
+/* ===== SERVICES MINI ===== */
+.mini-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.mini-item{background:rgba(255,255,255,.02);border-radius:16px;padding:24px 16px;text-align:center;border:1px solid rgba(255,255,255,.04);transition:all.3s;cursor:default}
+.mini-item:hover{background:rgba(102,126,234,.06);border-color:rgba(102,126,234,.15);transform:translateY(-4px)}
+.mini-item .e{font-size:36px;display:block;margin-bottom:10px}
+.mini-item span{font-size:13px;color:#a5b4fc}
+
+/* ===== PHOTOS ===== */
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.photos img{width:100%;border-radius:16px;border:2px solid rgba(255,255,255,.06);transition:all.4s}
+.photos img:hover{transform:scale(1.02);border-color:rgba(102,126,234,.3)}
+
+/* ===== CONTACT ===== */
+.contact-section{background:linear-gradient(135deg,rgba(102,126,234,.06),rgba(118,75,162,.04));border-radius:32px;padding:80px 40px;text-align:center;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
+.contact-section::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(102,126,234,.15),transparent);pointer-events:none}
+.contact-section h2{font-size:36px;color:#fff;margin-bottom:16px;position:relative}
+.contact-section p{color:#8892b0;margin-bottom:32px;position:relative}
+.phone-btn{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:18px 48px;border-radius:40px;font-size:22px;font-weight:700;text-decoration:none;letter-spacing:3px;transition:all.3s;box-shadow:0 8px 40px rgba(102,126,234,.4);position:relative}
+.phone-btn:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(102,126,234,.6)}
+
+/* ===== IMAGE SHOWCASE ===== */
+.showcase{margin-top:60px;text-align:center}
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.showcase-item{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:all.4s}
+.showcase-item:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.showcase-item img{width:100%;display:block}
+.showcase-label{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,.8));font-size:16px;font-weight:600;color:#fff}
+
+/* ===== FOOTER ===== */
+.footer{text-align:center;padding:60px 32px;color:#444;font-size:14px;border-top:1px solid rgba(255,255,255,.04)}
+.footer span{color:#667eea}
+
+@media(max-width:768px){
+  .nav{gap:20px;padding:12px 16px}
+  .nav a{font-size:12px}
+  .stats{gap:30px}
+  .project{grid-template-columns:1fr}
+  .photos{grid-template-columns:1fr}
+  .showcase-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .container{padding:60px 20px}
+  .hero{padding:100px 20px 60px}
+}
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="avatar">许</div>
-  <h1>许仁康</h1>
-  <div class="tag">AI 全栈开发 · Claude Code 技术顾问</div>
-  <div class="contact">
-    <span>📞 13656428093</span>
-    <span>🏠 山东·青岛</span>
-  </div>
-</div>
-<div class="container">
-  <div class="section">
-    <h2>关于我</h2>
-    <p style="color:#8892b0;font-size:15px;line-height:1.8;margin-bottom:20px">专注 AI 赋能开发，帮助个人和商家利用 Claude Code / AI 工具快速搭建网站、小程序、电商系统。不懂代码也能借助 AI 实现创意，我来帮你架起这座桥。</p>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
-      <img src="images/about/pic1.jpg" alt="" style="width:100%;border-radius:12px;border:2px solid #2a2a3e">
-      <img src="images/about/pic2.jpg" alt="" style="width:100%;border-radius:12px;border:2px solid #2a2a3e">
+
+<nav class="nav">
+  <a href="#home">首页</a>
+  <a href="#services">服务</a>
+  <a href="#skills">技能</a>
+  <a href="#cases">案例</a>
+  <a href="#contact">联系</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">AI FULL-STACK DEVELOPER</div>
+    <h1>许仁康</h1>
+    <p class="hero-sub">AI 全栈开发 · Claude Code 技术顾问<br>帮助 0 基础用户用 AI 搭建网站、小程序、自动化办公系统</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">联系我</a>
+      <a href="#cases" class="btn-ghost">查看案例 →</a>
     </div>
   </div>
-  <div class="section">
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">完成项目</div></div>
+  <div class="stat"><div class="stat-num">24h</div><div class="stat-label">最快交付</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">客户满意</div></div>
+  <div class="stat"><div class="stat-num">0元</div><div class="stat-label">咨询费用</div></div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<div class="container" id="services">
+  <div class="section-header">
+    <div class="section-tag">SERVICES</div>
     <h2>我能帮你做什么</h2>
-    <div class="skills">
-      <div class="skill-card"><div class="icon">🤖</div><h3>Claude Code 搭建配置</h3><p>帮你从零安装 Claude Code，配置 API、环境变量、Skills 市场，让你立刻用上最强 AI 编程助手</p></div>
-      <div class="skill-card"><div class="icon">🛒</div><h3>电商/小程序开发</h3><p>蛋糕店、餐饮店、零售店线上商城，微信小程序 + H5 双端同步，当天交付可上线版本</p></div>
-      <div class="skill-card"><div class="icon">📱</div><h3>个人/企业官网</h3><p>品牌展示页、个人主页、公司官网，响应式设计，手机电脑都能看，免费部署到线上</p></div>
-      <div class="skill-card"><div class="icon">🔧</div><h3>AI 使用培训</h3><p>教你如何高效使用 AI：写代码、做 PPT、修图剪视频、写文案、数据分析，成为 AI 超级用户</p></div>
-      <div class="skill-card"><div class="icon">📊</div><h3>自动化办公</h3><p>Excel 批量处理、数据采集、报表生成、邮件自动发送，用 AI 把重复工作自动搞定</p></div>
-      <div class="skill-card"><div class="icon">🎨</div><h3>内容创作</h3><p>AI 写文章、小红书/抖音文案、产品描述、翻译校对，内容产出效率翻 10 倍</p></div>
-      <div class="skill-card"><div class="icon">📊</div><h3>代做PPT / 整理材料</h3><p>AI 快速生成精美PPT、整理文档材料、会议纪要、工作汇报，省时省力</p></div>
-    </div>
+    <p>不懂代码也能借助 AI 实现创意，我来帮你架起这座桥</p>
   </div>
-  <div class="section">
-    <h2>你可以用 AI 做什么</h2>
-    <div class="services">
-      <div class="service-item"><span class="emoji">💻</span>写代码 / Debug</div>
-      <div class="service-item"><span class="emoji">🎨</span>设计 Logo / 海报</div>
-      <div class="service-item"><span class="emoji">📹</span>视频剪辑 / 字幕</div>
-      <div class="service-item"><span class="emoji">📝</span>文案 / 合同 / 简历</div>
-      <div class="service-item"><span class="emoji">📊</span>Excel / 数据分析</div>
-      <div class="service-item"><span class="emoji">🎵</span>写歌词 / 配乐</div>
-      <div class="service-item"><span class="emoji">🌐</span>搭建网站 / 小程序</div>
-      <div class="service-item"><span class="emoji">🤖</span>AI 客服 / 聊天机器人</div>
-      <div class="service-item"><span class="emoji">📚</span>读书总结 / 翻译</div>
-      <div class="service-item"><span class="emoji">🎯</span>营销策划 / SEO</div>
-      <div class="service-item"><span class="emoji">🖼</span>老照片修复</div>
-      <div class="service-item"><span class="emoji">🗣</span>语音转文字</div>
-      <div class="service-item"><span class="emoji">📊</span>PPT制作 / 美化</div>
-      <div class="service-item"><span class="emoji">📁</span>整理文件材料</div>
-      <div class="service-item"><span class="emoji">📋</span>会议纪要 / 汇报</div>
-    </div>
-  </div>
-  <div class="section">
-    <h2>近期案例</h2>
-    <div class="projects">
-      <div class="project-card">
-        <div class="project-icon">🎂</div>
-        <div class="project-info"><h3>Cake-甜也蛋糕店</h3><p>16款产品在线商城 · 微信小程序/H5双端 · 多图展示 · 积分兑换 · 免费部署上线</p></div>
-      </div>
-      <div class="project-card">
-        <div class="project-icon">🤖</div>
-        <div class="project-info"><h3>Claude Code 安装配置服务</h3><p>从环境搭建到 Skills 配置一条龙服务，让你立刻拥有 AI 编程超能力</p></div>
-      </div>
-    </div>
-  </div>
-  <div class="cta">
-    <h2>联系我</h2>
-    <p>有想法就聊聊，先出方案再决定做不做，不收咨询费</p>
-    <a href="tel:13656428093" class="phone">📞 13656428093</a>
-    <p style="margin-top:16px;color:#667;font-size:13px">电话 / 微信同号 · 山东青岛</p>
+  <div class="cards">
+    <div class="card"><div class="card-icon">🤖</div><h3>Claude Code 搭建配置</h3><p>从零安装配置 Claude Code，API 接入、Skills 市场、MCP 插件，让你立刻拥有最强 AI 编程助手，开发效率提升 10 倍</p></div>
+    <div class="card"><div class="card-icon">🛒</div><h3>电商 / 小程序开发</h3><p>蛋糕店、餐饮店、零售店线上商城，微信小程序 + H5 双端同步，当天出预览，免费部署上线</p></div>
+    <div class="card"><div class="card-icon">📱</div><h3>个人 / 企业官网</h3><p>品牌展示页、个人主页、公司官网，响应式设计，手机电脑完美呈现，免费域名部署</p></div>
+    <div class="card"><div class="card-icon">📊</div><h3>代做 PPT · 整理材料</h3><p>AI 快速生成精美 PPT，文档整理、会议纪要、工作汇报、数据报表，准确高效</p></div>
+    <div class="card"><div class="card-icon">🔧</div><h3>AI 使用培训</h3><p>一对一教你如何高效使用 AI：写代码、做设计、剪视频、写文案、数据分析，成为 AI 超级用户</p></div>
+    <div class="card"><div class="card-icon">⚡</div><h3>自动化办公</h3><p>Excel 批量处理、网页数据采集、定时报表、邮件自动发送，用 AI + 脚本把重复工作自动化</p></div>
   </div>
 </div>
-<div class="footer">© 2026 许仁康 · AI 全栈开发 · Powered by Claude Code</div>
+
+<!-- ===== AI SKILLS ===== -->
+<div class="container" id="skills">
+  <div class="section-header">
+    <div class="section-tag">AI CAPABILITIES</div>
+    <h2>你可以用 AI 做什么</h2>
+    <p>这些事 AI 都能帮你完成，我来教你用</p>
+  </div>
+  <div class="mini-grid">
+    <div class="mini-item"><span class="e">💻</span><span>写代码 / Debug</span></div>
+    <div class="mini-item"><span class="e">🎨</span><span>设计 Logo / 海报</span></div>
+    <div class="mini-item"><span class="e">📹</span><span>视频剪辑 / 字幕</span></div>
+    <div class="mini-item"><span class="e">📝</span><span>文案 / 合同 / 简历</span></div>
+    <div class="mini-item"><span class="e">📊</span><span>Excel / 数据分析</span></div>
+    <div class="mini-item"><span class="e">📊</span><span>PPT 制作 / 美化</span></div>
+    <div class="mini-item"><span class="e">🌐</span><span>搭建网站 / 小程序</span></div>
+    <div class="mini-item"><span class="e">🤖</span><span>AI 客服 / 机器人</span></div>
+    <div class="mini-item"><span class="e">📁</span><span>整理文件材料</span></div>
+    <div class="mini-item"><span class="e">📋</span><span>会议纪要 / 汇报</span></div>
+    <div class="mini-item"><span class="e">🖼</span><span>老照片修复</span></div>
+    <div class="mini-item"><span class="e">🎯</span><span>营销策划 / SEO</span></div>
+    <div class="mini-item"><span class="e">📚</span><span>读书总结 / 翻译</span></div>
+    <div class="mini-item"><span class="e">🎵</span><span>写歌词 / 配乐</span></div>
+    <div class="mini-item"><span class="e">🗣</span><span>语音转文字</span></div>
+  </div>
+</div>
+
+<!-- ===== CASES ===== -->
+<div class="container" id="cases">
+  <div class="section-header">
+    <div class="section-tag">PORTFOLIO</div>
+    <h2>近期案例</h2>
+  </div>
+  <div class="project">
+    <div class="project-card">
+      <div class="project-icon">🎂</div>
+      <div class="project-info">
+        <h3>Cake-甜也蛋糕店</h3>
+        <p>16 款产品在线商城，微信小程序/H5 双端，多图轮播展示，积分兑换，分类筛选，GitHub Pages 免费部署</p>
+        <div class="project-tags"><span class="project-tag">电商</span><span class="project-tag">小程序</span><span class="project-tag">H5</span><span class="project-tag">免费部署</span></div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🤖</div>
+      <div class="project-info">
+        <h3>Claude Code 安装配置</h3>
+        <p>环境搭建 + API 配置 + Skills 市场 + MCP 插件一条龙，零基础到上手只需 30 分钟</p>
+        <div class="project-tags"><span class="project-tag">Claude Code</span><span class="project-tag">AI 工具</span><span class="project-tag">效率提升</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div class="container" id="contact">
+  <div class="contact-section">
+    <h2>有想法？聊聊看</h2>
+    <p>先出方案再决定，不收咨询费</p>
+    <a href="tel:13656428093" class="phone-btn">📞 136 5642 8093</a>
+    <p style="color:#667;font-size:14px;margin-top:20px;position:relative">电话 / 微信同号 · 山东青岛</p>
+  </div>
+</div>
+
+<!-- ===== PHOTOS ===== -->
+<div class="container" style="padding-top:0">
+  <div class="section-header">
+    <div class="section-tag">GALLERY</div>
+    <h2>作品展示</h2>
+    <div class="showcase-grid">
+      <div class="showcase-item"><img src="images/about/pic1.jpg" alt=""><div class="showcase-label">Claude Code 工作台</div></div>
+      <div class="showcase-item"><img src="images/about/pic2.jpg" alt=""><div class="showcase-label">AI 项目开发</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  © 2026 <span>许仁康</span> · AI 全栈开发 · Powered by Claude Code
+</div>
+
 </body>
 </html>
