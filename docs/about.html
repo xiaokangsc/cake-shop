@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>许仁康 - AI 全栈开发</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f0f0f;color:#e0e0e0;line-height:1.6}
+.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)}
+.avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;font-size:42px;color:#fff;margin:0 auto 20px;font-weight:bold}
+.hero h1{font-size:36px;color:#fff;margin-bottom:8px}
+.hero .tag{font-size:16px;color:#8892b0;letter-spacing:4px}
+.hero .contact{display:flex;justify-content:center;gap:24px;margin-top:24px;flex-wrap:wrap}
+.hero .contact span{background:rgba(255,255,255,.08);padding:8px 18px;border-radius:20px;font-size:14px;color:#ccd6f6}
+.container{max-width:800px;margin:0 auto;padding:40px 20px}
+.section{margin-bottom:48px}
+.section h2{font-size:24px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.section h2::before{content:'';width:4px;height:24px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:2px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.skill-card{background:#1a1a2e;border-radius:16px;padding:24px;border:1px solid #2a2a3e;transition:transform.2s,border-color.2s}
+.skill-card:hover{transform:translateY(-4px);border-color:#667eea}
+.skill-card .icon{font-size:36px;margin-bottom:12px}
+.skill-card h3{font-size:16px;color:#fff;margin-bottom:8px}
+.skill-card p{font-size:13px;color:#8892b0;line-height:1.5}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.service-item{background:#1a1a2e;border-radius:12px;padding:20px;text-align:center;border:1px solid #2a2a3e;font-size:14px;color:#ccd6f6}
+.service-item .emoji{font-size:32px;display:block;margin-bottom:8px}
+.projects{display:grid;gap:16px}
+.project-card{background:#1a1a2e;border-radius:16px;padding:24px;border:1px solid #2a2a3e;display:flex;gap:16px;align-items:center;transition:transform.2s}
+.project-card:hover{transform:translateY(-2px)}
+.project-icon{font-size:40px;flex-shrink:0}
+.project-info h3{font-size:16px;color:#fff;margin-bottom:4px}
+.project-info p{font-size:13px;color:#8892b0}
+.cta{text-align:center;padding:60px 20px;background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:24px;margin-top:20px}
+.cta h2{font-size:28px;color:#fff;margin-bottom:12px}
+.cta p{color:#8892b0;margin-bottom:24px}
+.cta .phone{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:14px 36px;border-radius:30px;font-size:20px;text-decoration:none;letter-spacing:2px;font-weight:bold}
+.footer{text-align:center;padding:40px 20px;color:#555;font-size:13px}
+@media(max-width:600px){.hero h1{font-size:28px}.skills{grid-template-columns:repeat(2,1fr)}.services{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="avatar">许</div>
+  <h1>许仁康</h1>
+  <div class="tag">AI 全栈开发 · Claude Code 技术顾问</div>
+  <div class="contact">
+    <span>📞 13656428093</span>
+    <span>🏠 山东·青岛</span>
+  </div>
+</div>
+<div class="container">
+  <div class="section">
+    <h2>关于我</h2>
+    <p style="color:#8892b0;font-size:15px;line-height:1.8">专注 AI 赋能开发，帮助个人和商家利用 Claude Code / AI 工具快速搭建网站、小程序、电商系统。不懂代码也能借助 AI 实现创意，我来帮你架起这座桥。</p>
+  </div>
+  <div class="section">
+    <h2>我能帮你做什么</h2>
+    <div class="skills">
+      <div class="skill-card"><div class="icon">🤖</div><h3>Claude Code 搭建配置</h3><p>帮你从零安装 Claude Code，配置 API、环境变量、Skills 市场，让你立刻用上最强 AI 编程助手</p></div>
+      <div class="skill-card"><div class="icon">🛒</div><h3>电商/小程序开发</h3><p>蛋糕店、餐饮店、零售店线上商城，微信小程序 + H5 双端同步，当天交付可上线版本</p></div>
+      <div class="skill-card"><div class="icon">📱</div><h3>个人/企业官网</h3><p>品牌展示页、个人主页、公司官网，响应式设计，手机电脑都能看，免费部署到线上</p></div>
+      <div class="skill-card"><div class="icon">🔧</div><h3>AI 使用培训</h3><p>教你如何高效使用 AI：写代码、做 PPT、修图剪视频、写文案、数据分析，成为 AI 超级用户</p></div>
+      <div class="skill-card"><div class="icon">📊</div><h3>自动化办公</h3><p>Excel 批量处理、数据采集、报表生成、邮件自动发送，用 AI 把重复工作自动搞定</p></div>
+      <div class="skill-card"><div class="icon">🎨</div><h3>内容创作</h3><p>AI 写文章、小红书/抖音文案、产品描述、翻译校对，内容产出效率翻 10 倍</p></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>你可以用 AI 做什么</h2>
+    <div class="services">
+      <div class="service-item"><span class="emoji">💻</span>写代码 / Debug</div>
+      <div class="service-item"><span class="emoji">🎨</span>设计 Logo / 海报</div>
+      <div class="service-item"><span class="emoji">📹</span>视频剪辑 / 字幕</div>
+      <div class="service-item"><span class="emoji">📝</span>文案 / 合同 / 简历</div>
+      <div class="service-item"><span class="emoji">📊</span>Excel / 数据分析</div>
+      <div class="service-item"><span class="emoji">🎵</span>写歌词 / 配乐</div>
+      <div class="service-item"><span class="emoji">🌐</span>搭建网站 / 小程序</div>
+      <div class="service-item"><span class="emoji">🤖</span>AI 客服 / 聊天机器人</div>
+      <div class="service-item"><span class="emoji">📚</span>读书总结 / 翻译</div>
+      <div class="service-item"><span class="emoji">🎯</span>营销策划 / SEO</div>
+      <div class="service-item"><span class="emoji">🖼</span>老照片修复</div>
+      <div class="service-item"><span class="emoji">🗣</span>语音转文字</div>
+    </div>
+  </div>
+  <div class="section">
+    <h2>近期案例</h2>
+    <div class="projects">
+      <div class="project-card">
+        <div class="project-icon">🎂</div>
+        <div class="project-info"><h3>Cake-甜也蛋糕店</h3><p>16款产品在线商城 · 微信小程序/H5双端 · 多图展示 · 积分兑换 · 免费部署上线</p></div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <div class="project-info"><h3>Claude Code 安装配置服务</h3><p>从环境搭建到 Skills 配置一条龙服务，让你立刻拥有 AI 编程超能力</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="cta">
+    <h2>联系我</h2>
+    <p>有想法就聊聊，先出方案再决定做不做，不收咨询费</p>
+    <a href="tel:13656428093" class="phone">📞 13656428093</a>
+    <p style="margin-top:16px;color:#667;font-size:13px">电话 / 微信同号 · 山东青岛</p>
+  </div>
+</div>
+<div class="footer">© 2026 许仁康 · AI 全栈开发 · Powered by Claude Code</div>
+</body>
+</html>
