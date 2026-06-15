@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"></head><body>
+<h1>API Test</h1>
+<div id="result">Testing...</div>
+<script>
+fetch('http://localhost:3000/api/products/list?page_size=3')
+  .then(r=>r.json())
+  .then(d=>{document.getElementById('result').innerHTML='✅ 产品数: '+d.data.total+'<br>第一个: '+d.data.list[0].name})
+  .catch(e=>{document.getElementById('result').innerHTML='❌ 错误: '+e.message});
+</script>
+</body></html>

@@ -1,0 +1,63 @@
+<view class="page">
+  <!-- Banner -->
+  <swiper class="banner" indicator-dots autoplay interval="3000" circular>
+    <swiper-item wx:for="{{banners}}" wx:key="*this">
+      <image src="{{item}}" mode="aspectFill" class="banner-img" />
+    </swiper-item>
+  </swiper>
+
+  <!-- 分类筛选 -->
+  <scroll-view class="cat-scroll" scroll-x enable-flex>
+    <view class="cat-item active" bindtap="filterCat" data-id="0">全部</view>
+    <view class="cat-item" wx:for="{{categories}}" wx:key="id" bindtap="filterCat" data-id="{{item.id}}">{{item.name}}</view>
+  </scroll-view>
+
+  <!-- 店铺信息 -->
+  <view class="shop-bar" bindtap="onCall">
+    <view class="shop-left">
+      <text class="shop-name">Cake-甜也（佳妮）</text>
+      <text class="shop-info">📍 胶州市滨州路祥瑞苑北门东侧</text>
+      <text class="shop-info">🕐 8:00-18:00</text>
+    </view>
+    <view class="shop-tel">📞 拨号</view>
+  </view>
+
+  <!-- 产品列表 -->
+  <view class="list">
+    <view class="section-title" wx:if="{{displayProducts.length > 0}}">
+      <text>🍰 精选蛋糕</text>
+      <text class="count">共{{displayProducts.length}}款</text>
+    </view>
+
+    <view class="card" wx:for="{{displayProducts}}" wx:key="id">
+      <image class="card-img" src="{{item.img}}" mode="aspectFill" bindtap="onDetail" data-id="{{item.id}}" />
+      <view class="card-body" bindtap="onDetail" data-id="{{item.id}}">
+        <view class="card-name">{{item.name}}</view>
+        <view class="card-desc">{{item.desc}}</view>
+        <view class="card-tags">
+          <text class="tag" wx:for="{{item.specs}}" wx:for-item="s" wx:key="name">{{s.name}}：{{s.values[0]}}等</text>
+        </view>
+        <view class="card-row">
+          <view class="card-price-row">
+            <text class="card-price">¥{{item.price}}</text>
+            <text class="card-orig" wx:if="{{item.orig > item.price}}">¥{{item.orig}}</text>
+          </view>
+          <view class="card-sales">已售{{item.sales}}</view>
+        </view>
+      </view>
+      <view class="card-buy" bindtap="onBuy" data-id="{{item.id}}">选这款</view>
+    </view>
+  </view>
+
+  <!-- 底部 -->
+  <view class="footer">
+    <view class="footer-card">
+      <text class="footer-title">📞 订购电话</text>
+      <text class="footer-phone" bindtap="onCall">15192634983</text>
+      <text class="footer-hint">点击拨号下单，支持自提</text>
+    </view>
+    <view class="footer-info">
+      <text>© Cake-甜也（佳妮）· 胶州蛋糕店</text>
+    </view>
+  </view>
+</view>

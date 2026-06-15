@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Cake-甜也（佳妮）</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#faf7f4;max-width:430px;margin:0 auto;min-height:100vh;color:#3d2c2c}
+:root{--rose:#C8827A;--rose-light:#E8C4B8;--rose-bg:#FDF6F2;--cream:#FAF7F4;--white:#FFF;--text:#3d2c2c;--text-light:#9B8E8A;--border:#F0E8E4;--tag-bg:#FBF2EE;--tag-text:#C8827A}
+
+/* Top Nav */
+.top-nav{background:var(--cream);padding:12px 16px;display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+.brand{font-family:'Georgia','Times New Roman',serif;font-size:20px;letter-spacing:4px;color:#5C3D3A;text-transform:uppercase}
+
+/* Banner */
+.banner{margin:12px 16px;height:200px;border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(135deg,#f5e6dc,#fdf2ee)}
+.banner-inner{display:flex;height:100%;transition:transform.4s ease}
+.banner-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.banner-slide .content{text-align:center;padding:24px}
+.banner-slide .title{font-family:'Georgia',serif;font-size:22px;color:#5C3D3A;margin-bottom:8px}
+.banner-slide .sub{font-size:13px;color:#9B8E8A;margin-bottom:12px}
+.banner-slide .tag{display:inline-block;background:var(--rose);color:#fff;padding:6px 20px;border-radius:20px;font-size:12px;letter-spacing:2px}
+.banner-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.banner-dot{width:6px;height:6px;border-radius:50%;background:rgba(200,130,122,.3);transition:all.3s}
+.banner-dot.active{background:var(--rose);width:16px;border-radius:3px}
+
+/* Category Scroll */
+.cat-section{margin:16px 0 4px}
+.cat-scroll{display:flex;gap:8px;padding:0 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-tag{padding:8px 18px;border-radius:20px;font-size:13px;white-space:nowrap;background:var(--white);color:var(--text);border:1px solid var(--border);cursor:pointer;transition:all.2s}
+.cat-tag.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+/* Section Header */
+.section-hd{display:flex;justify-content:space-between;align-items:center;padding:20px 16px 12px}
+.section-hd .title{font-family:'Georgia',serif;font-size:16px;letter-spacing:1px}
+.section-hd .more{font-size:12px;color:var(--text-light)}
+
+/* Product Grid */
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 16px}
+.product-card{background:var(--white);border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform.15s;cursor:pointer}
+.product-card:active{transform:scale(.97)}
+.product-img{width:100%;height:180px;object-fit:cover;background:linear-gradient(135deg,#fdf6f2,#faf0eb)}
+.product-info{padding:12px}
+.product-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
+.product-sold{font-size:10px;color:var(--text-light);margin-bottom:8px}
+.product-price-row{display:flex;align-items:baseline;justify-content:space-between}
+.price-current{color:#D4655A;font-size:18px;font-weight:700}
+.price-current::before{content:'¥';font-size:.65em}
+.price-orig{color:#C0B0AA;text-decoration:line-through;font-size:11px}
+.buy-btn{display:block;margin-top:8px;background:var(--rose);color:#fff;text-align:center;padding:7px 0;border-radius:20px;font-size:12px;letter-spacing:1px;cursor:pointer;border:none;width:100%}
+
+/* Detail Page */
+.detail-img{width:100%;height:320px;object-fit:cover;background:linear-gradient(135deg,#fdf6f2,#faf0eb)}
+.detail-section{padding:20px 16px;background:var(--white);margin:8px 0}
+.detail-name{font-size:20px;font-weight:700;margin-bottom:6px}
+.detail-desc{font-size:13px;color:var(--text-light);line-height:1.5;margin-bottom:12px}
+.detail-price-row{display:flex;align-items:baseline;gap:10px}
+.detail-price{color:#D4655A;font-size:26px;font-weight:700}
+.detail-price::before{content:'¥';font-size:.6em}
+.detail-orig{color:var(--text-light);text-decoration:line-through;font-size:13px}
+.detail-tag{display:inline-block;background:var(--tag-bg);color:var(--tag-text);padding:3px 10px;border-radius:10px;font-size:11px;margin-left:8px}
+
+/* Spec Selection */
+.spec-group{margin-bottom:16px}
+.spec-label{font-size:13px;color:var(--text);margin-bottom:10px;display:block;font-weight:600}
+.spec-options{display:flex;flex-wrap:wrap;gap:8px}
+.spec-opt{padding:8px 18px;border-radius:20px;font-size:13px;background:var(--white);border:1px solid var(--border);cursor:pointer;transition:all.2s}
+.spec-opt.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+.qty-control{display:flex;align-items:center;gap:16px;padding:12px 0}
+.qty-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--white);font-size:16px;color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.qty-num{font-size:16px;font-weight:600;min-width:24px;text-align:center}
+
+/* Bottom Action Bar */
+.bottom-action{position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:0 auto;background:var(--white);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);z-index:200}
+.btn-outline-rose{flex:1;border:1.5px solid var(--rose);color:var(--rose);background:var(--white);border-radius:24px;padding:12px;text-align:center;font-size:14px;cursor:pointer}
+.btn-solid-rose{flex:1;background:linear-gradient(135deg,#C8827A,#D4958E);color:#fff;border:none;border-radius:24px;padding:12px;text-align:center;font-size:14px;cursor:pointer;letter-spacing:1px}
+
+/* Cart */
+.cart-item{display:flex;align-items:center;padding:14px 16px;background:var(--white);margin:8px 16px;border-radius:14px;gap:12px;box-shadow:0 1px 8px rgba(0,0,0,.03)}
+.cart-img{width:72px;height:72px;border-radius:10px;object-fit:cover;background:linear-gradient(135deg,#fdf6f2,#faf0eb)}
+.cart-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.cart-spec{font-size:11px;color:var(--text-light)}
+.cart-price{font-size:16px;font-weight:700;color:#D4655A}
+.cart-right{text-align:right}
+.cart-qty-row{display:flex;align-items:center;gap:6px;margin-top:6px}
+.cart-qty{font-size:13px;padding:2px 10px;background:var(--cream);border-radius:10px}
+.cart-empty{text-align:center;padding:80px 0}
+.cart-empty .icon{font-size:64px;margin-bottom:12px}
+.cart-empty .text{font-size:14px;color:var(--text-light)}
+
+/* Order */
+.order-card{background:var(--white);margin:8px 16px;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,.03)}
+.order-hd{display:flex;justify-content:space-between;padding:12px 16px;font-size:12px;border-bottom:1px solid var(--border);color:var(--text-light)}
+.order-body{padding:8px 16px}
+.order-item{display:flex;justify-content:space-between;padding:6px 0;font-size:13px}
+.order-footer{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--border);font-size:13px}
+.status-badge{padding:3px 10px;border-radius:10px;font-size:11px}
+.s-pending{background:#FFF3E0;color:#E65100}
+.s-paid{background:#E8EAF6;color:#283593}
+.s-making{background:#FFF8E1;color:#F57F17}
+.s-shipped{background:#E8F5E9;color:#1B5E20}
+.s-completed{background:#F5F5F5;color:#616161}
+
+/* User Profile */
+.user-card{text-align:center;padding:30px 16px;background:linear-gradient(180deg,#FDF6F2 0%,#FAF7F4 100%)}
+.user-avatar{width:72px;height:72px;border-radius:50%;background:var(--rose-bg);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid var(--rose-light)}
+.user-name{font-size:16px;font-weight:600;margin-bottom:4px}
+.user-desc{font-size:12px;color:var(--text-light)}
+
+.order-track{display:flex;justify-content:space-around;padding:16px;background:var(--white);margin:12px 16px;border-radius:14px}
+.track-item{text-align:center;cursor:pointer}
+.track-icon{font-size:28px;display:block;margin-bottom:4px}
+.track-label{font-size:11px;color:var(--text)}
+
+.menu-list{background:var(--white);margin:12px 16px;border-radius:14px;overflow:hidden}
+.menu-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;cursor:pointer}
+.menu-row:last-child{border:none}
+.menu-arrow{color:#C0B0AA}
+
+/* Toast */
+.toast{position:fixed;top:45%;left:50%;transform:translate(-50%,-50%);background:rgba(60,44,44,.85);color:#fff;padding:12px 24px;border-radius:10px;font-size:14px;z-index:999;pointer-events:none;opacity:0;transition:opacity.25s}
+.toast.show{opacity:1}
+
+/* Admin */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:12px 16px}
+.stat-card{background:var(--white);border-radius:14px;padding:20px;text-align:center;box-shadow:0 1px 8px rgba(0,0,0,.03)}
+.stat-num{font-size:28px;font-weight:700;color:var(--rose);display:block}
+.stat-label{font-size:12px;color:var(--text-light);margin-top:4px}
+
+/* Responsive text */
+@media(max-width:360px){.product-name{font-size:12px}.price-current{font-size:16px}}
+</style>
+</head>
+<body>
+
+<!-- ====== HEADER ====== -->
+<div class="top-nav" id="topNav">
+  <span class="brand" id="brandTitle">Cake-甜也（佳妮）</span>
+</div>
+
+<!-- ====== HOME ====== -->
+<div id="pg-home">
+  <!-- Banner -->
+  <div class="banner" id="bannerBox" style="height:220px">
+    <div class="banner-inner" id="bannerInner" style="height:100%"></div>
+    <div class="banner-dots" id="bannerDots"></div>
+  </div>
+
+  <!-- Categories -->
+  <div class="cat-section">
+    <div class="cat-scroll" id="catTags"></div>
+  </div>
+
+  <!-- Recommend -->
+  <div class="section-hd"><span class="title">HOT · 热销推荐</span><span class="more" id="viewAll">全部 ›</span></div>
+  <div class="product-grid" id="productGrid"></div>
+  <div style="height:80px"></div>
+</div>
+
+<!-- ====== CATEGORY ====== -->
+<div id="pg-category" style="display:none">
+  <div style="padding:12px 16px"><div style="background:var(--white);border-radius:22px;padding:10px 16px;display:flex;align-items:center;gap:8px">
+    <span style="font-size:16px">🔍</span>
+    <input id="catSearch" placeholder="搜索蛋糕..." style="flex:1;border:none;outline:none;background:transparent;font-size:14px;color:var(--text)" oninput="catSearch()">
+  </div></div>
+  <div class="cat-scroll" id="catPageTags"></div>
+  <div class="product-grid" id="catProductGrid" style="margin-top:8px"></div>
+  <div style="height:80px"></div>
+</div>
+
+<!-- ====== DETAIL ====== -->
+<div id="pg-detail" style="display:none">
+  <img class="detail-img" id="dImg" src="">
+  <div class="detail-section">
+    <div class="detail-name" id="dName"></div>
+    <div class="detail-desc" id="dDesc"></div>
+    <div class="detail-price-row" style="margin:12px 0">
+      <span class="detail-price" id="dPrice"></span>
+      <span class="detail-orig" id="dOrig"></span>
+      <span class="detail-tag" id="dCat"></span>
+      <span style="font-size:11px;color:var(--text-light);margin-left:auto">已售<span id="dSales">0</span></span>
+    </div>
+    <div id="specArea"></div>
+    <div class="qty-control"><span style="font-size:13px;font-weight:600">数量</span>
+      <span class="qty-btn" onclick="chgQty(-1)">−</span>
+      <span class="qty-num" id="qtyNum">1</span>
+      <span class="qty-btn" onclick="chgQty(1)">+</span>
+    </div>
+  </div>
+  <div class="bottom-action">
+    <div class="btn-outline-rose" onclick="goCart()">🛒 购物车</div>
+    <div class="btn-solid-rose" onclick="addCart()">加入购物车</div>
+    <div class="btn-solid-rose" onclick="buyNow()" style="flex:0 0 auto;padding-left:20px;padding-right:20px">立即购买</div>
+  </div>
+</div>
+
+<!-- ====== CART ====== -->
+<div id="pg-cart" style="display:none">
+  <div id="cartContent"></div>
+  <div class="bottom-action" id="cartBar" style="display:none">
+    <span style="font-size:14px;flex:1">合计 <span style="font-size:20px;font-weight:700;color:#D4655A" id="cartTotal"></span></span>
+    <div class="btn-solid-rose" onclick="checkout()" style="flex:0 0 auto;padding:12px 32px">去结算</div>
+  </div>
+</div>
+
+<!-- ====== ORDERS ====== -->
+<div id="pg-orders" style="display:none">
+  <div style="display:flex;gap:4px;padding:8px 16px;overflow-x:auto;background:var(--white);position:sticky;top:45px" id="orderTabs"></div>
+  <div style="padding-top:4px" id="orderList"></div>
+</div>
+
+<!-- ====== USER ====== -->
+<div id="pg-user" style="display:none">
+  <div class="user-card">
+    <div class="user-avatar">🍰</div>
+    <div class="user-name">蛋糕爱好者</div>
+    <div class="user-desc">Cake-甜也（佳妮）</div>
+  </div>
+  <div class="order-track" id="userOrders"></div>
+  <div class="menu-list">
+    <div class="menu-row" onclick="showPage('orders')"><span>📋 我的订单</span><span class="menu-arrow">›</span></div>
+    <div class="menu-row" onclick="callShop()"><span>📞 联系客服</span><span class="menu-arrow">›</span></div>
+    <div class="menu-row" onclick="showPage('admin')"><span>⚙️ 店铺管理</span><span class="menu-arrow">›</span></div>
+  </div>
+</div>
+
+<!-- ====== ADMIN ====== -->
+<div id="pg-admin" style="display:none">
+  <div style="background:linear-gradient(135deg,#5C3D3A,#3d2c2c);padding:24px 16px;text-align:center">
+    <div style="font-family:Georgia,serif;font-size:18px;color:#fff;letter-spacing:4px">Cake-甜也 · 管理</div>
+  </div>
+  <div class="stat-grid" id="adminStats"></div>
+  <div class="menu-list">
+    <div class="menu-row" onclick="showPage('adminProds')"><span>📦 产品管理</span><span class="menu-arrow">›</span></div>
+    <div class="menu-row" onclick="showPage('adminOrders')"><span>📋 订单管理</span><span class="menu-arrow">›</span></div>
+  </div>
+</div>
+
+<!-- ====== ADMIN PRODUCTS ====== -->
+<div id="pg-adminProds" style="display:none">
+  <div style="padding:8px 16px" id="adminProdList"></div>
+</div>
+
+<!-- ====== POINTS ====== -->
+<div id="pg-points" style="display:none">
+  <!-- Points Header -->
+  <div style="background:linear-gradient(135deg,#5C3D3A,#7B5B5A);padding:32px 24px 24px;color:#fff;text-align:center">
+    <div style="font-size:48px;font-weight:300;margin-bottom:8px" id="pointsBalance">0</div>
+    <div style="font-size:13px;opacity:.8;letter-spacing:2px">当前积分</div>
+    <div style="margin-top:12px;background:rgba(255,255,255,.15);border-radius:20px;padding:6px 16px;display:inline-block;font-size:12px">每消费 ¥1 积 1 分</div>
+  </div>
+
+  <!-- Points Rules -->
+  <div style="background:var(--white);margin:12px 16px;padding:16px;border-radius:14px">
+    <div style="font-size:14px;font-weight:600;margin-bottom:12px">📋 积分规则</div>
+    <div style="font-size:12px;color:var(--text-light);line-height:2">
+      <div>• 消费满 ¥1 积 1 分</div>
+      <div>• 积分可用于兑换指定蛋糕</div>
+      <div>• 积分有效期为获取后 365 天</div>
+      <div>• 积分不可提现、不可转让</div>
+      <div>• 活动解释权归 WENTING 所有</div>
+    </div>
+  </div>
+
+  <!-- Redeemable Products -->
+  <div class="section-hd"><span class="title">GIFT · 积分兑换</span></div>
+  <div class="product-grid" id="pointsGrid">
+    <div class="product-card" onclick="redeem(200, '4寸巴斯克芝士蛋糕')">
+      <div style="height:140px;background:linear-gradient(135deg,#fdf6f2,#faf0eb);display:flex;align-items:center;justify-content:center;font-size:48px">🎂</div>
+      <div class="product-info">
+        <div class="product-name">4寸巴斯克芝士蛋糕</div>
+        <div style="font-size:10px;color:var(--text-light);margin-bottom:6px">原味经典</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <span style="color:#C8827A;font-size:16px;font-weight:700">200 积分</span>
+        </div>
+        <div class="buy-btn" style="background:#5C3D3A;margin-top:6px">立即兑换</div>
+      </div>
+    </div>
+    <div class="product-card" onclick="redeem(350, '4寸提拉米苏蛋糕')">
+      <div style="height:140px;background:linear-gradient(135deg,#fef8f6,#fcf6f3);display:flex;align-items:center;justify-content:center;font-size:48px">🍫</div>
+      <div class="product-info">
+        <div class="product-name">4寸提拉米苏蛋糕</div>
+        <div style="font-size:10px;color:var(--text-light);margin-bottom:6px">经典意式</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <span style="color:#C8827A;font-size:16px;font-weight:700">350 积分</span>
+        </div>
+        <div class="buy-btn" style="background:#5C3D3A;margin-top:6px">立即兑换</div>
+      </div>
+    </div>
+    <div class="product-card" onclick="redeem(300, '4寸海盐奥利奥蛋糕')">
+      <div style="height:140px;background:linear-gradient(135deg,#fdf5f0,#fef9f4);display:flex;align-items:center;justify-content:center;font-size:48px">🍪</div>
+      <div class="product-info">
+        <div class="product-name">4寸海盐奥利奥蛋糕</div>
+        <div style="font-size:10px;color:var(--text-light);margin-bottom:6px">咸甜奶香</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <span style="color:#C8827A;font-size:16px;font-weight:700">300 积分</span>
+        </div>
+        <div class="buy-btn" style="background:#5C3D3A;margin-top:6px">立即兑换</div>
+      </div>
+    </div>
+    <div class="product-card" onclick="redeem(500, '4寸生椰拿铁 + 豆乳双拼')">
+      <div style="height:140px;background:linear-gradient(135deg,#fcf6f3,#fef8f6);display:flex;align-items:center;justify-content:center;font-size:48px">🥥</div>
+      <div class="product-info">
+        <div class="product-name">生椰拿铁 + 豆乳双拼</div>
+        <div style="font-size:10px;color:var(--text-light);margin-bottom:6px">人气双拼</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <span style="color:#C8827A;font-size:16px;font-weight:700">500 积分</span>
+        </div>
+        <div class="buy-btn" style="background:#5C3D3A;margin-top:6px">立即兑换</div>
+      </div>
+    </div>
+    <div class="product-card" onclick="redeem(800, '4寸蛋糕全家福6选4')">
+      <div style="height:140px;background:linear-gradient(135deg,#fef9f4,#fdf5f0);display:flex;align-items:center;justify-content:center;font-size:48px">🎁</div>
+      <div class="product-info">
+        <div class="product-name">4寸蛋糕全家福 6选4</div>
+        <div style="font-size:10px;color:var(--text-light);margin-bottom:6px">超值兑换</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <span style="color:#C8827A;font-size:16px;font-weight:700">800 积分</span>
+        </div>
+        <div class="buy-btn" style="background:#5C3D3A;margin-top:6px">立即兑换</div>
+      </div>
+    </div>
+    <div class="product-card" onclick="redeem(150, '满50减10元优惠券')">
+      <div style="height:140px;background:linear-gradient(135deg,#faf0eb,#fdf6f2);display:flex;align-items:center;justify-content:center;font-size:48px">🎫</div>
+      <div class="product-info">
+        <div class="product-name">满50减10元优惠券</div>
+        <div style="font-size:10px;color:var(--text-light);margin-bottom:6px">到店可用</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between">
+          <span style="color:#C8827A;font-size:16px;font-weight:700">150 积分</span>
+        </div>
+        <div class="buy-btn" style="background:#5C3D3A;margin-top:6px">立即兑换</div>
+      </div>
+    </div>
+  </div>
+  <div style="height:80px"></div>
+</div>
+  <div style="display:flex;gap:4px;padding:8px 16px;overflow-x:auto;background:var(--white);position:sticky;top:45px" id="adminOrdTabs"></div>
+  <div style="padding:8px 16px" id="adminOrdList"></div>
+</div>
+
+<!-- ====== TAB BAR ====== -->
+<div style="position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:0 auto;background:#fff;display:flex;border-top:1px solid var(--border);z-index:300;padding-bottom:env(safe-area-inset-bottom)">
+  <div class="tab-item" style="flex:1;text-align:center;padding:6px 0 4px;color:var(--rose);cursor:pointer" id="tbHome" onclick="showPage('home')">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+    <span style="font-size:10px">首页</span></div>
+  <div class="tab-item" style="flex:1;text-align:center;padding:6px 0 4px;color:var(--text-light);cursor:pointer" id="tbCat" onclick="showPage('category')">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <span style="font-size:10px">点单</span></div>
+  <div class="tab-item" style="flex:1;text-align:center;padding:6px 0 4px;color:var(--text-light);cursor:pointer" id="tbPoints" onclick="showPage('points')">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto"><path d="M20 12v7a1 1 0 01-1 1H5a1 1 0 01-1-1v-7"/><polyline points="16 7 12 3 8 7"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+    <span style="font-size:10px">积分</span></div>
+  <div class="tab-item" style="flex:1;text-align:center;padding:6px 0 4px;color:var(--text-light);cursor:pointer" id="tbCart" onclick="showPage('cart')">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    <span style="font-size:10px">购物车</span></div>
+  <div class="tab-item" style="flex:1;text-align:center;padding:6px 0 4px;color:var(--text-light);cursor:pointer" id="tbUser" onclick="showPage('user')">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span style="font-size:10px">我的</span></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API='/api';
+let allProducts=[], categories=[], curProduct=null, detailQty=1, specSelections={};
+let adminTok='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc4MTQyMjE2NiwiZXhwIjoxNzg0MDE0MTY2fQ.18jgyhzZrgKLnI8jaYNAwskcnRlxcGm4S6mb-5FV_Pk';
+
+async function api(url,o={}){
+  try{
+    let opts={headers:{'Content-Type':'application/json'}};
+    if(o.headers) Object.assign(opts.headers,o.headers);
+    if(o.body) opts.body=JSON.stringify(o.body);
+    opts.method=o.method||'GET';
+    const r=await fetch(API+url,opts),d=await r.json();
+    if(d.code===0) return d.data;
+    if(d.code===403) t('需要管理员权限');else t(d.msg||'出错');
+    return null;
+  }catch(e){t('网络错误');return null}
+}
+function t(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1500)}
+
+// ====== PAGE NAVIGATION ======
+let curPage='home';
+function showPage(p){
+  curPage=p;
+  ['home','detail','cart','orders','user','admin','adminProds','adminOrders','points'].forEach(x=>{
+    const el=document.getElementById('pg-'+x);if(el) el.style.display='none';
+  });
+  const pg=document.getElementById('pg-'+p);
+  if(pg) pg.style.display='block';
+  // Tab highlighting
+  ['tbHome','tbCat','tbPoints','tbCart','tbUser'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el) el.style.color=['home','category','points','cart','user'].indexOf(p)===i?'var(--rose)':'var(--text-light)';
+  });
+  // Update header
+  const titles={home:'Cake-甜也（佳妮）',category:'点单',cart:'购物车',orders:'我的订单',user:'我的',admin:'店铺管理',adminProds:'产品管理',adminOrders:'订单管理',points:'积分兑换'};
+  document.getElementById('brandTitle').textContent=titles[p]||'WENTING';
+  // Load data
+  if(p==='home') loadHome();
+  if(p==='cart') loadCartPage();
+  if(p==='orders') loadOrders();
+  if(p==='user') loadUser();
+  if(p==='admin') loadAdmin();
+  if(p==='adminProds') loadAdminProds();
+  if(p==='adminOrders') loadAdminOrds();
+  if(p==='category') loadCatPage();
+  if(p==='points') loadPoints();
+}
+function goCart(){showPage('cart')}
+function callShop(){window.location.href='tel:13800008888'}
+
+// ====== HOME ======
+async function loadHome(){
+  const [prods,cats,banners]=await Promise.all([
+    api('/products/list',{body:{page_size:50}}),api('/categories/list'),api('/shop/banners')
+  ]);
+  allProducts=prods?prods.list:[]; categories=cats||[];
+  // Banners - use real images from banners folder
+  const bannerImgs=['banner1.png','banner2.jpg','banner3.jpg','banner4.jpg','banner5.jpg'];
+  document.getElementById('bannerInner').innerHTML=bannerImgs.map(img=>`<div class="banner-slide"><img src="/static/images/banners/${img}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<div class=\\'content\\'><div class=\\'title\\'>Cake-甜也</div><div class=\\'sub\\'>佳妮手作 · 精品蛋糕</div><div class=\\'tag\\'>4寸MINI系列</div></div>'"></div>`).join('');
+  document.getElementById('bannerDots').innerHTML=bannerImgs.map((_,i)=>`<div class="banner-dot${i===0?' active':''}"></div>`).join('');
+  const inner=document.getElementById('bannerInner');
+  let bi=0;setInterval(()=>{bi=(bi+1)%bannerImgs.length;inner.style.transform=`translateX(-${bi*100}%)`;document.querySelectorAll('.banner-dot').forEach((d,i)=>d.classList.toggle('active',i===bi))},3500);
+  // Category tags
+  document.getElementById('catTags').innerHTML='<span class="cat-tag active" onclick="filterCat(0,this)">全部</span>'+categories.map(c=>`<span class="cat-tag" onclick="filterCat(${c.id},this)">${c.name}</span>`).join('');
+  // Products
+  renderProducts(allProducts);
+  document.getElementById('viewAll').onclick=()=>showPage('category');
+}
+function filterCat(id,el){
+  document.querySelectorAll('.cat-tag').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const filtered=id===0?allProducts:allProducts.filter(p=>p.category_id===id);
+  renderProducts(filtered);
+}
+function renderProducts(list){
+  document.getElementById('productGrid').innerHTML=list.map(p=>{
+    const imgs=typeof p.images==='string'?JSON.parse(p.images):(p.images||[]);
+    return`<div class="product-card" onclick="openDetail(${p.id})">
+      <div class="product-img" style="background:linear-gradient(135deg,${['#fdf6f2','#faf0eb','#fef9f4','#fdf5f0','#fef8f6','#fcf6f3'][p.id%6]},${['#faf0eb','#fdf6f2','#fdf5f0','#fef9f4','#fcf6f3','#fef8f6'][(p.id+1)%6]})"></div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-sold">已售 ${p.sales||0}</div>
+        <div class="product-price-row">
+          <span class="price-current">${p.price}</span>
+          <span class="price-orig">${p.original_price>p.price?'¥'+p.original_price:''}</span>
+        </div>
+        <div class="buy-btn" onclick="event.stopPropagation();addCartDirect(${p.id})">立即购买</div>
+      </div></div>`;
+  }).join('');
+}
+
+// ====== DETAIL ======
+async function openDetail(id){
+  curProduct=await api('/products/detail/'+id);
+  if(!curProduct) return;
+  detailQty=1; specSelections={};
+  showPage('detail');
+  document.getElementById('dName').textContent=curProduct.name;
+  document.getElementById('dDesc').textContent=curProduct.description||'';
+  document.getElementById('dPrice').textContent='¥'+curProduct.price;
+  document.getElementById('dOrig').textContent=curProduct.original_price>curProduct.price?'¥'+curProduct.original_price:'';
+  document.getElementById('dCat').textContent=curProduct.category_name||'';
+  document.getElementById('dSales').textContent=curProduct.sales||0;
+  document.getElementById('qtyNum').textContent='1';
+  // Specs
+  let sh='';
+  if(curProduct.specs&&curProduct.specs.length){
+    curProduct.specs.forEach(s=>{
+      sh+=`<div class="spec-group"><span class="spec-label">${s.name}</span><div class="spec-options">`;
+      s.values.forEach((v,i)=>{
+        if(!specSelections[s.name]&&i===0) specSelections[s.name]=v;
+        sh+=`<span class="spec-opt${i===0?' active':''}" onclick="selSpec(this,'${s.name}','${v}')">${v}</span>`;
+      });
+      sh+=`</div></div>`;
+    });
+  }
+  document.getElementById('specArea').innerHTML=sh;
+}
+function selSpec(el,key,val){el.parentElement.querySelectorAll('.spec-opt').forEach(s=>s.classList.remove('active'));el.classList.add('active');specSelections[key]=val}
+function chgQty(n){detailQty=Math.max(1,Math.min(99,detailQty+n));document.getElementById('qtyNum').textContent=detailQty}
+async function addCart(){
+  if(!curProduct) return;
+  const spec=Object.values(specSelections).join('/');
+  await api('/cart/add',{method:'POST',body:{product_id:curProduct.id,spec_info:spec,quantity:detailQty}});
+  t('已加入购物车 🎉');
+}
+async function addCartDirect(pid){
+  await api('/cart/add',{method:'POST',body:{product_id:pid,quantity:1}});
+  t('已加入购物车 🎉');
+}
+function buyNow(){addCart();setTimeout(()=>showPage('cart'),600)}
+
+// ====== CART ======
+async function loadCartPage(){
+  const items=await api('/cart/list');
+  const el=document.getElementById('cartContent'),bar=document.getElementById('cartBar');
+  if(!items||!items.length){
+    el.innerHTML=`<div class="cart-empty"><div class="icon">🛒</div><div class="text">购物车是空的</div><div style="font-size:12px;color:var(--text-light);margin-top:4px">去挑选喜欢的蛋糕吧~</div></div>`;
+    bar.style.display='none'; return;
+  }
+  bar.style.display='flex';
+  let total=0;
+  el.innerHTML=items.map(it=>{
+    const sub=it.price*it.quantity; total+=sub;
+    const imgs=typeof it.images==='string'?JSON.parse(it.images):(it.images||[]);
+    return`<div class="cart-item">
+      <div style="flex:1">
+        <div class="cart-name">${it.name}</div>
+        <div class="cart-spec">${it.spec_info||''}</div>
+        <span class="cart-price">¥${sub.toFixed(2)}</span>
+      </div>
+      <div class="cart-right">
+        <div class="cart-qty-row">
+          <span class="qty-btn" style="width:24px;height:24px;font-size:12px" onclick="chgCartQty(${it.id},${it.quantity-1})">−</span>
+          <span class="cart-qty">${it.quantity}</span>
+          <span class="qty-btn" style="width:24px;height:24px;font-size:12px" onclick="chgCartQty(${it.id},${it.quantity+1})">+</span>
+        </div>
+      </div></div>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent='¥'+total.toFixed(2);
+}
+async function chgCartQty(id,qty){
+  if(qty<=0){await api('/cart/delete',{method:'POST',body:{ids:id}})}else{await api('/cart/update',{method:'POST',body:{id,quantity:qty}})}
+  loadCartPage();
+}
+async function checkout(){
+  const items=await api('/cart/list');
+  if(!items||!items.length){t('购物车是空的');return}
+  const order=await api('/orders/create',{method:'POST',body:{address_id:1,remark:''}});
+  if(order){t('下单成功！'+order.order_no);loadCartPage()}
+}
+
+// ====== ORDERS ======
+async function loadOrders(st=''){
+  const data=await api('/orders/list',{body:{status:st,page_size:50}});
+  const sm={pending:'待付款',paid:'待制作',making:'制作中',shipped:'配送中',completed:'已完成',cancelled:'已取消'};
+  const el=document.getElementById('orderList');
+  if(!data||!data.list.length){el.innerHTML='<div class="cart-empty"><div class="icon">📋</div><div class="text">暂无订单</div></div>';return}
+  el.innerHTML=data.list.map(o=>`<div class="order-card"><div class="order-hd"><span>📋 ${o.order_no}</span><span class="status-badge s-${o.status}">${sm[o.status]}</span></div><div class="order-body">${o.items.map(i=>`<div class="order-item"><span>${i.name} ${i.spec_info||''} ×${i.quantity}</span><span style="color:#D4655A">¥${i.price}</span></div>`).join('')}</div><div class="order-footer"><span>实付 <span style="color:#D4655A;font-weight:700">¥${o.pay_amount}</span></span>${o.status==='pending'?`<span><span class="status-badge s-completed" onclick="cancelOrd(${o.id})" style="cursor:pointer;margin-right:6px">取消</span><span class="btn-solid-rose" style="padding:4px 14px;font-size:11px;border-radius:12px" onclick="payOrd(${o.id})">付款</span></span>`:''}${o.status==='shipped'?`<span class="btn-solid-rose" style="padding:4px 14px;font-size:11px;border-radius:12px" onclick="confirmOrd(${o.id})">确认收货</span></span>`:''}</div></div>`).join('');
+  document.getElementById('orderTabs').innerHTML=['全部','待付款','待制作','制作中','配送中','已完成'].map((l,i)=>`<span style="padding:8px 16px;font-size:12px;border-radius:14px;cursor:pointer;white-space:nowrap;${i===0?'background:var(--rose);color:#fff':''}" onclick="loadOrders('${['','pending','paid','making','shipped','completed'][i]}');this.parentElement.querySelectorAll('span').forEach(s=>s.style.cssText='padding:8px 16px;font-size:12px;border-radius:14px;cursor:pointer;white-space:nowrap');this.style.cssText='padding:8px 16px;font-size:12px;border-radius:14px;cursor:pointer;white-space:nowrap;background:var(--rose);color:#fff;'">${l}</span>`).join('');
+}
+async function cancelOrd(id){await api('/orders/cancel/'+id,{method:'POST'});t('已取消');loadOrders()}
+async function payOrd(id){await api('/orders/pay/'+id,{method:'POST'});t('支付成功');loadOrders()}
+async function confirmOrd(id){await api('/orders/confirm/'+id,{method:'POST'});t('已确认收货');loadOrders()}
+
+// ====== USER ======
+function loadUser(){
+  document.getElementById('userOrders').innerHTML=[['💳','待付款'],['👨‍🍳','制作中'],['🚚','配送中'],['✅','已完成']].map(([icon,label])=>`<div class="track-item" onclick="showPage('orders')"><span class="track-icon">${icon}</span><span class="track-label">${label}</span></div>`).join('');
+}
+
+// ====== ADMIN ======
+async function loadAdmin(){
+  const d=await api('/shop/admin/dashboard',{headers:{Authorization:'Bearer '+adminTok}});
+  if(!d) return;
+  document.getElementById('adminStats').innerHTML=`
+    <div class="stat-card"><span class="stat-num">${d.todayOrders||0}</span><span class="stat-label">今日订单</span></div>
+    <div class="stat-card"><span class="stat-num">¥${d.todayAmount||0}</span><span class="stat-label">今日营收</span></div>
+    <div class="stat-card"><span class="stat-num">${d.productCount||0}</span><span class="stat-label">产品数</span></div>
+    <div class="stat-card"><span class="stat-num">${d.userCount||0}</span><span class="stat-label">用户数</span></div>`;
+}
+async function loadAdminProds(){
+  const list=await api('/shop/admin/products',{headers:{Authorization:'Bearer '+adminTok}});
+  if(!list) return;
+  document.getElementById('adminProdList').innerHTML=list.map(p=>`<div style="background:var(--white);border-radius:14px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 6px rgba(0,0,0,.03)">
+    <div><div style="font-weight:600;font-size:14px">${p.name}</div><div style="font-size:12px;color:var(--text-light)">¥${p.price} | ${p.category_name||''}</div></div>
+    <div style="display:flex;gap:8px">
+      <span style="font-size:12px;color:${p.status===1?'#4CAF50':'#999'};padding:4px 10px;border-radius:10px;background:${p.status===1?'#E8F5E9':'#F5F5F5'};cursor:pointer" onclick="toggleProd(${p.id},${p.status})">${p.status===1?'上架':'下架'}</span>
+      <span style="font-size:12px;color:#D4655A;padding:4px 10px;border-radius:10px;background:#FFF0F0;cursor:pointer" onclick="delProd(${p.id})">删除</span>
+    </div></div>`).join('');
+}
+async function toggleProd(id,s){await api('/shop/admin/product/status',{method:'POST',body:{id,status:s===1?0:1},headers:{Authorization:'Bearer '+adminTok}});t('已更新');loadAdminProds()}
+async function delProd(id){if(!confirm('确认删除？'))return;await api('/shop/admin/product/delete',{method:'POST',body:{id},headers:{Authorization:'Bearer '+adminTok}});t('已删除');loadAdminProds()}
+async function loadAdminOrds(st=''){
+  const data=await api('/orders/admin/list',{headers:{Authorization:'Bearer '+adminTok},body:{status:st,page_size:50}});
+  if(!data) return;
+  const sm={pending:'待付款',paid:'待制作',making:'制作中',shipped:'配送中',completed:'已完成'};
+  document.getElementById('adminOrdList').innerHTML=data.list.map(o=>`<div class="order-card"><div class="order-hd"><span>📋 ${o.order_no}</span><span class="status-badge s-${o.status}">${sm[o.status]}</span></div><div class="order-body">${o.items.map(i=>`<div class="order-item"><span>${i.name} ×${i.quantity}</span><span style="color:#D4655A">¥${i.price}</span></div>`).join('')}</div><div class="order-footer"><span>实付 <span style="color:#D4655A;font-weight:700">¥${o.pay_amount}</span></span>${o.status==='paid'?`<span class="btn-solid-rose" style="padding:4px 14px;font-size:11px;border-radius:12px" onclick="updOrd(${o.id},'making')">开始制作</span>`:''}${o.status==='making'?`<span class="btn-solid-rose" style="padding:4px 14px;font-size:11px;border-radius:12px" onclick="updOrd(${o.id},'shipped')">开始配送</span>`:''}</div></div>`).join('');
+  document.getElementById('adminOrdTabs').innerHTML=['全部','待制作','制作中','配送中','已完成'].map((l,i)=>`<span style="padding:8px 16px;font-size:12px;border-radius:14px;cursor:pointer;white-space:nowrap;${i===0?'background:var(--rose);color:#fff':''}" onclick="loadAdminOrds('${['','paid','making','shipped','completed'][i]}');this.parentElement.querySelectorAll('span').forEach(s=>s.style.cssText='padding:8px 16px;font-size:12px;border-radius:14px;cursor:pointer;white-space:nowrap');this.style.cssText='padding:8px 16px;font-size:12px;border-radius:14px;cursor:pointer;white-space:nowrap;background:var(--rose);color:#fff;'">${l}</span>`).join('');
+}
+async function updOrd(id,s){await api('/orders/admin/status',{method:'POST',body:{order_id:id,status:s},headers:{Authorization:'Bearer '+adminTok}});t('已更新');loadAdminOrds()}
+
+// ====== CATEGORY PAGE ======
+let catActiveFilter=0;
+function loadCatPage(){
+  document.getElementById('catPageTags').innerHTML='<span class="cat-tag active" onclick="catPageFilter(0,this)">全部</span>'+categories.map(c=>`<span class="cat-tag" onclick="catPageFilter(${c.id},this)">${c.name}</span>`).join('');
+  catPageFilter(0, null);
+}
+function catPageFilter(id,el){
+  catActiveFilter=id;
+  if(el){document.querySelectorAll('#catPageTags .cat-tag').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
+  const kw=(document.getElementById('catSearch')?.value||'').toLowerCase();
+  let list=id===0?allProducts:allProducts.filter(p=>p.category_id===id);
+  if(kw) list=list.filter(p=>p.name.toLowerCase().includes(kw));
+  renderCatProds(list);
+}
+function catSearch(){
+  catPageFilter(catActiveFilter, null);
+}
+function renderCatProds(list){
+  document.getElementById('catProductGrid').innerHTML=list.length?list.map(p=>{
+    return`<div class="product-card" onclick="openDetail(${p.id})">
+      <div class="product-img" style="background:linear-gradient(135deg,${['#fdf6f2','#faf0eb','#fef9f4','#fdf5f0'][p.id%4]},${['#faf0eb','#fdf6f2','#fdf5f0','#fef9f4'][(p.id+1)%4]})"></div>
+      <div class="product-info"><div class="product-name">${p.name}</div><div class="product-sold">已售 ${p.sales||0}</div>
+      <div class="product-price-row"><span class="price-current">${p.price}</span><span class="price-orig">${p.original_price>p.price?'¥'+p.original_price:''}</span></div>
+      <div class="buy-btn" onclick="event.stopPropagation();addCartDirect(${p.id})">立即购买</div></div></div>`;
+  }).join(''):'<div style="text-align:center;padding:60px 0;color:var(--text-light);font-size:14px">没有找到相关产品</div>';
+}
+
+// ====== POINTS ======
+function loadPoints(){
+  // Show mock points balance (would come from user API in production)
+  document.getElementById('pointsBalance').textContent='268';
+}
+function redeem(points, item){
+  const balance=parseInt(document.getElementById('pointsBalance').textContent)||0;
+  if(balance<points){t(`积分不足！需要 ${points} 分，当前 ${balance} 分`);return}
+  if(!confirm(`确认使用 ${points} 积分兑换「${item}」？`)) return;
+  document.getElementById('pointsBalance').textContent=balance-points;
+  t(`兑换成功！「${item}」剩余积分 ${balance-points}`);
+}
+
+// ====== INIT ======
+loadHome();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+.page { background: #faf7f4; min-height: 100vh; }
+
+/* Banner */
+.banner { width: 100%; height: 360px; }
+.banner-img { width: 100%; height: 100%; }
+
+/* 分类筛选 */
+.cat-scroll { white-space: nowrap; padding: 12px 16px; background: #fff; }
+.cat-item { display: inline-block; padding: 6px 16px; margin-right: 8px; border-radius: 16px; font-size: 13px; color: #666; background: #f5f5f5; }
+.cat-item.active { background: #C8827A; color: #fff; }
+
+/* 店铺信息 */
+.shop-bar { background: linear-gradient(135deg, #5C3D3A, #7B5B5A); margin: 12px 16px; padding: 16px; border-radius: 14px; display: flex; justify-content: space-between; align-items: center; }
+.shop-left { flex: 1; }
+.shop-name { font-size: 15px; font-weight: 700; color: #fff; display: block; }
+.shop-info { font-size: 11px; color: rgba(255,255,255,.7); display: block; margin-top: 3px; }
+.shop-tel { background: rgba(255,255,255,.2); color: #fff; padding: 8px 14px; border-radius: 20px; font-size: 13px; }
+
+/* 产品列表 */
+.list { padding: 0 16px; }
+.section-title { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 8px; font-size: 16px; font-weight: 700; color: #5C3D3A; }
+.count { font-size: 12px; color: #9B8E8A; font-weight: normal; }
+
+/* 产品卡片 */
+.card { background: #fff; border-radius: 14px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.03); display: flex; }
+.card-img { width: 100px; height: 100px; object-fit: cover; flex-shrink: 0; }
+.card-body { flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+.card-name { font-size: 14px; font-weight: 700; color: #3d2c2c; }
+.card-desc { font-size: 11px; color: #9B8E8A; margin: 4px 0; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: 10px; color: #C8827A; background: #FDF6F2; padding: 2px 6px; border-radius: 4px; }
+.card-row { display: flex; justify-content: space-between; align-items: center; }
+.card-price-row { display: flex; align-items: baseline; gap: 6px; }
+.card-price { color: #D4655A; font-size: 16px; font-weight: 700; }
+.card-orig { color: #C0B0AA; text-decoration: line-through; font-size: 10px; }
+.card-sales { font-size: 10px; color: #ccc; }
+.card-buy { writing-mode: vertical-rl; background: #C8827A; color: #fff; font-size: 12px; padding: 6px 4px; border-radius: 0 14px 14px 0; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+/* 底部 */
+.footer { padding: 20px 16px; }
+.footer-card { background: linear-gradient(135deg, #FDF6F2, #FAF0EB); border-radius: 14px; padding: 24px; text-align: center; border: 1px solid #E8D5CB; }
+.footer-title { font-size: 14px; color: #5C3D3A; display: block; }
+.footer-phone { font-size: 22px; font-weight: 800; color: #C8827A; display: block; margin: 8px 0; letter-spacing: 2px; }
+.footer-hint { font-size: 11px; color: #9B8E8A; }
+.footer-info { text-align: center; padding-top: 12px; font-size: 10px; color: #ccc; }

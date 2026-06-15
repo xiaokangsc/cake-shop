@@ -1,0 +1,17 @@
+{
+  "name": "甜蜜蛋糕坊",
+  "appid": "__UNI__CAKE_SHOP",
+  "description": "精品蛋糕在线订购",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "h5": {
+    "router": { "mode": "hash" },
+    "title": "甜蜜蛋糕坊 - 精品蛋糕在线订购"
+  },
+  "mp-weixin": {
+    "appid": "请替换为你的小程序AppID",
+    "setting": { "urlCheck": false },
+    "usingComponents": true
+  }
+}
