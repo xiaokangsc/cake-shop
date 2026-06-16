@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Claude Code 完全使用教程 - 许仁康</title>
+<style>
+@page{size:A4;margin:18mm}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;color:#222;line-height:1.9;max-width:750px;margin:0 auto;padding:40px}
+h1{text-align:center;font-size:24px;color:#1a1a2e;border-bottom:3px solid #d4a574;padding-bottom:14px;margin-bottom:6px}
+.sub{text-align:center;color:#d4a574;font-size:13px;margin-bottom:28px}
+h2{font-size:18px;color:#1a1a2e;border-left:4px solid #d4a574;padding-left:10px;margin:30px 0 14px}
+.step{background:#fdfaf7;border-radius:10px;padding:14px 18px;margin:10px 0;border-left:3px solid #d4a574}
+.step .num{display:inline-block;background:#d4a574;color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:13px;margin-right:8px}
+.code{background:#1a1a2e;color:#e0c090;padding:12px 16px;border-radius:8px;font-family:Consolas,monospace;font-size:13px;margin:8px 0;overflow-x:auto}
+.cmd{color:#7ec8e3}
+.comment{color:#666}
+.tip{background:#fff8e1;border-radius:8px;padding:10px 16px;margin:8px 0;font-size:13px}
+.tip::before{content:'💡 '}
+.warn{background:#fff0f0;border-radius:8px;padding:10px 16px;margin:8px 0;font-size:13px}
+.warn::before{content:'⚠️ '}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+th{background:#d4a574;color:#fff;padding:10px;text-align:left}
+td{padding:8px 10px;border-bottom:1px solid #eee}
+tr:nth-child(even){background:#fafafa}
+.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #eee;font-size:12px;color:#999}
+</style>
+</head>
+<body>
+
+<h1>🤖Claude Code 完全使用教程</h1>
+<p class="sub">从零到精通 · 许仁康整理 · 2026年6月</p>
+
+<h2>一、什么是 Claude Code</h2>
+<p>Claude Code 是一个<strong>AI 编程助手</strong>，你对他说话，他帮你：</p>
+<table>
+<tr><th>能做什么</th><th>举例</th></tr>
+<tr><td>💻 写网站/小程序</td><td>「帮我做一个蛋糕店在线商城」</td></tr>
+<tr><td>📝 改代码</td><td>「把这个按钮颜色改成红色」</td></tr>
+<tr><td>🔧 部署上线</td><td>「帮我部署到 GitHub Pages」</td></tr>
+<tr><td>🖼 处理图片</td><td>「把这些产品图裁剪一下去掉黑边」</td></tr>
+<tr><td>📊 数据处理</td><td>「帮我录入这7款新产品」</td></tr>
+<tr><td>📄 生成文档</td><td>「帮我做一份 PDF 产品目录」</td></tr>
+</table>
+
+<h2>二、你的 Claude Code 是怎么搭的</h2>
+
+<div class="step"><span class="num">1</span><b>安装 WorkBuddy</b>（国内版 Claude Code IDE）</div>
+<div class="step"><span class="num">2</span><b>配置 DeepSeek API</b>：在 <code>.claude/settings.json</code> 里填了 DeepSeek 的 API 地址和密钥</div>
+<div class="step"><span class="num">3</span><b>模型选择</b>：主模型 <code>deepseek-v4-pro[1m]</code>（1M 上下文窗口），子代理用 <code>deepseek-v4-flash</code></div>
+<div class="step"><span class="num">4</span><b>Skills 市场</b>：WorkBuddy 自带 200+ 技能，包括腾讯文档、企业微信、浏览器控制等</div>
+
+<h2>三、怎么在手机上使用</h2>
+
+<h3>📱 方案一：Claude 官方 App（推荐）</h3>
+<div class="step"><span class="num">1</span>iPhone 切到美区 App Store / Android 下载 Claude App</div>
+<div class="step"><span class="num">2</span>登录你的 Anthropic 账号（需要外区手机号或 Google 登录）</div>
+<div class="step"><span class="num">3</span>直接在聊天框里对话，和电脑端 Claude Code 功能一样</div>
+<div class="warn">需要外区 Apple ID 或 Google Play 账号才能下载</div>
+
+<h3>📱 方案二：手机浏览器</h3>
+<div class="step"><span class="num">1</span>手机打开 <code>https://claude.ai</code></div>
+<div class="step"><span class="num">2</span>登录后在网页版直接使用</div>
+<div class="tip">网页版功能完整，不用下载 App，最方便</div>
+
+<h3>📱 方案三：远程控制电脑</h3>
+<div class="step"><span class="num">1</span>电脑和手机都安装 <b>ToDesk</b> 或 <b>向日葵</b></div>
+<div class="step"><span class="num">2</span>手机远程连到电脑桌面</div>
+<div class="step"><span class="num">3</span>在手机上操作电脑里的 Claude Code，随时随地写代码</div>
+
+<h2>四、Claude Code 常用命令</h2>
+
+<p>在 VS Code 或终端里使用：</p>
+
+<div class="code">
+<span class="comment"># 初始化项目</span><br>
+<span class="cmd">/init</span><br><br>
+<span class="comment"># 代码审查</span><br>
+<span class="cmd">/code-review</span><br><br>
+<span class="comment"># 安全审查</span><br>
+<span class="cmd">/security-review</span><br><br>
+<span class="comment"># 简化代码</span><br>
+<span class="cmd">/simplify</span><br><br>
+<span class="comment"># 深度研究</span><br>
+<span class="cmd">/deep-research 主题描述</span><br><br>
+<span class="comment"># 配置更新</span><br>
+<span class="cmd">/update-config</span>
+</div>
+
+<h2>五、Skills（技能）怎么用</h2>
+
+<p>你的 WorkBuddy 自带这些技能，直接对话就能触发：</p>
+
+<table>
+<tr><th>Skill</th><th>用途</th><th>怎么触发</th></tr>
+<tr><td>deep-research</td><td>深度研究，联网搜索</td><td>「帮我研究一下抖音蛋糕店运营方法」</td></tr>
+<tr><td>code-review</td><td>代码审查</td><td>「帮我检查刚才的代码有什么问题」</td></tr>
+<tr><td>claude-api</td><td>API 参考</td><td>「Claude API 最新价格是多少」</td></tr>
+<tr><td>run</td><td>启动项目</td><td>「帮我把程序运行起来」</td></tr>
+<tr><td>init</td><td>初始化项目</td><td>「帮我初始化 CLAUDE.md」</td></tr>
+<tr><td>simplify</td><td>简化代码</td><td>「帮我把这段代码优化一下」</td></tr>
+<tr><td>review</td><td>PR 审查</td><td>「帮我 review 这个 PR」</td></tr>
+</table>
+
+<h2>六、跟 Claude Code 说话的技巧</h2>
+
+<div class="tip"><b>好用的对话公式：具体文件/路径 + 做什么 + 什么要求</b></div>
+
+<table>
+<tr><th>❌ 模糊</th><th>✅ 清晰</th></tr>
+<tr><td>帮我改一下</td><td>miniProgram/index.wxml 里把首页标题改成「新品推荐」</td></tr>
+<tr><td>上传图片</td><td>douyin 文件夹里新加了 3 张图，帮我裁掉黑边，关联到四寸巴斯克上</td></tr>
+<tr><td>做个新功能</td><td>蛋糕店 H5 加一个新品分类，包含毛巾卷 ¥12、青提 ¥19.9 等 7 款产品</td></tr>
+<tr><td>发布一下</td><td>把最新的代码 push 到 GitHub，commit 写「新增 7 款产品」</td></tr>
+</table>
+
+<h2>七、你的 Claude Code 配置</h2>
+
+<table>
+<tr><th>配置项</th><th>你的值</th></tr>
+<tr><td>API 地址</td><td>https://api.deepseek.com/anthropic</td></tr>
+<tr><td>主模型</td><td>deepseek-v4-pro[1m]</td></tr>
+<tr><td>快模型</td><td>deepseek-v4-flash</td></tr>
+<tr><td>上下文窗口</td><td>1,000,000 tokens</td></tr>
+<tr><td>Effort Level</td><td>max</td></tr>
+</table>
+
+<h2>八、常见问题</h2>
+
+<table>
+<tr><th>问题</th><th>解决</th></tr>
+<tr><td>手机上 Claude 怎么下载？</td><td>需要外区 App Store；或用手机浏览器打开 claude.ai</td></tr>
+<tr><td>Claude Code 能免费吗？</td><td>你用的是 DeepSeek API，¥3/百万tokens，很便宜</td></tr>
+<tr><td>WorkBuddy 是什么？</td><td>国内版 Claude Code IDE，自带 Skills 市场</td></tr>
+<tr><td>电脑关机了还能用吗？</td><td>手机版 Claude 不依赖电脑，直接对话就行</td></tr>
+<tr><td>怎么更新产品？</td><td>告诉 Claude Code「帮我把 XX 产品价格改成 XX」</td></tr>
+</table>
+
+<div style="background:linear-gradient(135deg,#fdfaf7,#f5ebe0);border-radius:12px;padding:20px;text-align:center;margin:16px 0">
+<p style="font-size:16px;font-weight:bold">📞 有问题随时找我</p>
+<p style="font-size:20px;font-weight:bold;color:#d4a574;letter-spacing:2px">13656428093</p>
+<p style="font-size:12px;color:#999">许仁康 · Claude Code 全栈开发 · 技术支持</p>
+</div>
+
+<div class="footer">
+  许仁康 · Claude Code 使用教程 · 2026年6月<br>
+  Cake-甜也（佳妮）蛋糕店 · 技术支持
+</div>
+
+</body>
+</html>
