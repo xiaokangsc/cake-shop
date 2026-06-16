@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>蛋糕大作战 · 手机小游戏</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;touch-action:manipulation}
+body{background:#1a1a2e;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;font-family:'PingFang SC','Microsoft YaHei',sans-serif;user-select:none;-webkit-user-select:none}
+#wrap{position:relative;width:100vw;max-width:420px;height:100vh;max-height:750px;overflow:hidden;background:linear-gradient(180deg,#87CEEB,#E0F7FA 40%,#4CAF50 80%,#2E7D32)}
+canvas{display:block;width:100%;height:100%}
+#ui-top{position:absolute;top:8px;left:8px;right:8px;display:flex;justify-content:space-between;color:#fff;font-size:14px;font-weight:bold;text-shadow:0 1px 2px rgba(0,0,0,.5);pointer-events:none}
+#btns{position:absolute;bottom:20px;left:0;right:0;display:flex;justify-content:space-between;padding:0 16px;pointer-events:none}
+#btns>div{pointer-events:auto}
+#move-btns{display:grid;grid-template-columns:50px 50px 50px;grid-template-rows:50px 50px 50px;gap:2px}
+.mbtn{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.25);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.mbtn:active{background:rgba(255,255,255,.5)}
+#act-btns{display:flex;gap:8px;align-items:flex-end}
+.abtn{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;font-weight:bold}
+.abtn:active{transform:scale(.9)}
+#btnA{background:rgba(255,68,68,.5)}#btnB{background:rgba(255,170,0,.5)}#btnC{background:rgba(68,68,255,.5)}
+#over{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);display:none;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:10}
+#over.show{display:flex}
+#over h2{font-size:28px;margin-bottom:12px}
+#over p{font-size:16px;margin-bottom:8px;color:#ff0}
+#over button{background:#f44;color:#fff;border:none;padding:12px 40px;border-radius:24px;font-size:18px;margin-top:16px;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="c"></canvas>
+  <div id="ui-top"><span>❤️ <span id="hpDisp">10</span></span><span>⭐ <span id="scoreDisp">0</span></span></div>
+  <div id="btns">
+    <div id="move-btns">
+      <div></div><div class="mbtn" id="up">▲</div><div></div>
+      <div class="mbtn" id="left">◀</div><div></div><div class="mbtn" id="right">▶</div>
+      <div></div><div class="mbtn" id="down">▼</div><div></div>
+    </div>
+    <div id="act-btns">
+      <div class="abtn" id="btnA">打</div>
+      <div class="abtn" id="btnB">跳</div>
+    </div>
+  </div>
+  <div id="over">
+    <h2>游戏结束</h2>
+    <p>得分: <span id="finalScore">0</span></p>
+    <p>收集蛋糕: <span id="finalCakes">0</span></p>
+    <button onclick="restart()">再来一局</button>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize() {
+  const wrap = document.getElementById('wrap');
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  canvas.width = W * 2; canvas.height = H * 2;
+  ctx.scale(2, 2);
+}
+resize(); window.addEventListener('resize', resize);
+
+// Game state
+let player, enemies, cakes, particles;
+let score, hp, gameOver, frame;
+
+function restart() {
+  player = { x: W / 2, y: H - 120, w: 32, h: 44, vy: 0, grounded: false, face: 1, atkCD: 0, inv: 0 };
+  enemies = []; cakes = []; particles = [];
+  score = 0; hp = 10; gameOver = false; frame = 0;
+  document.getElementById('over').classList.remove('show');
+}
+
+function spawnEnemy() {
+  const types = [
+    { name: '苍蝇怪', w: 28, h: 28, hp: 1, spd: 1.5, score: 10, color: '#8f8' },
+    { name: '蜘蛛精', w: 34, h: 30, hp: 2, spd: 1, score: 20, color: '#c4f' },
+    { name: '石头人', w: 40, h: 42, hp: 4, spd: 0.6, score: 50, color: '#888' },
+  ];
+  const t = types[Math.floor(Math.random() * types.length)];
+  return {
+    ...t, x: Math.random() * (W - 100) + 50,
+    y: H - 80 - t.h, vy: 0, grounded: false,
+    aiTimer: 0, hitFlash: 0
+  };
+}
+
+function spawnCake(x, y) {
+  return { x, y, vy: -6, life: 40, type: Math.floor(Math.random() * 5) };
+}
+
+// Touch controls
+const input = { left: false, right: false, up: false, down: false, a: false, b: false };
+function bindBtn(id, key) {
+  const el = document.getElementById(id);
+  el.addEventListener('pointerdown', e => { e.preventDefault(); input[key] = true; });
+  el.addEventListener('pointerup', e => { e.preventDefault(); input[key] = false; });
+  el.addEventListener('pointerleave', e => { input[key] = false; });
+}
+bindBtn('left', 'left'); bindBtn('right', 'right');
+bindBtn('up', 'up'); bindBtn('down', 'down');
+bindBtn('btnA', 'a'); bindBtn('btnB', 'b');
+
+// Keyboard fallback
+window.addEventListener('keydown', e => {
+  const map = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down', a: 'a', s: 'b', ' ': 'b' };
+  if (map[e.key]) input[map[e.key]] = true;
+});
+window.addEventListener('keyup', e => {
+  const map = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down', a: 'a', s: 'b', ' ': 'b' };
+  if (map[e.key]) input[map[e.key]] = false;
+});
+
+function update() {
+  if (gameOver) return;
+  frame++;
+  // Player move
+  const spd = 3.5;
+  if (input.left) { player.x -= spd; player.face = -1; }
+  if (input.right) { player.x += spd; player.face = 1; }
+  if (input.up && player.grounded) { player.vy = -9; player.grounded = false; }
+  player.x = Math.max(20, Math.min(W - 20, player.x));
+  player.vy += 0.5; player.y += player.vy;
+  if (player.y >= H - 80) { player.y = H - 80; player.vy = 0; player.grounded = true; }
+  if (player.atkCD > 0) player.atkCD--;
+  if (player.inv > 0) player.inv--;
+
+  // Attack
+  if (input.a && player.atkCD === 0) {
+    player.atkCD = 25;
+    for (let e of enemies) {
+      const dx = e.x - player.x, dy = e.y - player.y;
+      if (Math.abs(dx) < 60 && Math.abs(dy) < 50) {
+        e.hp--; e.hitFlash = 8;
+        e.vy = -5; e.x += player.face * 20;
+        for (let i = 0; i < 3; i++) particles.push({ x: e.x, y: e.y, vx: (Math.random() - .5) * 6, vy: -Math.random() * 4 - 2, life: 15, color: '#ff0' });
+        if (e.hp <= 0) {
+          score += e.score;
+          // Spawn cake!
+          for (let j = 0; j < 3; j++) cakes.push(spawnCake(e.x, e.y));
+          for (let j = 0; j < 8; j++) particles.push({ x: e.x, y: e.y, vx: (Math.random() - .5) * 8, vy: -Math.random() * 8 - 2, life: 25, color: ['#f80', '#ff0', '#fff'][j % 3] });
+        }
+      }
+    }
+  }
+
+  // Jump
+  if (input.b && player.grounded) { player.vy = -10; player.grounded = false; }
+
+  // Enemies
+  for (let e of enemies) {
+    if (e.hp <= 0) continue;
+    if (e.hitFlash > 0) e.hitFlash--;
+    e.aiTimer--;
+    const dx = player.x - e.x;
+    if (Math.abs(dx) < 250) {
+      e.x += Math.sign(dx) * e.spd;
+      if (e.aiTimer <= 0 && Math.abs(dx) < 40 && Math.abs(player.y - e.y) < 40 && player.inv === 0) {
+        hp--; player.inv = 30; particles.push({ x: player.x, y: player.y, vx: 0, vy: -5, life: 20, color: '#f00', text: '-1' });
+        if (hp <= 0) { gameOver = true; document.getElementById('over').classList.add('show'); document.getElementById('finalScore').textContent = score; document.getElementById('finalCakes').textContent = cakes.filter(c => c.collected).length; }
+      }
+    }
+    e.vy += 0.5; e.y += e.vy;
+    if (e.y >= H - 80) { e.y = H - 80; e.vy = 0; }
+  }
+
+  // Spawn enemies
+  if (frame % 120 === 0 && enemies.length < 6) { enemies.push(spawnEnemy()); }
+  if (frame % 300 === 0 && enemies.length < 4) { for (let i = 0; i < 2; i++) enemies.push(spawnEnemy()); }
+
+  // Remove dead enemies
+  enemies = enemies.filter(e => e.hp > 0);
+
+  // Cakes
+  for (let c of cakes) {
+    c.vy += 0.3; c.y += c.vy; c.life--;
+    if (!c.collected && Math.abs(c.x - player.x) < 30 && Math.abs(c.y - player.y) < 30) {
+      c.collected = true; score += 30; hp = Math.min(10, hp + 1);
+      particles.push({ x: c.x, y: c.y, vx: 0, vy: -6, life: 25, color: '#f80', text: '+30' });
+    }
+  }
+  cakes = cakes.filter(c => c.life > 0);
+
+  // Particles
+  for (let p of particles) { p.x += p.vx; p.y += p.vy; p.vy += 0.15; p.life--; }
+  particles = particles.filter(p => p.life > 0);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  // Background
+  const skyGrd = ctx.createLinearGradient(0, 0, 0, H * .6);
+  skyGrd.addColorStop(0, '#87CEEB'); skyGrd.addColorStop(1, '#E0F7FA');
+  ctx.fillStyle = skyGrd; ctx.fillRect(0, 0, W, H * .6);
+  // Clouds
+  ctx.fillStyle = '#fff';
+  for (let i = 0; i < 4; i++) {
+    const cx = (i * 120 + frame * 0.3) % (W + 200) - 100;
+    ctx.beginPath(); ctx.arc(cx, 60 + i * 25, 25, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx + 25, 50 + i * 25, 20, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx - 20, 55 + i * 25, 18, 0, Math.PI * 2); ctx.fill();
+  }
+  // Ground
+  ctx.fillStyle = '#8BC34A'; ctx.fillRect(0, H * .6, W, H * .4);
+  ctx.fillStyle = '#689F38'; ctx.fillRect(0, H * .6, W, 3);
+  // Flowers
+  for (let i = 0; i < 20; i++) {
+    ctx.fillStyle = ['#f00', '#ff0', '#f80', '#fff', '#f0f'][i % 5];
+    ctx.beginPath(); ctx.arc(i * 22 + 10, H * .6 + 5, 4, 0, Math.PI * 2); ctx.fill();
+  }
+
+  // Player shadow
+  ctx.fillStyle = 'rgba(0,0,0,.2)'; ctx.beginPath(); ctx.ellipse(player.x, H - 78, 16, 5, 0, 0, Math.PI * 2); ctx.fill();
+  // Player
+  const px = player.x - player.w / 2, py = player.y - player.h;
+  ctx.save();
+  if (player.face < 0) { ctx.translate(player.x, 0); ctx.scale(-1, 1); ctx.translate(-player.x, 0); }
+  // Body
+  ctx.fillStyle = player.inv > 0 && player.inv % 6 < 3 ? '#fff' : '#4af';
+  ctx.fillRect(px + 4, py + 18, player.w - 8, player.h - 24);
+  // Head
+  ctx.fillStyle = '#fdb';
+  ctx.fillRect(px + 8, py + 4, player.w - 16, 16);
+  // Hair
+  ctx.fillStyle = '#222'; ctx.fillRect(px + 6, py, player.w - 12, 10);
+  // Sword
+  if (player.atkCD > 18) {
+    ctx.fillStyle = '#ccc'; ctx.fillRect(px + player.w, py + 20, 24, 4);
+    ctx.fillStyle = '#ff0'; ctx.fillRect(px + player.w + 20, py + 16, 8, 8);
+  }
+  ctx.restore();
+
+  // Enemies
+  for (let e of enemies) {
+    if (e.hp <= 0) continue;
+    ctx.fillStyle = e.hitFlash > 0 ? '#fff' : e.color;
+    ctx.fillRect(e.x - e.w / 2, e.y - e.h, e.w, e.h);
+    if (e.hp > 1) {
+      // Health bar
+      ctx.fillStyle = '#400'; ctx.fillRect(e.x - e.w / 2, e.y - e.h - 8, e.w, 3);
+      ctx.fillStyle = '#f44'; ctx.fillRect(e.x - e.w / 2, e.y - e.h - 8, e.w * (e.hp / 4), 3);
+    }
+  }
+
+  // Cakes
+  const cakeEmojis = ['🍰', '🎂', '🧁', '🍪', '🥐'];
+  for (let c of cakes) {
+    ctx.font = '22px serif'; ctx.fillText(cakeEmojis[c.type], c.x - 14, c.y);
+  }
+
+  // Particles
+  for (let p of particles) {
+    if (p.text) { ctx.fillStyle = p.color; ctx.font = 'bold 14px PingFang SC'; ctx.fillText(p.text, p.x, p.y); }
+    else { ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, 3, 3); }
+  }
+
+  // UI
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 14px PingFang SC';
+  ctx.fillText('🍰 蛋糕大作战', 10, 22);
+  document.getElementById('hpDisp').textContent = hp;
+  document.getElementById('scoreDisp').textContent = score;
+}
+
+function loop() {
+  update(); draw();
+  requestAnimationFrame(loop);
+}
+restart();
+loop();
+</script>
+</body>
+</html>

@@ -42,19 +42,18 @@
             <text class="card-price">¥{{item.price}}</text>
             <text class="card-orig" wx:if="{{item.orig > item.price}}">¥{{item.orig}}</text>
           </view>
-          <view class="card-sales">已售{{item.sales}}</view>
+          <view class="card-tel" bindtap="onCall">📞 咨询</view>
         </view>
       </view>
-      <view class="card-buy" bindtap="onBuy" data-id="{{item.id}}">选这款</view>
     </view>
   </view>
 
   <!-- 底部 -->
   <view class="footer">
     <view class="footer-card">
-      <text class="footer-title">📞 订购电话</text>
-      <text class="footer-phone" bindtap="onCall">15192634983</text>
-      <text class="footer-hint">点击拨号下单，支持自提</text>
+      <text class="footer-title">📍 Cake-甜也（佳妮）</text>
+      <text class="footer-desc">胶州市滨州路祥瑞苑北门东侧</text>
+      <text class="footer-desc">🕐 营业时间 8:00-18:00</text>
     </view>
     <view class="footer-info">
       <text>© Cake-甜也（佳妮）· 胶州蛋糕店</text>
