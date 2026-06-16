@@ -108,7 +108,10 @@ function filterCat(id,el){
   activeCat = id;
   document.querySelectorAll(".cat-tag").forEach(function(t){t.classList.remove("active")});
   if(el) el.classList.add("active");
-  renderProds(id===0 ? DATA.products : DATA.products.filter(function(p){return p.category_id===id}));
+  var filtered = id===0 ? DATA.products : DATA.products.filter(function(p){return p.category_id===id});
+  if(id===0){document.querySelector(".section h3").textContent = "全部产品"}
+  else{var cat=DATA.categories.find(function(c){return c.id===id});document.querySelector(".section h3").textContent = cat?cat.name:"分类"}
+  renderProds(filtered);
 }
 
 // Products

@@ -4,6 +4,7 @@ Page({
     displayProducts: [],
     activeCat: 0,
     categories: [],
+    sectionTitle: '🍰 精选蛋糕',
     banners: ['/images/banners/banner1.jpg', '/images/banners/banner2.jpg', '/images/banners/banner3.jpg', '/images/banners/banner4.jpg', '/images/banners/banner5.jpg'],
     currentBanner: 0
   },
@@ -53,6 +54,7 @@ Page({
       products,
       displayProducts: products,
       activeCat: 0,
+      sectionTitle: '🍰 精选蛋糕',
       categories: [
         { id: 1, name: '精品蛋糕' },
         { id: 2, name: '迷你蛋糕' },
@@ -64,12 +66,11 @@ Page({
   filterCat(e) {
     const id = e.currentTarget.dataset.id;
     const products = this.data.products;
-    // toggle active
-    this.setData({ activeCat: id });
+    const catMap = { 1: '精品蛋糕', 2: '迷你蛋糕', 3: '切块甜品', 4: '超值盒子' };
+    this.setData({ activeCat: id, sectionTitle: id == 0 ? '🍰 精选蛋糕' : catMap[id] });
     if (id == 0) {
       this.setData({ displayProducts: products });
     } else {
-      const catMap = { 1: '精品蛋糕', 2: '迷你蛋糕', 3: '切块甜品', 4: '超值盒子' };
       this.setData({ displayProducts: products.filter(p => p.category === catMap[id]) });
     }
   },
