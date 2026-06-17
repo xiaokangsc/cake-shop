@@ -3,200 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>许仁康 · AI 全栈开发</title>
+<title>许仁康 · AI 全栈开发工程师</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#080810;color:#e0e0e0;overflow-x:hidden}
-::selection{background:#667eea;color:#fff}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;gap:40px;padding:14px 20px;backdrop-filter:blur(20px);background:rgba(8,8,16,.85);border-bottom:1px solid rgba(255,255,255,.04)}
-.nav a{color:#8892b0;text-decoration:none;font-size:13px;letter-spacing:1px;transition:.3s}
-.nav a:hover{color:#fff}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fc;color:#2d3748;line-height:1.7}
+::selection{background:#5a67d8;color:#fff}
 
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 32px 80px}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(102,126,234,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(118,75,162,.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(102,126,234,.08) 0%,transparent 50%);animation:float 20s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(-2%,1%)}66%{transform:translate(2%,-1%)}}
-.hero-content{position:relative;z-index:1;text-align:center;max-width:900px}
-.hero-badge{display:inline-block;padding:6px 20px;border-radius:20px;border:1px solid rgba(102,126,234,.3);background:rgba(102,126,234,.1);color:#a5b4fc;font-size:13px;letter-spacing:4px;margin-bottom:32px}
-.hero h1{font-size:clamp(40px,8vw,76px);font-weight:800;background:linear-gradient(135deg,#fff 0%,#a5b4fc 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;margin-bottom:20px}
-.hero-sub{font-size:clamp(15px,2vw,18px);color:#64748b;max-width:600px;margin:0 auto 40px;line-height:1.8}
-.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.btn-p{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:16px 36px;border-radius:40px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:1px;transition:.3s;box-shadow:0 8px 32px rgba(102,126,234,.3)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(102,126,234,.45)}
-.btn-g{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);padding:16px 36px;border-radius:40px;font-size:16px;cursor:pointer;text-decoration:none;letter-spacing:1px;transition:.3s}
-.btn-g:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.4)}
+/* LAYOUT */
+.page{display:flex;min-height:100vh}
+.sidebar{width:280px;background:#fff;position:fixed;top:0;left:0;bottom:0;padding:40px 30px;border-right:1px solid #e2e8f0;display:flex;flex-direction:column;justify-content:space-between;z-index:50}
+.main{margin-left:280px;flex:1}
+.section{padding:80px 60px;max-width:900px}
+.section:nth-child(even){background:#fff}
 
-.stats{display:flex;justify-content:center;gap:60px;padding:60px 32px;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-size:44px;font-weight:800;background:linear-gradient(135deg,#667eea,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-label{font-size:13px;color:#64748b;margin-top:8px;letter-spacing:2px}
+/* SIDEBAR */
+.avatar{width:80px;height:80px;border-radius:20px;background:linear-gradient(135deg,#5a67d8,#9f7aea);display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;margin-bottom:20px}
+.side-name{font-size:22px;font-weight:800;color:#1a202c;margin-bottom:4px}
+.side-title{font-size:13px;color:#718096;margin-bottom:24px}
+.side-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:30px}
+.side-tag{padding:4px 12px;border-radius:20px;background:#ebf4ff;color:#5a67d8;font-size:11px;font-weight:600}
+.side-nav{list-style:none}
+.side-nav li{margin-bottom:4px}
+.side-nav a{display:block;padding:10px 16px;border-radius:10px;color:#4a5568;text-decoration:none;font-size:14px;transition:.2s}
+.side-nav a:hover,.side-nav a.active{background:#ebf4ff;color:#5a67d8;font-weight:600}
+.side-contact{font-size:13px;color:#a0aec0}
+.side-contact strong{color:#5a67d8;font-size:16px;display:block;margin-top:4px}
 
-.container{max-width:1100px;margin:0 auto;padding:80px 32px}
-.sh{text-align:center;margin-bottom:60px}
-.stag{color:#667eea;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
-.sh h2{font-size:clamp(28px,4vw,40px);font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
-.sh p{color:#64748b;font-size:15px;max-width:500px;margin:0 auto}
+/* HERO */
+.hero{padding:100px 60px 60px;position:relative}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:900;color:#1a202c;line-height:1.2;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,#5a67d8,#9f7aea);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:17px;color:#718096;max-width:550px;margin-bottom:24px}
+.hero-stats{display:flex;gap:40px;margin-top:32px}
+.hstat{text-align:center}
+.hstat-val{font-size:36px;font-weight:900;color:#5a67d8}
+.hstat-label{font-size:12px;color:#a0aec0;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.hero-line{width:60px;height:4px;background:linear-gradient(90deg,#5a67d8,#9f7aea);border-radius:2px;margin-bottom:24px}
 
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.card{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.06);transition:.4s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
-.card:hover{transform:translateY(-8px);border-color:rgba(102,126,234,.3);background:linear-gradient(135deg,rgba(102,126,234,.08),rgba(118,75,162,.04))}
-.card i{font-size:44px;font-style:normal;margin-bottom:20px;display:block}
-.card h3{font-size:19px;color:#fff;margin-bottom:12px}
-.card p{color:#8892b0;font-size:14px;line-height:1.7}
-.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.card .tag{padding:4px 12px;border-radius:12px;background:rgba(102,126,234,.1);color:#a5b4fc;font-size:11px}
+/* SECTION */
+.sec-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:#5a67d8;font-weight:700;margin-bottom:12px}
+.sec-title{font-size:32px;font-weight:800;color:#1a202c;margin-bottom:16px}
+.sec-desc{font-size:15px;color:#718096;margin-bottom:40px;max-width:500px}
 
-.projects{display:grid;gap:20px}
-.project{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.06);transition:.4s;display:flex;gap:24px;align-items:center}
-.project:hover{transform:translateY(-4px);border-color:rgba(102,126,234,.2)}
-.project-icon{font-size:52px;flex-shrink:0}
-.project-info h3{font-size:19px;color:#fff;margin-bottom:8px}
-.project-info p{color:#8892b0;font-size:14px;line-height:1.6}
-.project-links{margin-top:12px}
-.project-links a{color:#a5b4fc;text-decoration:none;font-size:13px;margin-right:16px}
+/* SERVICES - Large Cards */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.svc{background:#fff;border-radius:20px;padding:32px;border:1px solid #e2e8f0;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.svc:hover{box-shadow:0 12px 40px rgba(90,103,216,.1);transform:translateY(-4px);border-color:#5a67d8}
+.svc-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:20px}
+.svc:nth-child(1) .svc-icon{background:#ebf4ff}
+.svc:nth-child(2) .svc-icon{background:#faf5ff}
+.svc:nth-child(3) .svc-icon{background:#fff5f5}
+.svc:nth-child(4) .svc-icon{background:#f0fff4}
+.svc:nth-child(5) .svc-icon{background:#fffff0}
+.svc:nth-child(6) .svc-icon{background:#fff5f5}
+.svc h3{font-size:18px;font-weight:700;margin-bottom:8px;color:#1a202c}
+.svc p{font-size:14px;color:#718096;line-height:1.7}
 
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.tool{background:rgba(255,255,255,.02);border-radius:16px;padding:24px 16px;text-align:center;border:1px solid rgba(255,255,255,.04);transition:.3s}
-.tool:hover{background:rgba(102,126,234,.06);border-color:rgba(102,126,234,.15);transform:translateY(-4px)}
-.tool .e{font-size:36px;display:block;margin-bottom:10px}
-.tool span{font-size:13px;color:#a5b4fc}
+/* SKILL BARS */
+.skill-row{display:flex;align-items:center;margin-bottom:16px}
+.skill-name{width:140px;font-size:14px;font-weight:600;color:#2d3748}
+.skill-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.skill-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#5a67d8,#9f7aea)}
 
-.cta{background:linear-gradient(135deg,rgba(102,126,234,.06),rgba(118,75,162,.04));border-radius:32px;padding:80px 40px;text-align:center;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(102,126,234,.15),transparent);pointer-events:none}
-.cta h2{font-size:34px;color:#fff;margin-bottom:12px;position:relative}
-.cta p{color:#8892b0;margin-bottom:28px;position:relative;font-size:15px}
-.phone-btn{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:18px 48px;border-radius:40px;font-size:22px;font-weight:700;text-decoration:none;letter-spacing:3px;transition:.3s;box-shadow:0 8px 40px rgba(102,126,234,.4)}
-.phone-btn:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(102,126,234,.6)}
+/* PROJECTS */
+.proj{background:#fff;border-radius:20px;padding:32px;border:1px solid #e2e8f0;margin-bottom:16px;transition:.3s}
+.proj:hover{box-shadow:0 8px 30px rgba(0,0,0,.06);transform:translateY(-2px)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.proj h3{font-size:18px;font-weight:700;color:#1a202c}
+.proj-link{font-size:13px;color:#5a67d8;text-decoration:none;font-weight:600}
+.proj p{font-size:14px;color:#718096;margin-bottom:12px}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap}
+.proj-tag{padding:3px 10px;border-radius:12px;background:#ebf4ff;color:#5a67d8;font-size:11px}
 
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
-.gallery img{width:100%;border-radius:16px;border:2px solid rgba(255,255,255,.06);transition:.4s}
-.gallery img:hover{transform:scale(1.02);border-color:rgba(102,126,234,.3)}
+/* TECH GRID */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.tech{background:#fff;border-radius:12px;padding:20px 14px;text-align:center;border:1px solid #e2e8f0;transition:.2s}
+.tech:hover{background:#ebf4ff;border-color:#5a67d8}
+.tech-icon{font-size:32px;display:block;margin-bottom:8px}
+.tech-name{font-size:13px;font-weight:600;color:#2d3748}
 
-.footer{text-align:center;padding:60px 32px;color:#444;font-size:13px;border-top:1px solid rgba(255,255,255,.04)}
-.footer span{color:#667eea}
+/* CONTACT BAR */
+.contact-bar{background:linear-gradient(135deg,#5a67d8,#9f7aea);border-radius:24px;padding:48px;color:#fff;text-align:center}
+.contact-bar h2{font-size:28px;margin-bottom:8px}
+.contact-bar p{opacity:.85;margin-bottom:24px}
+.contact-phone{display:inline-block;background:#fff;color:#5a67d8;padding:16px 40px;border-radius:40px;font-size:20px;font-weight:800;text-decoration:none;letter-spacing:2px;transition:.2s}
+.contact-phone:hover{transform:scale(1.05)}
 
-.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.p-step{text-align:center;padding:30px 20px}
-.p-step .num{display:inline-block;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:20px;font-weight:bold;line-height:48px;margin-bottom:16px}
-.p-step h4{color:#fff;font-size:15px;margin-bottom:8px}
-.p-step p{color:#8892b0;font-size:13px}
+/* GALLERY */
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.gal img{width:100%;border-radius:16px;transition:.3s}
+.gal img:hover{transform:scale(1.02);box-shadow:0 8px 30px rgba(0,0,0,.1)}
 
-@media(max-width:768px){
-  .nav{gap:16px;padding:10px 12px}.nav a{font-size:11px}
-  .stats{gap:24px}.project{flex-direction:column}.gallery{grid-template-columns:1fr}
-  .container{padding:50px 20px}.hero{padding:100px 20px 50px}
+/* TIMELINE */
+.tl{position:relative;padding-left:30px;border-left:2px solid #e2e8f0}
+.tl-item{margin-bottom:32px;position:relative}
+.tl-item::before{content:'';position:absolute;left:-37px;top:4px;width:12px;height:12px;border-radius:50%;background:#5a67d8;border:3px solid #fff;box-shadow:0 0 0 2px #5a67d8}
+.tl-date{font-size:12px;color:#a0aec0;font-weight:700;letter-spacing:1px}
+.tl-title{font-size:16px;font-weight:700;color:#1a202c;margin:4px 0}
+.tl-desc{font-size:14px;color:#718096}
+
+@media(max-width:900px){
+  .page{flex-direction:column}
+  .sidebar{position:relative;width:100%;padding:24px;flex-direction:row;flex-wrap:wrap;gap:12px;border-right:none;border-bottom:1px solid #e2e8f0}
+  .main{margin-left:0}
+  .section{padding:40px 24px}
+  .hero{padding:40px 24px}
+  .gal{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <a href="#home">首页</a><a href="#services">服务</a><a href="#process">流程</a><a href="#tools">技能</a><a href="#works">案例</a><a href="#contact">联系</a>
-</nav>
+<div class="page">
 
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="hero-badge">AI FULL-STACK DEVELOPER</div>
-    <h1>许仁康</h1>
-    <p class="hero-sub">AI 全栈开发 · Claude Code 技术顾问<br>从电商小程序到企业官网，用 AI 把效率提升 10 倍</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn-p">联系我</a>
-      <a href="#works" class="btn-g">查看案例 →</a>
+<div class="sidebar">
+  <div>
+    <div class="avatar">许</div>
+    <div class="side-name">许仁康</div>
+    <div class="side-title">AI 全栈开发 · Claude Code 顾问</div>
+    <div class="side-tags">
+      <span class="side-tag">小程序开发</span>
+      <span class="side-tag">H5 商城</span>
+      <span class="side-tag">AI 工作流</span>
+    </div>
+    <ul class="side-nav">
+      <li><a href="#services" class="active">核心服务</a></li>
+      <li><a href="#skills">专业技能</a></li>
+      <li><a href="#projects">项目案例</a></li>
+      <li><a href="#timeline">经验历程</a></li>
+      <li><a href="#contact">联系我</a></li>
+    </ul>
+  </div>
+  <div class="side-contact">
+    咨询电话<strong>13656428093</strong>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="hero">
+    <div class="hero-line"></div>
+    <h1>用 <span>AI</span> 把你的想法变成现实</h1>
+    <p>从零搭建电商小程序、企业官网、个人主页，不懂代码也能借助 AI 快速上线。专注小程序+H5开发、Claude Code 配置、AI 效率工具培训。</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-val">40+</div><div class="hstat-label">产品上线</div></div>
+      <div class="hstat"><div class="hstat-val">12h</div><div class="hstat-label">最快交付</div></div>
+      <div class="hstat"><div class="hstat-val">7</div><div class="hstat-label">服务领域</div></div>
+      <div class="hstat"><div class="hstat-val">24/7</div><div class="hstat-label">技术支持</div></div>
     </div>
   </div>
-</section>
 
-<div class="stats">
-  <div class="stat"><div class="stat-num">40+</div><div class="stat-label">完成产品</div></div>
-  <div class="stat"><div class="stat-num">12h</div><div class="stat-label">最快交付</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">客户满意</div></div>
-  <div class="stat"><div class="stat-num">¥0</div><div class="stat-label">咨询费</div></div>
-</div>
-
-<div class="container" id="services">
-  <div class="sh"><div class="stag">SERVICES</div><h2>我能帮你做什么</h2><p>不懂代码也能借助 AI 实现创意，一站式技术服务</p></div>
-  <div class="cards">
-    <div class="card"><i>🤖</i><h3>Claude Code 搭建配置</h3><p>从零安装 Claude Code，API 接入、Skills 市场、MCP 插件配置，让你立刻拥有最强 AI 编程助手</p><div class="tags"><span class="tag">Claude Code</span><span class="tag">DeepSeek API</span><span class="tag">WorkBuddy</span></div></div>
-    <div class="card"><i>🛒</i><h3>电商小程序开发</h3><p>蛋糕店、餐饮店、零售店线上商城，微信小程序 + H5 双端同步，完整产品展示 + 一键拨号下单</p><div class="tags"><span class="tag">微信小程序</span><span class="tag">H5 商城</span><span class="tag">GitHub Pages</span></div></div>
-    <div class="card"><i>📱</i><h3>企业/个人官网</h3><p>品牌展示页、个人主页、公司官网，响应式设计，手机电脑完美呈现，免费部署上线</p><div class="tags"><span class="tag">响应式</span><span class="tag">SEO优化</span><span class="tag">免费部署</span></div></div>
-    <div class="card"><i>📊</i><h3>代做 PPT / 整理材料</h3><p>AI 快速生成精美 PPT、文档整理、会议纪要、工作汇报、数据报表，省时省力</p><div class="tags"><span class="tag">PPT</span><span class="tag">Excel</span><span class="tag">文档整理</span></div></div>
-    <div class="card"><i>✍️</i><h3>营销文案 / 内容创作</h3><p>朋友圈推广、抖音脚本、小红书种草笔记、团购活动文案，AI 批量生产高质量内容</p><div class="tags"><span class="tag">抖音</span><span class="tag">小红书</span><span class="tag">公众号</span></div></div>
-    <div class="card"><i>⚡</i><h3>自动化办公</h3><p>Excel 批量处理、网页数据采集、定时报表、邮件自动发送，把重复工作全部自动化</p><div class="tags"><span class="tag">Python</span><span class="tag">自动化</span><span class="tag">效率工具</span></div></div>
-  </div>
-</div>
-
-<div class="container" id="process" style="padding-top:0">
-  <div class="sh"><div class="stag">PROCESS</div><h2>合作流程</h2><p>简单四步，从想法到上线</p></div>
-  <div class="process">
-    <div class="p-step"><div class="num">1</div><h4>沟通需求</h4><p>电话/微信聊你的想法，我帮你梳理功能清单</p></div>
-    <div class="p-step"><div class="num">2</div><h4>快速出预览</h4><p>12小时内出第一版预览，边看边改</p></div>
-    <div class="p-step"><div class="num">3</div><h4>确认定稿</h4><p>所有细节调整到位，你点头才算完</p></div>
-    <div class="p-step"><div class="num">4</div><h4>部署上线</h4><p>代码推送、域名绑定、小程序提交审核</p></div>
-  </div>
-</div>
-
-<div class="container" id="tools" style="padding-top:0">
-  <div class="sh"><div class="stag">TOOLS</div><h2>技术栈 & 能用的工具</h2></div>
-  <div class="tools">
-    <div class="tool"><span class="e">💻</span><span>HTML5 / CSS3</span></div>
-    <div class="tool"><span class="e">⚡</span><span>JavaScript / Node.js</span></div>
-    <div class="tool"><span class="e">📱</span><span>微信小程序</span></div>
-    <div class="tool"><span class="e">🖥</span><span>Vue.js / uni-app</span></div>
-    <div class="tool"><span class="e">🤖</span><span>Claude Code</span></div>
-    <div class="tool"><span class="e">🗄</span><span>SQLite / MySQL</span></div>
-    <div class="tool"><span class="e">🌐</span><span>GitHub / Git</span></div>
-    <div class="tool"><span class="e">☁️</span><span>阿里云 / 部署</span></div>
-    <div class="tool"><span class="e">🎨</span><span>AI 设计 / 修图</span></div>
-    <div class="tool"><span class="e">📊</span><span>PPT / Excel</span></div>
-    <div class="tool"><span class="e">📝</span><span>文案创作</span></div>
-    <div class="tool"><span class="e">🔧</span><span>自动化脚本</span></div>
-  </div>
-</div>
-
-<div class="container" id="works" style="padding-top:0">
-  <div class="sh"><div class="stag">PORTFOLIO</div><h2>成品案例</h2></div>
-  <div class="projects">
-    <div class="project">
-      <div class="project-icon">🎂</div>
-      <div class="project-info">
-        <h3>Cake-甜也蛋糕店</h3>
-        <p>40款产品线上商城 · 微信小程序 + H5 双端 · 7大分类 · 多图展示 · 积分兑换 · 面包点心甜品系列 · GitHub Pages 免费部署 · 自定义域名</p>
-        <div class="project-links"><a href="https://cake-tianye.xyz" target="_blank">🌐 cake-tianye.xyz</a><a href="https://xiaokangsc.github.io/cake-shop/" target="_blank">📱 在线商城</a></div>
-      </div>
-    </div>
-    <div class="project">
-      <div class="project-icon">🤖</div>
-      <div class="project-info">
-        <h3>Claude Code 安装配置服务</h3>
-        <p>DeepSeek API + WorkBuddy + Skills 市场全套配置 · 环境搭建到上手 30 分钟 · 持续技术支持</p>
-        <div class="project-links"><a href="https://xiaokangsc.github.io/cake-shop/claude-code-guide.html" target="_blank">📖 使用教程</a></div>
-      </div>
-    </div>
-    <div class="project">
-      <div class="project-icon">📊</div>
-      <div class="project-info">
-        <h3>AI 赋能蛋糕店全套方案</h3>
-        <p>小程序+H5+公众号+游戏 · 产品管理 · 图片处理 · 营销文案 · 运营报表 · 一整套 AI 自动化工具链</p>
-        <div class="project-links"><a href="https://xiaokangsc.github.io/cake-shop/game.html" target="_blank">🎮 小游戏</a></div>
-      </div>
+  <div class="section" id="services">
+    <div class="sec-label">CORE SERVICES</div>
+    <div class="sec-title">核心服务</div>
+    <div class="sec-desc">不写一行重复代码，全用 AI 智能生成，效率是传统开发的 5-10 倍</div>
+    <div class="svc-grid">
+      <div class="svc"><div class="svc-icon">🤖</div><h3>Claude Code 搭建配置</h3><p>从零到能用只需 30 分钟。API 接入、Skills 市场、MCP 插件、环境变量一条龙配置，让你立刻拥有 AI 编程超能力。</p></div>
+      <div class="svc"><div class="svc-icon">🛒</div><h3>电商小程序 & H5 商城</h3><p>蛋糕店/餐饮店/零售店线上商城。微信小程序 + H5 双端同步，产品展示、分类筛选、一键拨号、积分兑换。</p></div>
+      <div class="svc"><div class="svc-icon">📱</div><h3>企业官网 & 个人主页</h3><p>品牌展示页、公司官网、个人 IP 主页。响应式设计，手机电脑完美呈现，免费 GitHub Pages 部署。</p></div>
+      <div class="svc"><div class="svc-icon">📊</div><h3>PPT & 文档制作</h3><p>AI 生成精美 PPT、工作汇报、数据报表、会议纪要。告别熬夜做文档，效率提升 10 倍。</p></div>
+      <div class="svc"><div class="svc-icon">✍️</div><h3>营销内容创作</h3><p>抖音脚本 + 小红书笔记 + 公众号推文 + 朋友圈文案。AI 批量生产，风格统一，日更不愁。</p></div>
+      <div class="svc"><div class="svc-icon">⚡</div><h3>自动化办公方案</h3><p>Excel 批处理、数据采集、定时报表、邮件自动发送。Python 脚本 + AI，重复工作全自动。</p></div>
     </div>
   </div>
-  <div class="gallery" style="margin-top:24px">
-    <img src="images/about/pic1.jpg" alt="Workstation">
-    <img src="images/about/pic2.jpg" alt="Project">
+
+  <div class="section" id="skills">
+    <div class="sec-label">TECH STACK</div>
+    <div class="sec-title">专业技能</div>
+    <div class="skill-row"><div class="skill-name">微信小程序</div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+    <div class="skill-row"><div class="skill-name">H5 / Vue / uni-app</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill-row"><div class="skill-name">Node.js / API</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+    <div class="skill-row"><div class="skill-name">Claude Code / AI</div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+    <div class="skill-row"><div class="skill-name">Git / GitHub / 部署</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill-row"><div class="skill-name">图片处理 / 设计</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    <div class="skill-row"><div class="skill-name">PPT / Excel / 文档</div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+
+    <div style="margin-top:40px">
+    <div class="tech-grid">
+      <div class="tech"><span class="tech-icon">📱</span><span class="tech-name">微信小程序</span></div>
+      <div class="tech"><span class="tech-icon">💻</span><span class="tech-name">HTML5/CSS3</span></div>
+      <div class="tech"><span class="tech-icon">⚡</span><span class="tech-name">JavaScript</span></div>
+      <div class="tech"><span class="tech-icon">🟢</span><span class="tech-name">Node.js</span></div>
+      <div class="tech"><span class="tech-icon">🖥</span><span class="tech-name">uni-app/Vue</span></div>
+      <div class="tech"><span class="tech-icon">🤖</span><span class="tech-name">Claude Code</span></div>
+      <div class="tech"><span class="tech-icon">🗄</span><span class="tech-name">SQLite/MySQL</span></div>
+      <div class="tech"><span class="tech-icon">☁️</span><span class="tech-name">阿里云/GitHub</span></div>
+      <div class="tech"><span class="tech-icon">🎨</span><span class="tech-name">AI设计/修图</span></div>
+      <div class="tech"><span class="tech-icon">📊</span><span class="tech-name">PPT/Excel</span></div>
+      <div class="tech"><span class="tech-icon">🔧</span><span class="tech-name">自动化脚本</span></div>
+      <div class="tech"><span class="tech-icon">📝</span><span class="tech-name">AI文案创作</span></div>
+    </div>
+    </div>
   </div>
-</div>
 
-<div class="container" id="contact" style="padding-top:0">
-  <div class="cta">
-    <h2>有想法？聊聊看</h2>
-    <p>免费咨询 · 先出方案再决定 · 不满意不收费</p>
-    <a href="tel:13656428093" class="phone-btn">📞 136 5642 8093</a>
-    <p style="color:#667;font-size:13px;margin-top:16px;position:relative">电话 / 微信同号 · 山东青岛 · 24小时响应</p>
+  <div class="section" id="projects">
+    <div class="sec-label">PORTFOLIO</div>
+    <div class="sec-title">项目案例</div>
+    <div class="proj">
+      <div class="proj-top"><h3>🎂 Cake-甜也蛋糕店</h3><a class="proj-link" href="https://cake-tianye.xyz" target="_blank">cake-tianye.xyz →</a></div>
+      <p>40款产品在线商城，7大分类（动物奶油/乳脂/榴莲千层/精品/甜品/面包/点心），微信小程序 + H5 双端同步，Banner 轮播、分类筛选、多图展示、积分兑换、面包点心系列。GitHub Pages 免费部署 + 自定义域名。</p>
+      <div class="proj-tags"><span class="proj-tag">微信小程序</span><span class="proj-tag">H5商城</span><span class="proj-tag">40款产品</span><span class="proj-tag">GitHub Pages</span><span class="proj-tag">自定义域名</span></div>
+    </div>
+    <div class="proj">
+      <div class="proj-top"><h3>🤖 Claude Code 全套配置 & 教程</h3><a class="proj-link" href="https://xiaokangsc.github.io/cake-shop/claude-code-guide.html" target="_blank">查看教程 →</a></div>
+      <p>DeepSeek API + WorkBuddy + Skills 市场全套安装配置服务。从环境搭建到上手使用只需 30 分钟。附带完整手机版教程文档。</p>
+      <div class="proj-tags"><span class="proj-tag">Claude Code</span><span class="proj-tag">DeepSeek API</span><span class="proj-tag">教程文档</span></div>
+    </div>
+    <div class="proj">
+      <div class="proj-top"><h3>🎮 蛋糕大作战小游戏</h3><a class="proj-link" href="https://xiaokangsc.github.io/cake-shop/game.html" target="_blank">试玩 →</a></div>
+      <p>蛋糕店主题手机小游戏，消灭怪物收集蛋糕，触屏虚拟摇杆操作。可嵌入公众号作为粉丝互动工具。</p>
+      <div class="proj-tags"><span class="proj-tag">HTML5游戏</span><span class="proj-tag">手机触屏</span><span class="proj-tag">公众号可嵌</span></div>
+    </div>
+
+    <div class="gal">
+      <img src="images/about/pic1.jpg" alt="工作台">
+      <img src="images/about/pic2.jpg" alt="项目展示">
+    </div>
   </div>
+
+  <div class="section" id="timeline">
+    <div class="sec-label">EXPERIENCE</div>
+    <div class="sec-title">经验历程</div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-date">2026</div><div class="tl-title">AI 全栈开发独立接单</div><div class="tl-desc">用 Claude Code + AI 工具链完成蛋糕店完整电商系统：小程序 + H5 + 公众号 + 游戏，全程独立开发</div></div>
+      <div class="tl-item"><div class="tl-date">2025-2026</div><div class="tl-title">Claude Code 深度使用 & 教学</div><div class="tl-desc">熟练掌握 Claude Code / WorkBuddy / DeepSeek API，开始帮客户搭建 AI 编程环境</div></div>
+      <div class="tl-item"><div class="tl-date">2024-2025</div><div class="tl-title">全栈开发学习</div><div class="tl-desc">系统学习 JavaScript / Node.js / Vue.js / 微信小程序开发，开始 AI 辅助编程实践</div></div>
+      <div class="tl-item"><div class="tl-date">2020-2024</div><div class="tl-title">电商运营 & 蛋糕店创业</div><div class="tl-desc">蛋糕店实体经营，抖音团购运营，亲身体验商家需求，理解客户痛点</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="contact-bar">
+      <h2>有想法？免费聊聊</h2>
+      <p>先出方案 · 满意再定 · 不收费咨询</p>
+      <a href="tel:13656428093" class="contact-phone">📞 136 5642 8093</a>
+      <p style="margin-top:14px;opacity:.7;font-size:13px">电话/微信同号 · 山东青岛 · 24小时响应</p>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:40px;color:#a0aec0;font-size:12px">
+    © 2026 许仁康 · AI 全栈开发 · 所有项目均由 Claude Code 辅助完成
+  </div>
+
 </div>
-
-<div class="footer">© 2026 <span>许仁康</span> · AI 全栈开发 · Claude Code 技术顾问 · Powered by AI</div>
-
+</div>
 </body>
 </html>
