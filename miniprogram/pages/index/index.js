@@ -48,7 +48,13 @@ Page({
       { id: 13, name: "八寸纯动物奶油蛋糕（自选简单款式）", price: 119, orig: 159, category: "精品蛋糕", sales: 18, img: imgPool[3], desc: "8寸纯动物奶油蛋糕，适合4-6人", specs: [{ name: "款式", values: ["简约水果", "ins风", "复古裱花", "韩式简约", "自选沟通"] }] },
       { id: 14, name: "八+六寸动物奶油蛋糕（自选简单款式）", price: 189, orig: 239, category: "精品蛋糕", sales: 25, img: imgPool[4], desc: "双层动物奶油蛋糕，8寸+6寸组合，适合6-10人", specs: [{ name: "款式", values: ["简约水果", "ins风", "复古裱花", "韩式简约", "自选沟通"] }] },
       { id: 15, name: "十寸纯动物奶油蛋糕（自选简单款式）", price: 159, orig: 199, category: "精品蛋糕", sales: 8, img: imgPool[0], desc: "10寸动物奶油蛋糕，适合8-12人", specs: [{ name: "款式", values: ["简约水果", "ins风", "复古裱花", "韩式简约"] }] },
-      { id: 16, name: "十二寸纯动物奶油蛋糕（自选简单款式）", price: 219, orig: 269, category: "精品蛋糕", sales: 5, img: imgPool[1], desc: "12寸动物奶油蛋糕，适合12-16人", specs: [{ name: "款式", values: ["简约水果", "ins风", "复古裱花", "韩式简约", "自选沟通"] }] }
+      { id: 16, name: "十二寸纯动物奶油蛋糕（自选简单款式）", price: 219, orig: 269, category: "精品蛋糕", sales: 5, img: imgPool[1], desc: "12寸动物奶油蛋糕，适合12-16人", specs: [{ name: "款式", values: ["简约水果", "ins风", "复古裱花", "韩式简约", "自选沟通"] }] },
+      // === 🆕 动物奶油系列 ===
+      { id: 24, name: "动物奶油草莓蛋糕（四寸）", price: 69, orig: 89, category: "迷你蛋糕", sales: 15, img: imgPool[0], desc: "新鲜草莓搭配进口动物奶油，酸甜交织", specs: [] },
+      { id: 25, name: "动物奶油芒果蛋糕（四寸）", price: 69, orig: 89, category: "迷你蛋糕", sales: 12, img: imgPool[1], desc: "芒果果肉+动物奶油，热带风情", specs: [] },
+      { id: 26, name: "动物奶油蓝莓蛋糕（四寸）", price: 69, orig: 89, category: "迷你蛋糕", sales: 10, img: imgPool[2], desc: "蓝莓果酱+动物奶油，清爽不腻", specs: [] },
+      { id: 27, name: "动物奶油巧克力蛋糕（四寸）", price: 69, orig: 89, category: "迷你蛋糕", sales: 18, img: imgPool[3], desc: "比利时黑巧+动物奶油，浓郁丝滑", specs: [] },
+      { id: 28, name: "动物奶油蜜桃蛋糕（四寸）", price: 69, orig: 89, category: "迷你蛋糕", sales: 8, img: imgPool[4], desc: "蜜桃果肉+动物奶油，少女心满满", specs: [] }
     ];
     this.setData({
       products,
