@@ -422,7 +422,9 @@ body {
 .about-text strong { color: var(--text-white); }
 
 @media (max-width: 768px) {
-  .about-card { grid-template-columns: 1fr; padding: 24px; }
+  .about-card { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+  .about-left { display: flex; flex-direction: column; align-items: center; }
+  .about-tags { justify-content: center; }
 }
 
 /* ===== 测评计划 ===== */
@@ -952,9 +954,18 @@ body {
 }
 
 @media (max-width: 768px) {
-  .contact-section { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+  .contact-section { grid-template-columns: 1fr; padding: 24px; }
+  .contact-left { text-align: center; }
   .contact-items { align-items: center; }
+  .contact-row { justify-content: center; flex-wrap: wrap; }
   .contact-qr { margin: 0 auto; }
+  .contact-qr > div { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .contact-qr > div { flex-direction: column; gap: 16px !important; }
+  .qr-placeholder { width: 140px !important; height: 140px !important; }
+  .qr-placeholder img { width: 130px !important; height: 130px !important; }
 }
 
 /* ===== Footer ===== */
