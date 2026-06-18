@@ -2,263 +2,266 @@
 <html lang="zh-CN">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>抖音AI·30天执行计划</title>
 <style>
-@page{size:A4;margin:0}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#050510;color:#e2e8f0;line-height:1.6}
+@page{size:A4;margin:16mm}
+:root{--p1:#e85d75;--p2:#f0a040;--p3:#7c5ce7;--bg:#fafafa;--card:#fff;--text:#2d3436;--light:#636e72;--border:#eaeaea}
+body{font-family:'PingFang SC','Microsoft YaHei',-apple-system,sans-serif;color:var(--text);line-height:1.7;max-width:780px;margin:0 auto;padding:30px 24px;background:var(--bg);font-size:13.5px}
+h1{text-align:center;font-size:26px;font-weight:800;color:#1a1a2e;margin-bottom:4px;letter-spacing:-.5px}
+.sub{text-align:center;color:var(--light);font-size:12px;margin-bottom:28px}
+h2{font-size:18px;font-weight:700;margin:32px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:10px}
+h2 .dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.dp1 .dot{background:var(--p1)}
+.dp2 .dot{background:var(--p2)}
+.dp3 .dot{background:var(--p3)}
 
-.container{max-width:700px;margin:0 auto;padding:20px}
+.card{background:var(--card);border-radius:10px;padding:16px 20px;margin:10px 0;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid var(--border);border-left:3px solid transparent}
+.card.p1{border-left-color:var(--p1)}
+.card.p2{border-left-color:var(--p2)}
+.card.p3{border-left-color:var(--p3)}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.card .day{font-weight:800;font-size:15px;white-space:nowrap}
+.card .day span{font-size:11px;color:var(--light);font-weight:400;margin-left:4px}
+.card .tool{font-weight:700;font-size:13px}
+.card .task{font-size:12px;color:var(--light);margin-top:2px}
+.card .detail{font-size:11px;color:var(--light);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);line-height:1.6}
+.card .tags{margin-top:6px;display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 8px;border-radius:6px;font-weight:600}
+.tag.tk{background:#f0f0ff;color:#7c5ce7}
+.tag.tg{background:#f0fff4;color:#00b894}
+.tag.ty{background:#fffbf0;color:#e17055}
+.tag.tr{background:#fff0f0;color:#d63031}
 
-/* HERO */
-.hero{text-align:center;padding:40px 20px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,.15),transparent);pointer-events:none}
-.hero h1{font-size:28px;font-weight:900;background:linear-gradient(135deg,#a78bfa,#c084fc,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px}
-.hero .sub{font-size:13px;color:#64748b}
+.section-intro{font-size:12px;color:var(--light);margin-bottom:10px;line-height:1.8}
 
-/* PHASE HEADER */
-.phase-header{display:flex;align-items:center;gap:12px;margin:24px 0 12px}
-.phase-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0}
-.ph1 .phase-num{background:linear-gradient(135deg,#fe2c55,#fb7185)}
-.ph2 .phase-num{background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1a1a2e}
-.ph3 .phase-num{background:linear-gradient(135deg,#8b5cf6,#a78bfa)}
-.phase-title{font-size:16px;font-weight:800}
-.phase-desc{font-size:11px;color:#64748b}
+/* Summary card */
+.summary{background:linear-gradient(135deg,#f8f7ff,#f0efff);border:2px solid #d4cfff;border-radius:12px;padding:18px 22px;margin:16px 0}
+.summary h4{font-size:15px;font-weight:700;color:var(--p3);margin-bottom:8px}
+.summary p{font-size:12px;color:var(--light);line-height:1.9}
 
-/* DAY CARDS */
-.day{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;margin:6px 0;display:flex;gap:10px;align-items:center;transition:.2s}
-.day:hover{border-color:rgba(139,92,246,.3);background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(139,92,246,.02))}
-.day-num{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0}
-.dp1 .day-num{background:rgba(254,44,85,.15);color:#fb7185}
-.dp2 .day-num{background:rgba(245,158,11,.15);color:#fbbf24}
-.dp3 .day-num{background:rgba(139,92,246,.15);color:#a78bfa}
-.day-info{flex:1;min-width:0}
-.day-name{font-size:13px;font-weight:700;color:#f1f5f9}
-.day-task{font-size:11px;color:#64748b;margin-top:2px}
-.day-tag{font-size:10px;padding:2px 8px;border-radius:8px;flex-shrink:0;font-weight:600}
-.dp1 .day-tag{background:rgba(254,44,85,.1);color:#fb7185}
-.dp2 .day-tag{background:rgba(245,158,11,.1);color:#fbbf24}
-.dp3 .day-tag{background:rgba(139,92,246,.1);color:#a78bfa}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11px}
+th{background:#f5f5f5;padding:8px 7px;text-align:left;font-weight:700;font-size:10px;color:var(--text)}
+td{padding:7px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#fafafa}
 
-/* SUMMARY CARD */
-.summary{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(103,232,249,.04));border:1px solid rgba(139,92,246,.2);border-radius:14px;padding:16px;margin:12px 0}
-.summary h4{font-size:14px;font-weight:800;color:#a78bfa;margin-bottom:8px}
-.summary p{font-size:11px;color:#94a3b8;line-height:1.8}
+.social-cards{margin:30px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sc{background:var(--card);border-radius:14px;padding:28px 18px;text-align:center;border:2px solid var(--border);transition:.2s;min-height:360px;display:flex;flex-direction:column;justify-content:space-between}
+.sc:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.sc .sc-num{font-size:48px;font-weight:900;margin-bottom:4px}
+.sc1 .sc-num{color:var(--p1)}.sc2 .sc-num{color:var(--p2)}.sc3 .sc-num{color:var(--p3)}
+.sc h3{font-size:16px;font-weight:700;margin:8px 0}
+.sc p{font-size:11px;color:var(--light);line-height:1.7}
+.sc .sc-list{text-align:left;font-size:10px;color:var(--light);line-height:1.9;margin-top:8px}
+.sc-hint{text-align:center;font-size:10px;color:var(--light);margin-top:4px}
 
-/* RANK CHART */
-.rank-list{display:flex;flex-direction:column;gap:4px;margin:8px 0}
-.rank-row{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.02);border-radius:8px;padding:6px 10px;font-size:11px}
-.rank-pos{width:20px;text-align:center;font-weight:900;flex-shrink:0}
-.rank-pos.gold{color:#fbbf24;font-size:16px}
-.rank-pos.silver{color:#94a3b8;font-size:14px}
-.rank-pos.bronze{color:#d97706;font-size:13px}
-.rank-name{font-weight:700;color:#f1f5f9;flex:1}
-.rank-score{color:#a78bfa;font-weight:700}
-.rank-bar{flex:1;height:4px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden;max-width:80px}
-.rank-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#a78bfa,#67e8f9)}
+.footer{text-align:center;margin-top:36px;padding-top:16px;border-top:1px solid var(--border);font-size:10px;color:var(--light)}
+.ref-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:11px;color:var(--light);line-height:2}
 
-/* TABLE */
-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:10px}
-th{background:rgba(255,255,255,.05);padding:8px 6px;text-align:left;font-size:10px;font-weight:700;color:#94a3b8}
-td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.04)}
-tr:hover td{background:rgba(139,92,246,.04)}
-
-/* REFERENCE */
-.ref{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:14px;margin:10px 0;font-size:11px;color:#94a3b8;line-height:1.9}
-.ref b{color:#e2e8f0}
-
-/* ========== SOCIAL CARDS ========== */
-.social-section{margin:30px 0;padding:20px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
-.social-section h3{text-align:center;color:#64748b;font-size:13px;margin-bottom:16px;letter-spacing:2px}
-.s-card{width:540px;height:960px;margin:16px auto;border-radius:20px;overflow:hidden;position:relative;display:flex;flex-direction:column;justify-content:center;padding:40px 36px;font-family:'PingFang SC',sans-serif}
-.s-card h2{font-size:32px;font-weight:900;margin-bottom:16px;line-height:1.3}
-.s-card ul{list-style:none;font-size:16px;line-height:2.2}
-.s-card ul li::before{content:'▸ ';font-weight:bold}
-.s-card .price{font-size:42px;font-weight:900;margin:20px 0 8px}
-.s-card .cta{font-size:18px;font-weight:700}
-
-.sc1{background:linear-gradient(160deg,#0f0a1a 0%,#1a0a2e 40%,#0a1628 100%)}
-.sc1 h2{color:#fb7185}.sc1 ul{color:#cbd5e1}.sc1 ul li::before{color:#fb7185}.sc1 .price{color:#fb7185}.sc1 .cta{color:#fbbf24}
-
-.sc2{background:linear-gradient(160deg,#0f0a00 0%,#1a1500 40%,#1a1000 100%)}
-.sc2 h2{color:#fbbf24}.sc2 ul{color:#cbd5e1}.sc2 ul li::before{color:#fbbf24}.sc2 .price{color:#fbbf24}.sc2 .cta{color:#f59e0b}
-
-.sc3{background:linear-gradient(160deg,#0a0a1a 0%,#100a2e 40%,#0a1028 100%)}
-.sc3 h2{color:#a78bfa}.sc3 ul{color:#cbd5e1}.sc3 ul li::before{color:#a78bfa}.sc3 .price{color:#a78bfa}.sc3 .cta{color:#c084fc}
-
-/* DOUYIN CARD - 1080x1920 portrait */
-.dy-card{width:540px;height:960px;margin:16px auto;border-radius:20px;overflow:hidden;position:relative;display:flex;flex-direction:column;padding:36px 30px;font-family:'PingFang SC',sans-serif;background:linear-gradient(170deg,#0a0a1e 0%,#120a24 30%,#0a1020 100%)}
-.dy-card .glow{position:absolute;top:-100px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent);pointer-events:none}
-.dy-card .glow2{position:absolute;bottom:-80px;left:-40px;width:250px;height:250px;background:radial-gradient(circle,rgba(103,232,249,.08),transparent);pointer-events:none}
-.dy-card .dy-tag{display:inline-block;padding:6px 18px;border-radius:16px;font-size:13px;font-weight:700;letter-spacing:2px;margin-bottom:20px;position:relative;z-index:1}
-.dy-card h2{font-size:34px;font-weight:900;line-height:1.3;margin-bottom:20px;position:relative;z-index:1}
-.dy-card .dy-list{list-style:none;font-size:15px;line-height:2.3;color:#cbd5e1;position:relative;z-index:1;margin-bottom:auto}
-.dy-card .dy-list li{margin:2px 0}
-.dy-card .dy-bottom{position:relative;z-index:1;font-size:14px;color:#64748b;text-align:center;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
-
-.dy1 .dy-tag{background:rgba(254,44,85,.15);color:#fb7185}
-.dy1 h2{color:#fff}.dy1 h2 span{background:linear-gradient(135deg,#fb7185,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.dy1 .dy-list li::before{content:'▶ ';font-size:10px;color:#fb7185}
-
-.dy2 .dy-tag{background:rgba(245,158,11,.15);color:#fbbf24}
-.dy2 h2{color:#fff}.dy2 h2 span{background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.dy2 .dy-list li::before{content:'▶ ';font-size:10px;color:#fbbf24}
-
-.dy3 .dy-tag{background:rgba(139,92,246,.15);color:#a78bfa}
-.dy3 h2{color:#fff}.dy3 h2 span{background:linear-gradient(135deg,#a78bfa,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.dy3 .dy-list li::before{content:'▶ ';font-size:10px;color:#a78bfa}
-
-.export-hint{text-align:center;color:#475569;font-size:10px;margin:8px 0}
-
-.footer-bot{text-align:center;padding:24px;color:#334155;font-size:10px}
-@media print{body{background:#050510}}
-@media(max-width:600px){.s-card,.dy-card{width:100%;height:auto;min-height:700px;padding:28px 22px}}
+@media(max-width:700px){.social-cards{grid-template-columns:1fr}}
+@media print{body{background:#fff;padding:8px;font-size:10px}.card{padding:10px 14px;margin:6px 0}}
 </style></head><body>
 
-<div class="container">
-
-<!-- ====== HERO ====== -->
-<div class="hero">
-  <h1>🤖 抖音AI账号 · 30天执行计划</h1>
-  <div class="sub">人设：AI小白成长记录者 ｜ 每日一更 ｜ 只说实话</div>
-</div>
+<h1>🤖 抖音AI账号 · 30天执行计划</h1>
+<p class="sub">人设：AI小白成长记录者 ｜ 每日一更18点 ｜ 说人话写代码 ｜ 许仁康</p>
 
 <!-- ====== PHASE 1 ====== -->
-<div class="phase-header ph1"><div class="phase-num">1</div><div><div class="phase-title">Day 1-10 · 10大编程Agent安装评测</div><div class="phase-desc">每天装一个 · 同一个难度递增任务 · 记录token消耗</div></div></div>
+<h2 class="dp1"><span class="dot"></span>阶段一 · Day 1-10 · 10大编程Agent安装实测</h2>
+<p class="section-intro">这10天每天装一个全网最火的AI编程工具，同一个难度递增的编码任务发给它，记录安装过程、生成质量、token消耗。<b>10天后排出从夯到拉的完整排名。</b></p>
 
-<div class="dp1">
-<div class="day"><div class="day-num">1</div><div class="day-info"><div class="day-name">Claude Code</div><div class="day-task">⭐ 写自我介绍HTML页面 · DeepSeek API配置 · ~5K tokens</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">2</div><div class="day-info"><div class="day-name">Codex CLI</div><div class="day-task">⭐ 写计算器网页 · OpenAI API接入 · ~8K tokens</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">3</div><div class="day-info"><div class="day-name">小龙虾AI</div><div class="day-task">⭐ 搭建自动问答Bot · 工作流配置 · 国内免费</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">4</div><div class="day-info"><div class="day-name">WorkBuddy</div><div class="day-task">⭐⭐ 写产品卡片页面 · Skills市场 · ~5K tokens</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">5</div><div class="day-info"><div class="day-name">Cursor</div><div class="day-task">⭐⭐ 写响应式导航栏 · Composer模式 · 免费额度</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">6</div><div class="day-info"><div class="day-name">Windsurf</div><div class="day-task">⭐⭐ 多页面网站框架 · Cascade编辑 · 免费额度</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">7</div><div class="day-info"><div class="day-name">Cline</div><div class="day-task">⭐⭐⭐ 表单+验证逻辑 · MCP工具 · ~20K tokens</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">8</div><div class="day-info"><div class="day-name">Aider</div><div class="day-task">⭐⭐⭐ 现有项目添加功能 · Git集成 · ~15K tokens</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">9</div><div class="day-info"><div class="day-name">通义灵码</div><div class="day-task">⭐⭐ 数据可视化图表 · 阿里云账号 · 免费</div></div><div class="day-tag">安装评测</div></div>
-<div class="day"><div class="day-num">10</div><div class="day-info"><div class="day-name" style="color:#fbbf24">🏆 阶段一总结排名</div><div class="day-task">10个Agent从夯到拉排名 · 最适场景 · Token消耗对比</div></div><div class="day-tag" style="background:rgba(251,191,36,.15);color:#fbbf24">排名发布</div></div>
+<div class="card p1">
+<div class="top"><div class="day">Day 1<span>｜难度 ⭐</span></div><div class="tool">Claude Code</div></div>
+<div class="task">任务：写一个自我介绍HTML页面（包含姓名/职业/技能/联系方式）</div>
+<div class="detail"><b>安装重点：</b>①获取DeepSeek API Key（platform.deepseek.com注册）→ ②VS Code安装Claude Code插件 → ③settings.json配置ANTHROPIC_BASE_URL和AUTH_TOKEN → ④模型必须选deepseek-v4-pro[1m]<br><b>常见坑：</b>Base URL填错端口/模型名不写[1m]后缀会报错/Auth Token忘记Bearer前缀<br><b>预计token：</b>~5K | <b>预计耗时：</b>安装30min + 任务测试15min</div>
+<div class="tags"><span class="tag tk">编程Agent</span><span class="tag tg">免费API</span></div>
 </div>
 
-<div class="summary">
-<h4>🏆 Day10 排名维度</h4>
-<p>安装难度(20%) · 首次生成质量(25%) · 修改次数(20%) · token消耗(15%) · 中文支持(20%)<br>视频形式：从第10名倒序公布到第1名 + 每个Agent一句话点评 + 踩坑总结</p>
+<div class="card p1">
+<div class="top"><div class="day">Day 2<span>｜难度 ⭐</span></div><div class="tool">Codex CLI</div></div>
+<div class="task">任务：写一个带加减乘除功能的计算器网页</div>
+<div class="detail"><b>安装重点：</b>①安装Node.js 18+ → ②npm install -g @openai/codex → ③配置OPENAI_API_KEY环境变量 → ④终端运行codex命令<br><b>常见坑：</b>国内需用API中转/Node版本过低/Git未安装<br><b>预计token：</b>~8K | <b>预计耗时：</b>安装20min + 测试15min</div>
+<div class="tags"><span class="tag tk">编程Agent</span><span class="tag tr">需API付费</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 3<span>｜难度 ⭐</span></div><div class="tool">小龙虾AI</div></div>
+<div class="task">任务：创建一个自动问答Bot（输入问题→匹配预设答案→输出回复）</div>
+<div class="detail"><b>安装重点：</b>①浏览器打开xiaolongxia.cn注册 → ②新建Agent→配置知识库→设置触发关键词 → ③测试问答效果<br><b>常见坑：</b>知识库导入格式要求JSON/免费版有调用次数限制<br><b>预计token：</b>免费额度 | <b>预计耗时：</b>注册5min + 搭建20min</div>
+<div class="tags"><span class="tag tk">Agent平台</span><span class="tag tg">国内免费</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 4<span>｜难度 ⭐⭐</span></div><div class="tool">WorkBuddy</div></div>
+<div class="task">任务：写一个带渐变背景+圆角卡片+价格标签的产品展示卡片</div>
+<div class="detail"><b>安装重点：</b>①下载WorkBuddy客户端安装 → ②打开后自动识别Claude Code集成 → ③配置DeepSeek API（同Day1）→ ④使用Skills市场安装插件<br><b>常见坑：</b>Skills市场插件下载失败需重试/首次启动配置时间较长<br><b>预计token：</b>~5K | <b>预计耗时：</b>安装25min + 测试15min</div>
+<div class="tags"><span class="tag tk">IDE集成</span><span class="tag tg">免费</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 5<span>｜难度 ⭐⭐</span></div><div class="tool">Cursor</div></div>
+<div class="task">任务：写一个自适应手机+电脑的响应式导航栏（含下拉菜单）</div>
+<div class="detail"><b>安装重点：</b>①官网下载Cursor安装 → ②GitHub账号登录 → ③打开Composer模式（Ctrl+I）→ ④输入任务需求<br><b>常见坑：</b>免费版每月的2000次补全用完即停/Pro版$20月<br><b>预计token：</b>免费额度内 | <b>预计耗时：</b>安装10min + 测试20min</div>
+<div class="tags"><span class="tag tk">AI编辑器</span><span class="tag ty">有限免费</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 6<span>｜难度 ⭐⭐</span></div><div class="tool">Windsurf</div></div>
+<div class="task">任务：写一个包含首页/关于/联系三个页面的简单网站框架</div>
+<div class="detail"><b>安装重点：</b>①官网下载Windsurf → ②注册Codeium账号 → ③使用Cascade模式进行多文件编辑 → ④对比Cursor的Composer<br><b>常见坑：</b>免费额度限制/多文件编辑时偶尔索引失败<br><b>预计token：</b>免费额度内 | <b>预计耗时：</b>安装10min + 测试25min</div>
+<div class="tags"><span class="tag tk">AI编辑器</span><span class="tag ty">有限免费</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 7<span>｜难度 ⭐⭐⭐</span></div><div class="tool">Cline</div></div>
+<div class="task">任务：写一个带表单验证的用户注册页面（含邮箱/手机/密码校验）</div>
+<div class="detail"><b>安装重点：</b>①VS Code扩展商店搜索Cline安装 → ②配置API Key和模型 → ③设置auto-approve权限范围 → ④开启MCP工具连接<br><b>常见坑：</b>API消耗速度极快（一次复杂任务可能用掉$3-5）/需手动设置预算上限防止超额<br><b>预计token：</b>~20K | <b>预计耗时：</b>安装15min + 测试25min</div>
+<div class="tags"><span class="tag tk">编程Agent</span><span class="tag tr">API消耗大</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 8<span>｜难度 ⭐⭐⭐</span></div><div class="tool">Aider</div></div>
+<div class="task">任务：在一个已有HTML项目中添加暗黑模式切换功能和localStorage记忆</div>
+<div class="detail"><b>安装重点：</b>①安装Python3 → ②pip install aider-chat → ③配置API_KEY环境变量 → ④终端进入项目目录运行aider<br><b>常见坑：</b>需在git仓库中运行/终端操作门槛较高/中文文件路径可能乱码<br><b>预计token：</b>~15K | <b>预计耗时：</b>安装15min + 测试20min</div>
+<div class="tags"><span class="tag tk">编程Agent</span><span class="tag tr">需Python</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 9<span>｜难度 ⭐⭐</span></div><div class="tool">通义灵码</div></div>
+<div class="task">任务：写一个使用Chart.js的数据可视化柱状图和饼图组合页面</div>
+<div class="detail"><b>安装重点：</b>①VS Code扩展商店搜索"通义灵码"安装 → ②阿里云账号登录 → ③Alt+\ 触发代码补全 → ④Ctrl+Shift+I 打开对话<br><b>常见坑：</b>仅支持VS Code和JetBrains/偶尔智能补全延迟<br><b>预计token：</b>免费 | <b>预计耗时：</b>安装5min + 测试15min</div>
+<div class="tags"><span class="tag tk">编程插件</span><span class="tag tg">完全免费</span></div>
+</div>
+
+<div class="card p1">
+<div class="top"><div class="day">Day 10<span>｜🏆</span></div><div class="tool">MarsCode + 阶段一终极排名发布</div></div>
+<div class="task">任务：写一个Todo List应用（添加/完成/删除/过滤）+ 10个Agent从夯到拉排名</div>
+<div class="detail"><b>视频内容：</b>①MarsCode安装和使用评测（浏览器打开即用，零安装成本）→ ②10个Agent倒序排名公布 → ③每个Agent一句话点评 → ④最适合场景推荐 → ⑤Token消耗对比表<br><b>排名维度：</b>安装难度20% + 首次生成质量25% + 修改次数20% + Token消耗15% + 中文体验20%</div>
+<div class="tags"><span class="tag tk">云端IDE</span><span class="tag tg">免费</span><span class="tag ty">排名发布</span></div>
+</div>
+
+<div class="summary" style="border-color:var(--p1);background:linear-gradient(135deg,#fff5f5,#fef0f3)">
+<h4 style="color:var(--p1)">🏆 Day10 阶段一排名（从夯到拉）</h4>
+<p>🥇🥈🥉前三名 + 第4-10名排位 ｜ 每个Agent标注：最适合什么场景 + 核心优势 + 最大缺点 + Token消耗对比<br>输出物：排名视频 + 工具安装教程合集（30天回顾精华）+ PDF工具清单（引导私域获取）</p>
 </div>
 
 <!-- ====== PHASE 2 ====== -->
-<div class="phase-header ph2"><div class="phase-num">2</div><div><div class="phase-title">Day 11-20 · 10类实用工具每日评测</div><div class="phase-desc">每天一类工具 · 5款同台PK · 分类排名</div></div></div>
+<h2 class="dp2"><span class="dot"></span>阶段二 · Day 11-20 · 10类实用工具每日评测</h2>
+<p class="section-intro">目标是覆盖<b>聊天/图片/视频/搜索/音乐/办公/Agent/写作</b>八大类，每天同一个任务发给同类5款工具横向PK。Day20发布全部分类冠军。</p>
 
-<div class="dp2">
-<div class="day"><div class="day-num">11</div><div class="day-info"><div class="day-name">🤖 国产聊天AI</div><div class="day-task">DeepSeek · Kimi · 豆包 · 通义 · 文心 → 同一文案对比</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">12</div><div class="day-info"><div class="day-name">🌍 海外聊天AI</div><div class="day-task">ChatGPT · Claude · Gemini · Grok · Perplexity → 长文总结对比</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">13</div><div class="day-info"><div class="day-name">🎨 AI图片生成</div><div class="day-task">Midjourney · 即梦 · 可灵 · DALL-E · LiblibAI → 同提示词对比</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">14</div><div class="day-info"><div class="day-name">🎬 AI视频生成</div><div class="day-task">可灵视频 · Runway · Pika · 剪映AI · 即梦视频 → 同描述对比</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">15</div><div class="day-info"><div class="day-name">🔍 AI搜索引擎</div><div class="day-task">Perplexity · 秘塔AI · Monica · Sider · ThinkAny → 同问题对比</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">16</div><div class="day-info"><div class="day-name">🎵 AI音乐/配音</div><div class="day-task">Suno · Udio · 剪映配音 · 讯飞配音 · Fish Audio</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">17</div><div class="day-info"><div class="day-name">📊 AI办公工具</div><div class="day-task">Gamma · 美图PPT · 讯飞听见 · Notion AI · 飞书AI</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">18</div><div class="day-info"><div class="day-name">🧠 AI知识库/Agent</div><div class="day-task">Coze · Dify · FastGPT · 文心智能体 · 智谱清言</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">19</div><div class="day-info"><div class="day-name">✍️ AI写作/翻译</div><div class="day-task">DeepL · Kimi · 豆包 · ChatGPT · 沉浸式翻译 → 同文章对比</div></div><div class="day-tag">分类PK</div></div>
-<div class="day"><div class="day-num">20</div><div class="day-info"><div class="day-name" style="color:#fbbf24">🏆 阶段二总结排名</div><div class="day-task">所有工具分类排名 + 冠军公布 + 第三阶段预告</div></div><div class="day-tag" style="background:rgba(251,191,36,.15);color:#fbbf24">排名发布</div></div>
+<div class="card p2">
+<div class="top"><div class="day">Day 11</div><div class="tool">🤖 国产聊天AI</div></div>
+<div class="task">DeepSeek · Kimi · 豆包 · 通义千问 · 文心一言——同一条推广文案生成对比</div>
+<div class="detail"><b>评测维度：</b>语言自然度/创意性/是否符合要求/是否AI味太重/生成速度<br><b>预计耗时：</b>测试30min + 录制剪辑45min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 12</div><div class="tool">🌍 海外聊天AI</div></div>
+<div class="task">ChatGPT · Claude · Gemini · Grok · Perplexity——同一篇3000字长文总结对比</div>
+<div class="detail"><b>评测维度：</b>总结准确度/是否遗漏关键信息/结构清晰度/语言流畅度/可用性<br><b>预计耗时：</b>测试25min + 录制剪辑40min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 13</div><div class="tool">🎨 AI图片生成</div></div>
+<div class="task">Midjourney · 即梦 · 可灵 · DALL-E · LiblibAI——同一句中文提示词出图对比</div>
+<div class="detail"><b>评测维度：</b>画质/风格匹配度/中文理解/细节/可用作商业用途<br><b>预计耗时：</b>测试35min + 录制剪辑40min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 14</div><div class="tool">🎬 AI视频生成</div></div>
+<div class="task">可灵视频 · Runway · Pika · 剪映AI · 即梦视频——同一段描述各生成一条15秒视频</div>
+<div class="detail"><b>评测维度：</b>流畅度/真实感/与描述匹配度/生成时间/是否需要二次编辑<br><b>预计耗时：</b>测试40min + 录制剪辑40min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 15</div><div class="tool">🔍 AI搜索引擎</div></div>
+<div class="task">Perplexity · 秘塔AI · Monica · Sider · ThinkAny——同一个问题搜索对比</div>
+<div class="detail"><b>评测维度：</b>信息准确度/来源引用/搜索速度/结果丰富度/中文支持<br><b>预计耗时：</b>测试20min + 录制剪辑35min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 16</div><div class="tool">🎵 AI音乐/配音</div></div>
+<div class="task">Suno · Udio · 剪映AI配音 · 讯飞配音 · Fish Audio</div>
+<div class="detail"><b>评测维度：</b>音乐感/配音自然度/情感表达/可用性/免费额度<br><b>预计耗时：</b>测试30min + 录制剪辑40min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 17</div><div class="tool">📊 AI办公工具</div></div>
+<div class="task">Gamma · 美图PPT · 讯飞听见 · Notion AI · 飞书AI——同一需求做PPT和会议纪要</div>
+<div class="detail"><b>评测维度：</b>产出质量/可用性/效率提升/学习成本/免费额度<br><b>预计耗时：</b>测试35min + 录制剪辑40min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 18</div><div class="tool">🧠 AI知识库/Agent平台</div></div>
+<div class="task">Coze · Dify · FastGPT · 文心智能体 · 智谱清言——同一份FAQ文档搭建问答系统</div>
+<div class="detail"><b>评测维度：</b>搭建难度/问答效果/可扩展性/部署方式/免费额度<br><b>预计耗时：</b>测试40min + 录制剪辑40min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 19</div><div class="tool">✍️ AI写作/翻译</div></div>
+<div class="task">DeepL · Kimi · 豆包 · ChatGPT · 沉浸式翻译——同一篇英文文章翻译对比</div>
+<div class="detail"><b>评测维度：</b>信达雅/专业术语/速度/格式保留/免费额度<br><b>预计耗时：</b>测试20min + 录制剪辑35min</div>
+</div>
+
+<div class="card p2">
+<div class="top"><div class="day">Day 20</div><div class="tool">🏆 阶段二分类排名发布</div></div>
+<div class="task">10天全部工具按分类排名 + 各类别冠军 + 第三阶段预告</div>
+<div class="detail"><b>视频内容：</b>聊天类Top5 · 图片类Top5 · 视频类Top3 · 搜索类Top3 · 音乐类Top3 · 办公类Top3 · Agent类Top3 · 写作类Top3<br>10天精华混剪 + 每个冠军一句话点评 + 第三阶段引出「接下来10天，5款同类正面硬刚」</div>
 </div>
 
 <!-- ====== PHASE 3 ====== -->
-<div class="phase-header ph3"><div class="phase-num">3</div><div><div class="phase-title">Day 21-30 · 每日5款同类终极PK</div><div class="phase-desc">细分领域正面硬刚 · 排出12345 · 终极排行榜</div></div></div>
+<h2 class="dp3"><span class="dot"></span>阶段三 · Day 21-30 · 每日5款同类终极PK</h2>
+<p class="section-intro">这是<b>全网独家的差异化内容</b>：每天选一个细分领域，拉5款最火工具正面PK，排出12345名。Day30公布70+工具的终极推荐榜单。</p>
 
-<div class="dp3">
-<div class="day"><div class="day-num">21</div><div class="day-info"><div class="day-name">编程Agent终极PK</div><div class="day-task">Claude Code · Codex CLI · Cursor · Windsurf · Cline → 同一需求</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">22</div><div class="day-info"><div class="day-name">免费编程工具PK</div><div class="day-task">通义灵码 · MarsCode · Codeium · Continue · 小龙虾 → 零成本对比</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">23</div><div class="day-info"><div class="day-name">国产聊天AI终极PK</div><div class="day-task">DeepSeek · Kimi · 豆包 · 通义 · 文心 → 20题5维打分</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">24</div><div class="day-info"><div class="day-name">AI生图终极PK</div><div class="day-task">Midjourney · 即梦 · 可灵 · DALL-E · LiblibAI → 5风格并排</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">25</div><div class="day-info"><div class="day-name">浏览器AI插件PK</div><div class="day-task">Monica · Sider · 沉浸式翻译 · Copilot插件 · 豆包插件</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">26</div><div class="day-info"><div class="day-name">AI Agent搭建PK</div><div class="day-task">Coze · Dify · FastGPT · 文心智能体 · 小龙虾 → 同需求对比</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">27</div><div class="day-info"><div class="day-name">AI视频生成终极PK</div><div class="day-task">可灵视频 · Runway · Pika · 剪映AI · 即梦视频 → 同描述对比</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">28</div><div class="day-info"><div class="day-name">AI写代码效率赛</div><div class="day-task">5个编程Agent计时赛 → 从需求到完成谁最快</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">29</div><div class="day-info"><div class="day-name">性价比终极PK</div><div class="day-task">所有工具费用核算 → 「一年最少花多少钱」</div></div><div class="day-tag">终极PK</div></div>
-<div class="day"><div class="day-num">30</div><div class="day-info"><div class="day-name" style="color:#a78bfa">🏆 30天终极排名</div><div class="day-task">70+工具实测 · 推荐Top15 · 下个30天预告</div></div><div class="day-tag" style="background:rgba(139,92,246,.15);color:#a78bfa">终极榜单</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 21</div><div class="tool">编程Agent终极PK</div></div><div class="task">Claude Code · Codex CLI · Cursor · Windsurf · Cline——同一个网页需求各写一遍，计时+评分</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 22</div><div class="tool">免费编程工具终极PK</div></div><div class="task">通义灵码 · MarsCode · Codeium · Continue · 小龙虾——一分钱不花谁最强</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 23</div><div class="tool">国产聊天AI终极PK</div></div><div class="task">DeepSeek · Kimi · 豆包 · 通义千问 · 文心一言——20题5维度全面打分</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 24</div><div class="tool">AI生图终极PK</div></div><div class="task">Midjourney · 即梦 · 可灵 · DALL-E · LiblibAI——5种风格各一张，并排对比</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 25</div><div class="tool">浏览器AI插件PK</div></div><div class="task">Monica · Sider · 沉浸式翻译 · Copilot插件 · 豆包插件——同一网页5个操作对比</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 26</div><div class="tool">AI Agent搭建PK</div></div><div class="task">Coze · Dify · FastGPT · 文心智能体 · 小龙虾——同需求搭Bot对比搭建速度和效果</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 27</div><div class="tool">AI视频生成终极PK</div></div><div class="task">可灵视频 · Runway · Pika · 剪映AI · 即梦视频——同一描述各出一条，投票选最佳</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 28</div><div class="tool">AI写代码效率计时赛</div></div><div class="task">5个编程Agent从需求到完成完整项目，计时排名</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 29</div><div class="tool">性价比终极PK</div></div><div class="task">所有工具费用核算——免费/付费/年度总成本全景图</div></div>
+<div class="card p3"><div class="top"><div class="day">Day 30</div><div class="tool">🏆 30天终极排名发布</div></div><div class="task">70+款工具最终推荐Top15 + 30天精华回顾 + 下阶段预告</div></div>
+
+<div class="summary">
+<h4>🏆 Day30 终极榜单</h4>
+<p>编程Agent Top5 · 聊天AI Top3 · 图片AI Top3 · 视频AI Top2 · Agent平台 Top2<br>每款工具标注：推荐指数(1-10分) + 最适合人群 + 月费用 + 一句话推荐理由<br>视频形式：30天精华混剪 + 倒序公布 + 引导私域获取完整70+工具对比清单</p>
 </div>
 
 <!-- ====== REFERENCE ====== -->
-<div class="ref">
-<b>🎥 拍摄</b>：OBS 1080P录屏+手机口播 ｜ <b>✂️ 剪辑</b>：33分/条 ｜ <b>📢 发布</b>：晚20-21点 ｜ <b>💰 变现</b>：安装服务¥99→社群¥199→课程→企业培训<br>
-<b>📲 私域</b>：视频结尾"需要清单扣1"→私信发微信→朋友圈触达 ｜ <b>⚠️</b> 不要在视频里放微信号<br>
-<b>🤖 30天总覆盖</b>：70+款AI工具 · 3次排名发布 · 10个编程Agent深度评测 · 完整的AI工具选购指南
-</div>
-
+<div class="ref-box">
+<b>📷 拍摄规范</b>：OBS 1080P录屏 + 手机口播 | 关键步骤红框标注 | 隐私信息马赛克（剪映→贴纸→马赛克）<br>
+<b>✂️ 剪辑SOP</b>：粗剪10min→加速1.5x 3min→字幕10min→BGM 2min→封面5min→导出3min = 约33分/条<br>
+<b>📢 发布策略</b>：每天18:00发布 | 封面统一模板 | 标题轮换5种公式 | 话题#AI工具 #AI编程 #实测<br>
+<b>💰 变现路径</b>：Day1-10积累 → Day11-20安装服务¥99+资料包¥9.9 → Day21-30社群¥199+1对1¥299<br>
+<b>📲 私域引流</b>：结尾"需要清单扣1"→私信发微信→朋友圈触达（⚠️视频画面不要放微信号）<br>
+<b>🔗 多平台分发</b>：抖音(主战场) + B站(长视频合并版) + 小红书(图文版) + 视频号(同步) + 公众号(周合集)
 </div>
 
 <!-- ====== SOCIAL CARDS ====== -->
-<div class="social-section">
-<h3>📱 发朋友圈/抖音的卡片（Win+Shift+S 截图）</h3>
+<h2 style="border:none;margin-top:30px;font-size:16px;text-align:center">📱 分享卡片（Win+Shift+S截图发朋友圈/抖音）</h2>
 
-<!-- Card 1: Phase 1 -->
-<div class="dy-card dy1">
-  <div class="glow"></div><div class="glow2"></div>
-  <div class="dy-tag">📦 阶段一 · Day 1-10</div>
-  <h2>10大<span>编程Agent</span><br>安装实测</h2>
-  <ul class="dy-list">
-    <li>Claude Code · Codex CLI · 小龙虾AI</li>
-    <li>WorkBuddy · Cursor · Windsurf</li>
-    <li>Cline · Aider · 通义灵码 · MarsCode</li>
-  </ul>
-  <div style="position:relative;z-index:1;margin:16px 0">
-    <div style="font-size:13px;color:#94a3b8;margin-bottom:4px"></div>
-    <div style="font-size:11px;color:#64748b;line-height:1.8">
-      🔹 每天装一个 · 同一个难度递增任务<br>
-      🔹 记录Token消耗 · 安装难度 · 生成质量<br>
-      🔹 Day10公布排名：从夯到拉
-    </div>
+<div class="social-cards">
+  <div class="sc sc1">
+    <div><div class="sc-num">01</div><h3>10大编程Agent<br>安装实测</h3></div>
+    <div class="sc-list">Claude Code · Codex CLI · 小龙虾AI<br>WorkBuddy · Cursor · Windsurf<br>Cline · Aider · 通义灵码 · MarsCode<br><br>▸ 每天装一个 难度递增<br>▸ Token消耗对比<br>▸ Day10从夯到拉排名</div>
+    <p style="font-size:11px;color:var(--p1);font-weight:700">抖音：AI小白成长记录者</p>
   </div>
-  <div class="dy-bottom">抖音搜索「AI小白成长记录者」每日一更</div>
-</div>
-<div class="export-hint">▲ 截图发朋友圈/抖音 ▲</div>
-
-<!-- Card 2: Phase 2 -->
-<div class="dy-card dy2">
-  <div class="glow"></div><div class="glow2"></div>
-  <div class="dy-tag">🔧 阶段二 · Day 11-20</div>
-  <h2>10类<span>实用工具</span><br>每日评测</h2>
-  <ul class="dy-list">
-    <li>🤖 聊天AI · 🌍 海外AI · 🎨 图片AI</li>
-    <li>🎬 视频AI · 🔍 搜索AI · 🎵 音乐AI</li>
-    <li>📊 办公AI · 🧠 AgentAI · ✍️ 写作AI</li>
-  </ul>
-  <div style="position:relative;z-index:1;margin:16px 0">
-    <div style="font-size:11px;color:#64748b;line-height:1.8">
-      🔹 每天一类工具 · 5款同台PK<br>
-      🔹 同一任务横向对比 · 分类排名<br>
-      🔹 Day20公布各类别冠军
-    </div>
+  <div class="sc sc2">
+    <div><div class="sc-num">02</div><h3>10类实用工具<br>每日评测</h3></div>
+    <div class="sc-list">聊天AI · 海外AI · 图片AI · 视频AI<br>搜索AI · 音乐AI · 办公AI<br>Agent平台 · 写作翻译AI<br><br>▸ 每天一类工具5款PK<br>▸ 分类排名 · 冠军揭晓<br>▸ Day20全品类总结</div>
+    <p style="font-size:11px;color:var(--p2);font-weight:700">每日一更 · 70+工具覆盖</p>
   </div>
-  <div class="dy-bottom">70+工具 / 每日一更 / 分类冠军揭晓</div>
-</div>
-<div class="export-hint">▲ 截图发朋友圈/抖音 ▲</div>
-
-<!-- Card 3: Phase 3 -->
-<div class="dy-card dy3">
-  <div class="glow"></div><div class="glow2"></div>
-  <div class="dy-tag">🏆 阶段三 · Day 21-30</div>
-  <h2>每日5款<span>终极PK</span><br>排出12345</h2>
-  <ul class="dy-list">
-    <li>编程Agent终极PK · 免费工具PK</li>
-    <li>国产AI PK · AI生图PK · 插件PK</li>
-    <li>Agent搭建PK · 视频PK · 效率赛</li>
-  </ul>
-  <div style="position:relative;z-index:1;margin:16px 0">
-    <div style="font-size:11px;color:#64748b;line-height:1.8">
-      🔹 细分领域正面硬刚<br>
-      🔹 性价比终极PK：一年花多少钱<br>
-      🔹 Day30公布终极15强
-    </div>
+  <div class="sc sc3">
+    <div><div class="sc-num">03</div><h3>每日5款<br>终极PK</h3></div>
+    <div class="sc-list">编程Agent终极PK · 免费工具PK<br>国产AI PK · 生图PK · 插件PK<br>Agent搭建PK · 视频PK · 效率赛<br>性价比PK<br><br>▸ 细分领域正面硬刚<br>▸ Day30终极15强公布</div>
+    <p style="font-size:11px;color:var(--p3);font-weight:700">30天 · 终极排行榜</p>
   </div>
-  <div class="dy-bottom">30天 · 70+工具 · 终极排行榜揭晓</div>
 </div>
-<div class="export-hint">▲ 截图发朋友圈/抖音 ▲</div>
+<div class="sc-hint">▲ 每张卡片用 Win+Shift+S 截图即可发朋友圈/抖音 ▲</div>
 
-</div>
-
-<!-- ====== CONTACT ====== -->
-<div style="background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(103,232,249,.05));border:1px solid rgba(139,92,246,.2);border-radius:14px;padding:20px;text-align:center;margin:20px auto;max-width:400px">
-  <div style="font-size:14px;color:#94a3b8;margin-bottom:4px">许仁康 · AI全栈开发</div>
-  <div style="font-size:22px;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,#a78bfa,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent">📞 13656428093</div>
+<div style="text-align:center;padding:20px;margin-top:24px">
+  <div style="font-size:13px;color:var(--light);margin-bottom:4px">许仁康 · AI全栈开发</div>
+  <div style="font-size:20px;font-weight:800;color:var(--text);letter-spacing:2px">📞 13656428093</div>
 </div>
 
-<div class="footer-bot">抖音AI账号·30天执行计划 · 按Ctrl+P保存PDF · 2026 · 手机在线查看：https://xiaokangsc.github.io/cake-shop/douyin-plan.html</div>
+<div class="footer">抖音AI账号·30天执行计划 · 按Ctrl+P保存PDF · 手机查看：https://xiaokangsc.github.io/cake-shop/douyin-plan.html · 2026</div>
 
 </body></html>
