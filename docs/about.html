@@ -1539,94 +1539,182 @@ body {
     <!-- 核心数据 -->
     <div class="achieve-stats">
       <div class="achieve-stat">
-        <div class="achieve-num">15<span>+</span></div>
+        <div class="achieve-num">16<span></span></div>
         <div class="achieve-label">完成项目</div>
       </div>
       <div class="achieve-stat">
-        <div class="achieve-num">6<span>天</span></div>
-        <div class="achieve-label">持续使用</div>
+        <div class="achieve-num">1040<span></span></div>
+        <div class="achieve-label">对话轮次</div>
       </div>
       <div class="achieve-stat">
-        <div class="achieve-num">¥0</div>
-        <div class="achieve-label">使用费用</div>
+        <div class="achieve-num">7117.5<span>万</span></div>
+        <div class="achieve-label">Token消耗</div>
       </div>
       <div class="achieve-stat">
-        <div class="achieve-num">99<span>%</span></div>
-        <div class="achieve-label">任务完成率</div>
+        <div class="achieve-num">6628.3<span>万</span></div>
+        <div class="achieve-label">缓存命中</div>
       </div>
     </div>
 
-    <!-- 项目清单 -->
-    <div class="achieve-projects">
-      <div class="section-subtitle">已完成项目清单</div>
-      <div class="projects-table">
-        <div class="pt-head">
-          <span class="pt-col-1">#</span>
-          <span class="pt-col-2">项目</span>
-          <span class="pt-col-3">内容</span>
-          <span class="pt-col-4">状态</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">1</span>
-          <span class="pt-col-2">🎂 H5商城</span>
-          <span class="pt-col-3">40款产品，7大分类，轮播/筛选/购物车，响应式</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">2</span>
-          <span class="pt-col-2">📱 微信小程序</span>
-          <span class="pt-col-3">原生小程序，4页面，产品展示/详情/拨号</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">3</span>
-          <span class="pt-col-2">📊 成本报表</span>
-          <span class="pt-col-3">三方案对比（个人/个体户/SaaS），详细费用明细</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">4</span>
-          <span class="pt-col-2">📋 30天计划书</span>
-          <span class="pt-col-3">20页PDF，三阶段，每日工具+任务+评分，带插图</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">5</span>
-          <span class="pt-col-2">📖 自媒体方案</span>
-          <span class="pt-col-3">11章完整方案：设备/软件/平台/制作/30天/变现</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">6</span>
-          <span class="pt-col-2">🎨 头像设计</span>
-          <span class="pt-col-3">深蓝星空风，3轮迭代，放大镜图标，E3方案定稿</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">7</span>
-          <span class="pt-col-2">📱 宣传海报</span>
-          <span class="pt-col-3">1080×1350，V1-V5五轮迭代，二维码布局优化</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">8</span>
-          <span class="pt-col-2">🌐 域名部署</span>
-          <span class="pt-col-3">cake-tianye.xyz + 阿里云DNS + GitHub Pages</span>
-          <span class="pt-col-4 pt-done">✅ 上线</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">9</span>
-          <span class="pt-col-2">👤 个人主页</span>
-          <span class="pt-col-3">暗黑科技风，11个板块，响应式，SEO优化</span>
-          <span class="pt-col-4 pt-done">✅ 上线</span>
-        </div>
-        <div class="pt-row">
-          <span class="pt-col-1">10</span>
-          <span class="pt-col-2">📝 AI科普内容</span>
-          <span class="pt-col-3">什么是AI/Agent/大模型/Token，为什么用AI</span>
-          <span class="pt-col-4 pt-done">✅ 完成</span>
+    <!-- Token效率说明 -->
+    <div class="achieve-token">
+      <div class="token-card">
+        <div class="token-icon">⚡</div>
+        <div class="token-info">
+          <div class="token-title">超高Token效率 · 缓存命中率93.2%</div>
+          <div class="token-desc">输入<strong>7044.4万</strong>tokens · 输出<strong>73.1万</strong>tokens · 缓存命中<strong>6628.3万</strong>tokens · 总费用<strong>¥0</strong> · WorkBuddy免费使用</div>
         </div>
       </div>
+    </div>
+
+    <!-- 项目清单（详细表格） -->
+    <div class="achieve-projects" style="margin-top:32px;">
+      <div class="section-subtitle">已完成项目清单（含Token消耗详情）</div>
+      <div class="table-wrap" style="overflow-x:auto;">
+      <table class="detail-table" style="width:100%; border-collapse:collapse; font-size:12px; margin-top:12px;">
+        <thead>
+          <tr style="background:#1a1a2e; color:white;">
+            <th style="padding:7px 5px;">#</th>
+            <th style="padding:7px 5px;">日期</th>
+            <th style="padding:7px 5px; text-align:left;">项目名称</th>
+            <th style="padding:7px 5px; text-align:left;">具体内容</th>
+            <th style="padding:7px 5px;">总用时</th>
+            <th style="padding:7px 5px;">轮次</th>
+            <th style="padding:7px 5px;">总Token</th>
+            <th style="padding:7px 5px;">进度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:6px 5px;">1</td>
+            <td style="padding:6px 5px;">05/26</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>🎂 H5商城开发</strong></td>
+            <td style="padding:6px 5px; text-align:left;">蛋糕店H5商城，40款产品7大分类，轮播/筛选/购物车</td>
+            <td style="padding:6px 5px;">1.4h</td>
+            <td style="padding:6px 5px;">47</td>
+            <td style="padding:6px 5px;">344.9万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+            <td style="padding:6px 5px;">2</td>
+            <td style="padding:6px 5px;">05/27</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📊 成本报表生成</strong></td>
+            <td style="padding:6px 5px; text-align:left;">三方案对比（个人/个体户/SaaS），详细费用明细</td>
+            <td style="padding:6px 5px;">3.7h</td>
+            <td style="padding:6px 5px;">25</td>
+            <td style="padding:6px 5px;">163.6万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:6px 5px;">3</td>
+            <td style="padding:6px 5px;">05/28</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📋 法律咨询</strong></td>
+            <td style="padding:6px 5px; text-align:left;">工伤与同事纠纷法律分析，责任认定与维权建议</td>
+            <td style="padding:6px 5px;">0.1h</td>
+            <td style="padding:6px 5px;">11</td>
+            <td style="padding:6px 5px;">56.6万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+            <td style="padding:6px 5px;">4</td>
+            <td style="padding:6px 5px;">05/28</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>🏢 公司信息查询</strong></td>
+            <td style="padding:6px 5px; text-align:left;">美希时代（广州）传媒有限公司工商信息检索</td>
+            <td style="padding:6px 5px;">0.1h</td>
+            <td style="padding:6px 5px;">10</td>
+            <td style="padding:6px 5px;">36.9万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:6px 5px;">5</td>
+            <td style="padding:6px 5px;">05/28</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>💻 电脑技术支持</strong></td>
+            <td style="padding:6px 5px; text-align:left;">雷电模拟器VT开启配置，BIOS进入指导</td>
+            <td style="padding:6px 5px;">0.1h</td>
+            <td style="padding:6px 5px;">15</td>
+            <td style="padding:6px 5px;">56.0万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+            <td style="padding:6px 5px;">6</td>
+            <td style="padding:6px 5px;">06/07-10</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📋 30天计划书</strong></td>
+            <td style="padding:6px 5px; text-align:left;">出生日期/城市/工作信息表格，八字排盘分析，20页PDF</td>
+            <td style="padding:6px 5px;">67.7h</td>
+            <td style="padding:6px 5px;">198</td>
+            <td style="padding:6px 5px;">1291.5万</td>
+            <td style="padding:6px 5px;">✅ v3完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:6px 5px;">7</td>
+            <td style="padding:6px 5px;">06/11</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📱 友卖APP分析</strong></td>
+            <td style="padding:6px 5px; text-align:left;">上传APK文件分析友卖APP功能与推广方案</td>
+            <td style="padding:6px 5px;">2.8h</td>
+            <td style="padding:6px 5px;">81</td>
+            <td style="padding:6px 5px;">548.2万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+            <td style="padding:6px 5px;">8</td>
+            <td style="padding:6px 5px;">06/11</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📱 APP推广方案</strong></td>
+            <td style="padding:6px 5px; text-align:left;">新APP推广完整方案：渠道/内容/预算/数据追踪</td>
+            <td style="padding:6px 5px;">0.7h</td>
+            <td style="padding:6px 5px;">58</td>
+            <td style="padding:6px 5px;">485.2万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:6px 5px;">9</td>
+            <td style="padding:6px 5px;">06/15</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>🎨 蛋糕店头像设计</strong></td>
+            <td style="padding:6px 5px; text-align:left;">深蓝星空风Cake-甜也头像，3轮迭代定稿</td>
+            <td style="padding:6px 5px;">1.1h</td>
+            <td style="padding:6px 5px;">33</td>
+            <td style="padding:6px 5px;">146.4万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+            <td style="padding:6px 5px;">10</td>
+            <td style="padding:6px 5px;">06/15</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>🎨 蛋糕店运营方案</strong></td>
+            <td style="padding:6px 5px; text-align:left;">蛋糕店AI赋能方案：产品设计/营销/客户服务</td>
+            <td style="padding:6px 5px;">0.3h</td>
+            <td style="padding:6px 5px;">24</td>
+            <td style="padding:6px 5px;">113.2万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:6px 5px;">11</td>
+            <td style="padding:6px 5px;">06/17-19</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📖 30天AI测评计划</strong></td>
+            <td style="padding:6px 5px; text-align:left;">三阶段全平台AI工具测评，每日工具+任务+排名，含详细PDF</td>
+            <td style="padding:6px 5px;">31.8h</td>
+            <td style="padding:6px 5px;">529</td>
+            <td style="padding:6px 5px;">3844.6万</td>
+            <td style="padding:6px 5px;">🟡 进行中</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee; background:#f9f9f9;">
+            <td style="padding:6px 5px;">12</td>
+            <td style="padding:6px 5px;">06/19</td>
+            <td style="padding:6px 5px; text-align:left;"><strong>📋 计划书优化</strong></td>
+            <td style="padding:6px 5px; text-align:left;">30天计划书结构调整与内容优化</td>
+            <td style="padding:6px 5px;">0.5h</td>
+            <td style="padding:6px 5px;">1</td>
+            <td style="padding:6px 5px;">3.3万</td>
+            <td style="padding:6px 5px;">✅ 完成</td>
+          </tr>
+          <tr style="background:#1a1a2e; color:white; font-weight:bold;">
+            <td colspan="5" style="padding:7px 5px;">合计</td>
+            <td style="padding:7px 5px;">1040</td>
+            <td style="padding:7px 5px;">7117.5万</td>
+            <td style="padding:7px 5px;">-</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="font-size:11px; color:#999; margin-top:8px; text-align:center;">⚠️ 总用时根据会话起止时间计算；总Token=Prompt+Completion；缓存命中6628.3万tokens未计入上表</div>
     </div>
 
     <!-- 作品展示 -->
@@ -1712,24 +1800,24 @@ body {
     <!-- 核心数据 -->
     <div class="achieve-stats">
       <div class="achieve-stat" style="border-color: rgba(168,85,247,0.3);">
-        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">500<span>+</span></div>
-        <div class="achieve-label">AI对话次数</div>
+        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">76<span></span></div>
+        <div class="achieve-label">对话轮次</div>
       </div>
       <div class="achieve-stat" style="border-color: rgba(168,85,247,0.3);">
-        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">13</div>
+        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">1</div>
         <div class="achieve-label">完成项目</div>
       </div>
       <div class="achieve-stat" style="border-color: rgba(168,85,247,0.3);">
-        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">6<span>天</span></div>
-        <div class="achieve-label">持续服务</div>
+        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">421.9<span>万</span></div>
+        <div class="achieve-label">Token消耗</div>
       </div>
       <div class="achieve-stat" style="border-color: rgba(168,85,247,0.3);">
-        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">¥14<span>.79</span></div>
-        <div class="achieve-label">实际总费用</div>
+        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">365.4<span>万</span></div>
+        <div class="achieve-label">缓存命中</div>
       </div>
       <div class="achieve-stat" style="border-color: rgba(168,85,247,0.3);">
-        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">2.83<span>亿</span></div>
-        <div class="achieve-label">Token缓存命中</div>
+        <div class="achieve-num" style="background: linear-gradient(135deg, #a855f7, #7c3aed); -webkit-background-clip: text;">86.6<span>%</span></div>
+        <div class="achieve-label">缓存命中率</div>
       </div>
     </div>
 
@@ -1738,8 +1826,8 @@ body {
       <div class="token-card" style="border-color: rgba(168,85,247,0.3); background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(124,58,237,0.08));">
         <div class="token-icon">⚡</div>
         <div class="token-info">
-          <div class="token-title" style="color: #a855f7;">超高Token效率 · 缓存命中率99.8%</div>
-          <div class="token-desc">输入<strong>171万</strong>tokens · 输出<strong>45万</strong>tokens · 缓存命中<strong>2.83亿</strong>tokens · 总费用仅<strong>¥14.79</strong> · 相当于每个项目¥1.14</div>
+          <div class="token-title" style="color: #a855f7;">超高Token效率 · 缓存命中率86.6%</div>
+          <div class="token-desc">输入<strong>419.6万</strong>tokens · 输出<strong>2.3万</strong>tokens · 总消耗<strong>421.9万</strong>tokens · 缓存命中<strong>365.4万</strong>tokens</div>
         </div>
       </div>
     </div>
@@ -1801,12 +1889,12 @@ body {
 
     <!-- 效率对比 -->
     <div style="margin-top:32px; background: rgba(168,85,247,0.05); border:1px solid rgba(168,85,247,0.15); border-radius:12px; padding:20px;">
-      <div style="font-size:14px; font-weight:700; color:#a855f7; margin-bottom:12px;">🚀 为什么Claude Code费用这么低？</div>
+      <div style="font-size:14px; font-weight:700; color:#a855f7; margin-bottom:12px;">🚀 为什么Claude Code的Token效率这么高？</div>
       <div style="font-size:13px; color:#444; line-height:1.8;">
-        <div>✅ <strong>缓存命中率99.8%：</strong>Prompt Caching机制，上下文重复部分不重复计费，2.83亿tokens命中缓存</div>
-        <div>✅ <strong>6天完成13个项目：</strong>平均每个项目仅消耗~10万tokens，费用约¥1.14</div>
-        <div>✅ <strong>对比传统API：</strong>如果不使用缓存，13个项目预计消耗5000万+ tokens，费用约¥500+</div>
-        <div>✅ <strong>性价比超高：</strong>¥14.79完成13个项目，远低于人工或其他AI工具</div>
+        <div>✅ <strong>缓存命中率87%：</strong>Prompt Caching机制，上下文重复部分不重复计费，365.4万tokens命中缓存</div>
+        <div>✅ <strong>76轮对话完成1个项目：</strong>平均每个任务仅消耗~5.5万tokens，效率极高</div>
+        <div>✅ <strong>输入/输出比：</strong>输入419.6万tokens，输出仅2.3万tokens，输出极度精简</div>
+        <div>✅ <strong>性价比超高：</strong>421.9万tokens完成完整项目，AI辅助开发成本极低</div>
       </div>
     </div>
 
