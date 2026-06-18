@@ -3,200 +3,1621 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>许仁康 · AI 全栈开发</title>
+<title>AI-小康同学 | AI工具测评博主</title>
+<meta name="description" content="30天测遍市面最火AI工具，从安装到上手，从夯到拉排名。帮人安装调试AI工具，少走弯路。">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:#080810;color:#e0e0e0;overflow-x:hidden}
-::selection{background:#667eea;color:#fff}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;gap:40px;padding:14px 20px;backdrop-filter:blur(20px);background:rgba(8,8,16,.85);border-bottom:1px solid rgba(255,255,255,.04)}
-.nav a{color:#8892b0;text-decoration:none;font-size:13px;letter-spacing:1px;transition:.3s}
-.nav a:hover{color:#fff}
+/* ===== Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 32px 80px}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(102,126,234,.15) 0%,transparent 50%),radial-gradient(ellipse at 70% 30%,rgba(118,75,162,.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(102,126,234,.08) 0%,transparent 50%);animation:float 20s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(-2%,1%)}66%{transform:translate(2%,-1%)}}
-.hero-content{position:relative;z-index:1;text-align:center;max-width:900px}
-.hero-badge{display:inline-block;padding:6px 20px;border-radius:20px;border:1px solid rgba(102,126,234,.3);background:rgba(102,126,234,.1);color:#a5b4fc;font-size:13px;letter-spacing:4px;margin-bottom:32px}
-.hero h1{font-size:clamp(40px,8vw,76px);font-weight:800;background:linear-gradient(135deg,#fff 0%,#a5b4fc 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;margin-bottom:20px}
-.hero-sub{font-size:clamp(15px,2vw,18px);color:#64748b;max-width:600px;margin:0 auto 40px;line-height:1.8}
-.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.btn-p{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:16px 36px;border-radius:40px;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;letter-spacing:1px;transition:.3s;box-shadow:0 8px 32px rgba(102,126,234,.3)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(102,126,234,.45)}
-.btn-g{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);padding:16px 36px;border-radius:40px;font-size:16px;cursor:pointer;text-decoration:none;letter-spacing:1px;transition:.3s}
-.btn-g:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.4)}
-
-.stats{display:flex;justify-content:center;gap:60px;padding:60px 32px;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-size:44px;font-weight:800;background:linear-gradient(135deg,#667eea,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-label{font-size:13px;color:#64748b;margin-top:8px;letter-spacing:2px}
-
-.container{max-width:1100px;margin:0 auto;padding:80px 32px}
-.sh{text-align:center;margin-bottom:60px}
-.stag{color:#667eea;font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
-.sh h2{font-size:clamp(28px,4vw,40px);font-weight:700;background:linear-gradient(135deg,#fff,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
-.sh p{color:#64748b;font-size:15px;max-width:500px;margin:0 auto}
-
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.card{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.06);transition:.4s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent)}
-.card:hover{transform:translateY(-8px);border-color:rgba(102,126,234,.3);background:linear-gradient(135deg,rgba(102,126,234,.08),rgba(118,75,162,.04))}
-.card i{font-size:44px;font-style:normal;margin-bottom:20px;display:block}
-.card h3{font-size:19px;color:#fff;margin-bottom:12px}
-.card p{color:#8892b0;font-size:14px;line-height:1.7}
-.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.card .tag{padding:4px 12px;border-radius:12px;background:rgba(102,126,234,.1);color:#a5b4fc;font-size:11px}
-
-.projects{display:grid;gap:20px}
-.project{background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:24px;padding:36px;border:1px solid rgba(255,255,255,.06);transition:.4s;display:flex;gap:24px;align-items:center}
-.project:hover{transform:translateY(-4px);border-color:rgba(102,126,234,.2)}
-.project-icon{font-size:52px;flex-shrink:0}
-.project-info h3{font-size:19px;color:#fff;margin-bottom:8px}
-.project-info p{color:#8892b0;font-size:14px;line-height:1.6}
-.project-links{margin-top:12px}
-.project-links a{color:#a5b4fc;text-decoration:none;font-size:13px;margin-right:16px}
-
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.tool{background:rgba(255,255,255,.02);border-radius:16px;padding:24px 16px;text-align:center;border:1px solid rgba(255,255,255,.04);transition:.3s}
-.tool:hover{background:rgba(102,126,234,.06);border-color:rgba(102,126,234,.15);transform:translateY(-4px)}
-.tool .e{font-size:36px;display:block;margin-bottom:10px}
-.tool span{font-size:13px;color:#a5b4fc}
-
-.cta{background:linear-gradient(135deg,rgba(102,126,234,.06),rgba(118,75,162,.04));border-radius:32px;padding:80px 40px;text-align:center;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden}
-.cta::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(102,126,234,.15),transparent);pointer-events:none}
-.cta h2{font-size:34px;color:#fff;margin-bottom:12px;position:relative}
-.cta p{color:#8892b0;margin-bottom:28px;position:relative;font-size:15px}
-.phone-btn{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:18px 48px;border-radius:40px;font-size:22px;font-weight:700;text-decoration:none;letter-spacing:3px;transition:.3s;box-shadow:0 8px 40px rgba(102,126,234,.4)}
-.phone-btn:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(102,126,234,.6)}
-
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
-.gallery img{width:100%;border-radius:16px;border:2px solid rgba(255,255,255,.06);transition:.4s}
-.gallery img:hover{transform:scale(1.02);border-color:rgba(102,126,234,.3)}
-
-.footer{text-align:center;padding:60px 32px;color:#444;font-size:13px;border-top:1px solid rgba(255,255,255,.04)}
-.footer span{color:#667eea}
-
-.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.p-step{text-align:center;padding:30px 20px}
-.p-step .num{display:inline-block;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:20px;font-weight:bold;line-height:48px;margin-bottom:16px}
-.p-step h4{color:#fff;font-size:15px;margin-bottom:8px}
-.p-step p{color:#8892b0;font-size:13px}
-
-@media(max-width:768px){
-  .nav{gap:16px;padding:10px 12px}.nav a{font-size:11px}
-  .stats{gap:24px}.project{flex-direction:column}.gallery{grid-template-columns:1fr}
-  .container{padding:50px 20px}.hero{padding:100px 20px 50px}
+:root {
+  --bg-dark: #0a0e27;
+  --bg-card: #111538;
+  --bg-card-hover: #161b45;
+  --accent-blue: #4f7cff;
+  --accent-purple: #9b5cff;
+  --accent-cyan: #00d4ff;
+  --accent-pink: #ff6b9d;
+  --text-white: #f0f2ff;
+  --text-gray: #8890b8;
+  --text-dim: #5a6088;
+  --border: rgba(79, 124, 255, 0.15);
+  --glow: 0 0 30px rgba(79, 124, 255, 0.3);
+  --gradient-1: linear-gradient(135deg, #4f7cff, #9b5cff);
+  --gradient-2: linear-gradient(135deg, #00d4ff, #4f7cff);
+  --gradient-3: linear-gradient(135deg, #9b5cff, #ff6b9d);
+  --gradient-text: linear-gradient(135deg, #00d4ff 0%, #4f7cff 50%, #9b5cff 100%);
 }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ===== 星空背景 ===== */
+.stars-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse at top, #0d1230 0%, #0a0e27 50%, #060818 100%);
+}
+
+.stars-bg::before, .stars-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 50% 50%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(2px 2px at 15% 45%, rgba(255,255,255,0.4), transparent);
+  background-size: 300px 300px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+.stars-bg::after {
+  background-size: 500px 500px;
+  animation-delay: 2s;
+  opacity: 0.6;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ===== Container ===== */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== 导航栏 ===== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10, 14, 39, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.nav-logo .logo-icon {
+  width: 32px; height: 32px;
+  background: var(--gradient-1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: var(--text-gray);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent-cyan); }
+
+.nav-cta {
+  background: var(--gradient-1);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(79, 124, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px 40px;
+  position: relative;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(79, 124, 255, 0.15) 0%, transparent 60%);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(79, 124, 255, 0.1);
+  border: 1px solid rgba(79, 124, 255, 0.3);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--accent-cyan);
+  margin-bottom: 24px;
+}
+
+.hero-badge .dot {
+  width: 8px; height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hero-avatar {
+  width: 100px; height: 100px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0d1230, #1a1f4a);
+  border: 2px solid rgba(79, 124, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  margin: 0 auto 20px;
+  box-shadow: var(--glow);
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+
+.hero-title .gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--text-gray);
+  margin-bottom: 8px;
+}
+
+.hero-tagline {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  background: var(--gradient-1);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(79, 124, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(79, 124, 255, 0.5);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-white);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: var(--accent-blue);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+@media (max-width: 640px) {
+  .hero-title { font-size: 32px; }
+  .hero-subtitle { font-size: 15px; }
+  .hero-stats { gap: 20px; }
+  .stat-num { font-size: 22px; }
+}
+
+/* ===== Section ===== */
+.section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--accent-cyan);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.section-desc {
+  font-size: 15px;
+  color: var(--text-gray);
+}
+
+@media (max-width: 640px) {
+  .section { padding: 60px 0; }
+  .section-title { font-size: 24px; }
+}
+
+/* ===== About ===== */
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-left .avatar-large {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0d1230, #1a1f4a);
+  border: 3px solid rgba(79, 124, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.about-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.about-role {
+  font-size: 14px;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.about-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(79, 124, 255, 0.1);
+  border-radius: 12px;
+  color: var(--accent-blue);
+}
+
+.about-text {
+  font-size: 15px;
+  color: var(--text-gray);
+  line-height: 1.8;
+}
+
+.about-text p { margin-bottom: 12px; }
+.about-text strong { color: var(--text-white); }
+
+@media (max-width: 768px) {
+  .about-card { grid-template-columns: 1fr; padding: 24px; }
+}
+
+/* ===== 测评计划 ===== */
+.plan-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.phase-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.phase-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.phase-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.phase-1 .phase-num { background: rgba(0, 212, 255, 0.15); color: var(--accent-cyan); }
+.phase-2 .phase-num { background: rgba(79, 124, 255, 0.15); color: var(--accent-blue); }
+.phase-3 .phase-num { background: rgba(155, 92, 255, 0.15); color: var(--accent-purple); }
+
+.phase-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.phase-time {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.phase-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.tool-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  color: var(--text-gray);
+}
+
+.phase-desc {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .plan-timeline { grid-template-columns: 1fr; }
+}
+
+/* ===== 作品案例 ===== */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.work-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.work-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.work-preview {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.work-preview::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.1;
+}
+
+.work-1 .work-preview { background: linear-gradient(135deg, #1a1f4a, #0d1230); }
+.work-2 .work-preview { background: linear-gradient(135deg, #1a2a4a, #0d1a30); }
+.work-3 .work-preview { background: linear-gradient(135deg, #2a1a4a, #1a0d30); }
+.work-4 .work-preview { background: linear-gradient(135deg, #1a3a3a, #0d2a30); }
+.work-5 .work-preview { background: linear-gradient(135deg, #3a1a2a, #2a0d20); }
+.work-6 .work-preview { background: linear-gradient(135deg, #1a1a3a, #0d0d20); }
+
+.work-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.badge-pdf { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; }
+.badge-png { background: rgba(0, 212, 255, 0.2); color: var(--accent-cyan); }
+.badge-web { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+.badge-code { background: rgba(155, 92, 255, 0.2); color: var(--accent-purple); }
+
+.work-body {
+  padding: 16px;
+}
+
+.work-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.work-desc {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.work-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.work-meta .tool-used {
+  color: var(--accent-blue);
+}
+
+@media (max-width: 968px) {
+  .works-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .works-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== 社交账号 ===== */
+.socials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.social-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.social-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.social-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.s-douyin .social-icon { background: rgba(255, 0, 80, 0.15); }
+.s-bilibili .social-icon { background: rgba(251, 114, 153, 0.15); }
+.s-xhs .social-icon { background: rgba(255, 46, 71, 0.15); }
+.s-kuaishou .social-icon { background: rgba(255, 107, 0, 0.15); }
+.s-video .social-icon { background: rgba(7, 193, 96, 0.15); }
+.s-zhihu .social-icon { background: rgba(0, 132, 255, 0.15); }
+
+.social-info { flex: 1; min-width: 0; }
+.social-name { font-size: 15px; font-weight: 700; color: var(--text-white); margin-bottom: 2px; }
+.social-id { font-size: 13px; color: var(--text-gray); }
+.social-arrow { color: var(--text-dim); font-size: 18px; }
+
+@media (max-width: 768px) {
+  .socials-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== 服务 ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  transition: all 0.3s;
+}
+
+.service-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+}
+
+.service-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  background: rgba(79, 124, 255, 0.1);
+}
+
+.service-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.service-info p {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+.service-price {
+  font-size: 13px;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== AI 科普卡片 ===== */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.concept-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.concept-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-1);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.concept-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.concept-card:hover::before { opacity: 1; }
+
+.concept-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.concept-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.ci-1 { background: rgba(0, 212, 255, 0.12); }
+.ci-2 { background: rgba(79, 124, 255, 0.12); }
+.ci-3 { background: rgba(155, 92, 255, 0.12); }
+.ci-4 { background: rgba(255, 107, 157, 0.12); }
+
+.concept-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+.concept-title small {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.concept-text {
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.7;
+}
+
+.concept-text strong {
+  color: var(--accent-cyan);
+}
+
+/* ===== 为什么用AI ===== */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.adv-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.adv-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.adv-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.adv-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.adv-desc {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+@media (max-width: 968px) {
+  .concepts-grid { grid-template-columns: 1fr; }
+  .advantages-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .advantages-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== 我能帮你做什么 ===== */
+.help-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.help-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: all 0.3s;
+}
+
+.help-item:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(79, 124, 255, 0.3);
+}
+
+.help-check {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 255, 136, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.help-content {
+  flex: 1;
+}
+
+.help-content h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.help-content p {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .help-list { grid-template-columns: 1fr; }
+}
+
+/* ===== 联系 ===== */
+.contact-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.contact-left h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.contact-left p {
+  font-size: 15px;
+  color: var(--text-gray);
+  margin-bottom: 20px;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-white);
+}
+
+.contact-row .c-icon { font-size: 18px; }
+.contact-row .c-label { color: var(--text-dim); font-size: 13px; margin-right: 4px; }
+
+.contact-qr {
+  text-align: center;
+}
+
+.qr-placeholder {
+  width: 140px; height: 140px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.qr-placeholder img { width: 130px; height: 130px; border-radius: 8px; }
+
+.qr-label {
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+@media (max-width: 768px) {
+  .contact-section { grid-template-columns: 1fr; padding: 24px; text-align: center; }
+  .contact-items { align-items: center; }
+  .contact-qr { margin: 0 auto; }
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.footer p {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.footer .heart {
+  color: var(--accent-pink);
+}
+
+/* ===== 动画 ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <a href="#home">首页</a><a href="#services">服务</a><a href="#process">流程</a><a href="#tools">技能</a><a href="#works">案例</a><a href="#contact">联系</a>
+<div class="stars-bg"></div>
+
+<!-- ===== 导航栏 ===== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon">🔍</div>
+      <span>AI-小康同学</span>
+    </div>
+    <div class="nav-links">
+      <a href="#about">关于我</a>
+      <a href="#concepts">AI科普</a>
+      <a href="#why-ai">为什么用AI</a>
+      <a href="#help">我能帮你</a>
+      <a href="#plan">测评计划</a>
+      <a href="#works">作品案例</a>
+      <a href="#socials">社交账号</a>
+      <a href="#contact">联系</a>
+    </div>
+    <a href="#contact" class="nav-cta">联系我</a>
+  </div>
 </nav>
 
-<section class="hero" id="home">
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-glow"></div>
   <div class="hero-content">
-    <div class="hero-badge">AI FULL-STACK DEVELOPER</div>
-    <h1>许仁康</h1>
-    <p class="hero-sub">AI 全栈开发 · Claude Code 技术顾问<br>从电商小程序到企业官网，用 AI 把效率提升 10 倍</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn-p">联系我</a>
-      <a href="#works" class="btn-g">查看案例 →</a>
+    <div class="hero-badge fade-in">
+      <span class="dot"></span>
+      <span>30天AI测评计划进行中</span>
+    </div>
+    <div class="hero-avatar fade-in delay-1">🔍</div>
+    <h1 class="hero-title fade-in delay-1">
+      <span class="gradient">AI-小康同学</span>
+    </h1>
+    <p class="hero-subtitle fade-in delay-2">AI工具测评博主 · 从零开始的AI探索者</p>
+    <p class="hero-tagline fade-in delay-2">30天测遍市面最火AI工具，从安装到上手，从夯到拉排名</p>
+    <div class="hero-actions fade-in delay-3">
+      <a href="#works" class="btn btn-primary">查看作品案例</a>
+      <a href="#plan" class="btn btn-secondary">查看测评计划</a>
+    </div>
+    <div class="hero-stats fade-in delay-4">
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">AI工具测评</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-label">社交平台</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-label">维度评分</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">每日更新</div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="stats">
-  <div class="stat"><div class="stat-num">40+</div><div class="stat-label">完成产品</div></div>
-  <div class="stat"><div class="stat-num">12h</div><div class="stat-label">最快交付</div></div>
-  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">客户满意</div></div>
-  <div class="stat"><div class="stat-num">¥0</div><div class="stat-label">咨询费</div></div>
-</div>
-
-<div class="container" id="services">
-  <div class="sh"><div class="stag">SERVICES</div><h2>我能帮你做什么</h2><p>不懂代码也能借助 AI 实现创意，一站式技术服务</p></div>
-  <div class="cards">
-    <div class="card"><i>🤖</i><h3>Claude Code 搭建配置</h3><p>从零安装 Claude Code，API 接入、Skills 市场、MCP 插件配置，让你立刻拥有最强 AI 编程助手</p><div class="tags"><span class="tag">Claude Code</span><span class="tag">DeepSeek API</span><span class="tag">WorkBuddy</span></div></div>
-    <div class="card"><i>🛒</i><h3>电商小程序开发</h3><p>蛋糕店、餐饮店、零售店线上商城，微信小程序 + H5 双端同步，完整产品展示 + 一键拨号下单</p><div class="tags"><span class="tag">微信小程序</span><span class="tag">H5 商城</span><span class="tag">GitHub Pages</span></div></div>
-    <div class="card"><i>📱</i><h3>企业/个人官网</h3><p>品牌展示页、个人主页、公司官网，响应式设计，手机电脑完美呈现，免费部署上线</p><div class="tags"><span class="tag">响应式</span><span class="tag">SEO优化</span><span class="tag">免费部署</span></div></div>
-    <div class="card"><i>📊</i><h3>代做 PPT / 整理材料</h3><p>AI 快速生成精美 PPT、文档整理、会议纪要、工作汇报、数据报表，省时省力</p><div class="tags"><span class="tag">PPT</span><span class="tag">Excel</span><span class="tag">文档整理</span></div></div>
-    <div class="card"><i>✍️</i><h3>营销文案 / 内容创作</h3><p>朋友圈推广、抖音脚本、小红书种草笔记、团购活动文案，AI 批量生产高质量内容</p><div class="tags"><span class="tag">抖音</span><span class="tag">小红书</span><span class="tag">公众号</span></div></div>
-    <div class="card"><i>⚡</i><h3>自动化办公</h3><p>Excel 批量处理、网页数据采集、定时报表、邮件自动发送，把重复工作全部自动化</p><div class="tags"><span class="tag">Python</span><span class="tag">自动化</span><span class="tag">效率工具</span></div></div>
-  </div>
-</div>
-
-<div class="container" id="process" style="padding-top:0">
-  <div class="sh"><div class="stag">PROCESS</div><h2>合作流程</h2><p>简单四步，从想法到上线</p></div>
-  <div class="process">
-    <div class="p-step"><div class="num">1</div><h4>沟通需求</h4><p>电话/微信聊你的想法，我帮你梳理功能清单</p></div>
-    <div class="p-step"><div class="num">2</div><h4>快速出预览</h4><p>12小时内出第一版预览，边看边改</p></div>
-    <div class="p-step"><div class="num">3</div><h4>确认定稿</h4><p>所有细节调整到位，你点头才算完</p></div>
-    <div class="p-step"><div class="num">4</div><h4>部署上线</h4><p>代码推送、域名绑定、小程序提交审核</p></div>
-  </div>
-</div>
-
-<div class="container" id="tools" style="padding-top:0">
-  <div class="sh"><div class="stag">TOOLS</div><h2>技术栈 & 能用的工具</h2></div>
-  <div class="tools">
-    <div class="tool"><span class="e">💻</span><span>HTML5 / CSS3</span></div>
-    <div class="tool"><span class="e">⚡</span><span>JavaScript / Node.js</span></div>
-    <div class="tool"><span class="e">📱</span><span>微信小程序</span></div>
-    <div class="tool"><span class="e">🖥</span><span>Vue.js / uni-app</span></div>
-    <div class="tool"><span class="e">🤖</span><span>Claude Code</span></div>
-    <div class="tool"><span class="e">🗄</span><span>SQLite / MySQL</span></div>
-    <div class="tool"><span class="e">🌐</span><span>GitHub / Git</span></div>
-    <div class="tool"><span class="e">☁️</span><span>阿里云 / 部署</span></div>
-    <div class="tool"><span class="e">🎨</span><span>AI 设计 / 修图</span></div>
-    <div class="tool"><span class="e">📊</span><span>PPT / Excel</span></div>
-    <div class="tool"><span class="e">📝</span><span>文案创作</span></div>
-    <div class="tool"><span class="e">🔧</span><span>自动化脚本</span></div>
-  </div>
-</div>
-
-<div class="container" id="works" style="padding-top:0">
-  <div class="sh"><div class="stag">PORTFOLIO</div><h2>成品案例</h2></div>
-  <div class="projects">
-    <div class="project">
-      <div class="project-icon">🎂</div>
-      <div class="project-info">
-        <h3>Cake-甜也蛋糕店</h3>
-        <p>40款产品线上商城 · 微信小程序 + H5 双端 · 7大分类 · 多图展示 · 积分兑换 · 面包点心甜品系列 · GitHub Pages 免费部署 · 自定义域名</p>
-        <div class="project-links"><a href="https://cake-tianye.xyz" target="_blank">🌐 cake-tianye.xyz</a><a href="https://xiaokangsc.github.io/cake-shop/" target="_blank">📱 在线商城</a></div>
-      </div>
+<!-- ===== 关于我 ===== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ABOUT ME</div>
+      <h2 class="section-title">关于我</h2>
+      <p class="section-desc">一个从零开始学AI的普通人</p>
     </div>
-    <div class="project">
-      <div class="project-icon">🤖</div>
-      <div class="project-info">
-        <h3>Claude Code 安装配置服务</h3>
-        <p>DeepSeek API + WorkBuddy + Skills 市场全套配置 · 环境搭建到上手 30 分钟 · 持续技术支持</p>
-        <div class="project-links"><a href="https://xiaokangsc.github.io/cake-shop/claude-code-guide.html" target="_blank">📖 使用教程</a></div>
+    <div class="about-card">
+      <div class="about-left">
+        <div class="avatar-large">🔍</div>
+        <div class="about-name">许仁康 · AI-小康同学</div>
+        <div class="about-role">AI工具测评博主 · 📍 山东青岛</div>
+        <div class="about-tags">
+          <span class="about-tag">编程Agent</span>
+          <span class="about-tag">实用工具</span>
+          <span class="about-tag">AI插件</span>
+          <span class="about-tag">每日更新</span>
+          <span class="about-tag">山东青岛</span>
+        </div>
       </div>
-    </div>
-    <div class="project">
-      <div class="project-icon">📊</div>
-      <div class="project-info">
-        <h3>AI 赋能蛋糕店全套方案</h3>
-        <p>小程序+H5+公众号+游戏 · 产品管理 · 图片处理 · 营销文案 · 运营报表 · 一整套 AI 自动化工具链</p>
-        <div class="project-links"><a href="https://xiaokangsc.github.io/cake-shop/game.html" target="_blank">🎮 小游戏</a></div>
+      <div class="about-text">
+        <p>我是<strong>许仁康（小康）</strong>，一个从零开始学AI的普通人，坐标<strong>山东青岛</strong>。市面上AI工具太多了——Claude Code、Cursor、WorkBuddy、Codex……到底哪个好用？哪个坑？</p>
+        <p>我花<strong>30天时间</strong>，每天测1款AI工具，从安装调试到实际任务，<strong>6维度打分</strong>（易用性/功能/性价比/国内可用性/生态/特色），从夯到拉给你排名。</p>
+        <p>编程Agent → 实用工具 → AI插件，三阶段全覆盖。看我的内容，帮你<strong>省时间、省Token、避坑</strong>。需要帮忙安装调试AI工具也可以找我，少走弯路 🤝</p>
       </div>
     </div>
   </div>
-  <div class="gallery" style="margin-top:24px">
-    <img src="images/about/pic1.jpg" alt="Workstation">
-    <img src="images/about/pic2.jpg" alt="Project">
-  </div>
-</div>
+</section>
 
-<div class="container" id="contact" style="padding-top:0">
-  <div class="cta">
-    <h2>有想法？聊聊看</h2>
-    <p>免费咨询 · 先出方案再决定 · 不满意不收费</p>
-    <a href="tel:13656428093" class="phone-btn">📞 136 5642 8093</a>
-    <p style="color:#667;font-size:13px;margin-top:16px;position:relative">电话 / 微信同号 · 山东青岛 · 24小时响应</p>
-  </div>
-</div>
+<!-- ===== AI 科普 ===== -->
+<section class="section" id="concepts">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">AI KNOWLEDGE</div>
+      <h2 class="section-title">AI是什么？小白也能懂</h2>
+      <p class="section-desc">用最简单的话讲清楚这些热词</p>
+    </div>
+    <div class="concepts-grid">
 
-<div class="footer">© 2026 <span>许仁康</span> · AI 全栈开发 · Claude Code 技术顾问 · Powered by AI</div>
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-icon ci-1">🤖</div>
+          <div class="concept-title">什么是AI？<small>Artificial Intelligence</small></div>
+        </div>
+        <p class="concept-text">
+          AI（人工智能）就是让计算机像人一样思考、学习和做决定。以前你让电脑做事必须写死规则，现在AI能自己<strong>"看懂"</strong>你的意思，自动帮你完成。比如你跟它说"帮我写个请假条"，它就能直接写出来，不需要你一行行教它怎么写。
+        </p>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-icon ci-2">🧑‍💻</div>
+          <div class="concept-title">什么是Agent？<small>智能体</small></div>
+        </div>
+        <p class="concept-text">
+          Agent（智能体）是AI的升级版。普通AI你问一句答一句，Agent能<strong>自主规划任务、调用工具、分步执行</strong>。比如你说"帮我做个网站"，Agent会自己拆分成：写代码→调试→预览→修改，全程不用你管。Claude Code、WorkBuddy就是典型的编程Agent。
+        </p>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-icon ci-3">🧠</div>
+          <div class="concept-title">什么是大模型？<small>Large Language Model</small></div>
+        </div>
+        <p class="concept-text">
+          大模型就是用<strong>海量数据</strong>训练出来的超级大脑。它"读"过几十亿篇文章、书籍、代码，所以能写文章、写代码、翻译、画画、做分析。常见的有GPT-4、Claude、DeepSeek等。模型越大，能力越强，但运行成本也越高。你可以理解为：<strong>大模型 = AI的引擎</strong>。
+        </p>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-header">
+          <div class="concept-icon ci-4">🪙</div>
+          <div class="concept-title">什么是Token？<small>令牌/字元</small></div>
+        </div>
+        <p class="concept-text">
+          Token是AI计算费用的<strong>最小单位</strong>。大致1个中文字≈1.5个Token，1个英文单词≈1个Token。你每次跟AI对话，输入和输出都会消耗Token。比如你问"帮我写一首诗"，输入约10个Token，AI输出的诗约100个Token，总共消耗110个Token。<strong>Token = AI世界的"话费"</strong>。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 为什么用AI ===== -->
+<section class="section" id="why-ai">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">WHY AI</div>
+      <h2 class="section-title">为什么要用AI？</h2>
+      <p class="section-desc">AI不是替代你，而是让你10倍更强</p>
+    </div>
+    <div class="advantages-grid">
+      <div class="adv-card">
+        <div class="adv-icon">⚡</div>
+        <div class="adv-title">效率翻10倍</div>
+        <p class="adv-desc">以前写一份报告3小时，AI辅助10分钟搞定。重复性工作全交给AI，你只管决策。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">💰</div>
+        <div class="adv-title">成本大幅降低</div>
+        <p class="adv-desc">做一个网站原来花几千请人，现在AI帮你做几乎零成本。请不起设计师？AI就是你的设计师。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🎓</div>
+        <div class="adv-title">零门槛上手</div>
+        <p class="adv-desc">不需要学编程、学设计，用大白话跟AI说需求就行。会说话就会用AI。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🔧</div>
+        <div class="adv-title">全能型助手</div>
+        <p class="adv-desc">写代码、做PPT、剪视频、画图、翻译、分析数据……一个AI顶一个团队。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">📈</div>
+        <div class="adv-title">竞争力提升</div>
+        <p class="adv-desc">会用AI的人1小时完成别人1天的工作。在职场中，AI能力已经成为核心竞争力。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🚀</div>
+        <div class="adv-title">创业变简单</div>
+        <p class="adv-desc">一个人+AI就能做出产品。做网站、写文案、做海报、搞营销，AI全包了。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">💡</div>
+        <div class="adv-title">创意无限</div>
+        <p class="adv-desc">没灵感？AI帮你brainstorm。不会画画？AI帮你生成。没有不可能，只有想不到。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🌍</div>
+        <div class="adv-title">跟上时代</div>
+        <p class="adv-desc">AI正在改变所有行业。不用AI就像20年前不用互联网，不是要不要的问题，是早晚的事。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 我能帮你做什么 ===== -->
+<section class="section" id="help">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">I CAN HELP</div>
+      <h2 class="section-title">我能帮你做什么？</h2>
+      <p class="section-desc">以下是AI能帮你解决的实际问题 — 远比你想象的多</p>
+    </div>
+    <div class="help-list">
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>💻 安装调试AI工具</h4>
+          <p>Claude Code、Cursor、WorkBuddy等工具安装配置，远程帮装包教包会。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>📊 做报表/数据分析</h4>
+          <p>用AI快速生成财务报表、销售分析、数据可视化，Excel搞不定的AI帮你搞定。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>📝 写文案/文章/脚本</h4>
+          <p>朋友圈文案、抖音脚本、商业计划书、工作汇报、公众号文章，AI秒出初稿。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>🎨 生成图片/海报/Logo</h4>
+          <p>产品图、宣传海报、头像设计、Logo设计，AI帮你出图，省下设计师费用。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>🎬 视频剪辑/字幕</h4>
+          <p>AI自动剪辑、自动加字幕、AI配音、视频特效，短视频创作者必备技能。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>🌐 做网站/小程序/主页</h4>
+          <p>用AI快速搭建企业官网、个人主页、微信小程序，比传统方式快10倍成本低10倍。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>📋 做PPT/演示文档</h4>
+          <p>给AI一个主题，自动生成PPT大纲、排版、内容，商务汇报不再熬夜做PPT。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>🤖 搭建AI客服/机器人</h4>
+          <p>给你的店铺、企业搭建24小时在线AI客服，自动回复常见问题，省人工成本。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>📖 AI学习指导</h4>
+          <p>零基础学AI，手把手教你怎么用、用哪个、怎么省钱，少走弯路不踩坑。</p>
+        </div>
+      </div>
+
+      <div class="help-item">
+        <div class="help-check">✓</div>
+        <div class="help-content">
+          <h4>🔍 AI工具选型推荐</h4>
+          <p>不知道用哪个AI工具？告诉我你的需求，帮你推荐最适合的方案，省Token省时间。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 测评计划 ===== -->
+<section class="section" id="plan">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">TESTING PLAN</div>
+      <h2 class="section-title">30天测评计划</h2>
+      <p class="section-desc">三阶段全覆盖，从编程Agent到AI插件</p>
+    </div>
+    <div class="plan-timeline">
+      <div class="phase-card phase-1">
+        <div class="phase-num">01</div>
+        <h3 class="phase-title">编程Agent测评</h3>
+        <div class="phase-time">Day 1 - Day 10</div>
+        <div class="phase-tools">
+          <span class="tool-tag">Claude Code</span>
+          <span class="tool-tag">Codex</span>
+          <span class="tool-tag">Cursor</span>
+          <span class="tool-tag">WorkBuddy</span>
+          <span class="tool-tag">通义灵码</span>
+          <span class="tool-tag">+5款</span>
+        </div>
+        <p class="phase-desc">每天测1款编程Agent，从安装配置到实战任务（写代码/做网页/生成报表），测评Token消耗、响应速度、代码质量，找出各工具最适合的方向。</p>
+      </div>
+      <div class="phase-card phase-2">
+        <div class="phase-num">02</div>
+        <h3 class="phase-title">实用工具横评</h3>
+        <div class="phase-time">Day 11 - Day 20</div>
+        <div class="phase-tools">
+          <span class="tool-tag">聊天AI</span>
+          <span class="tool-tag">图片生成</span>
+          <span class="tool-tag">视频剪辑</span>
+          <span class="tool-tag">AI搜索</span>
+          <span class="tool-tag">AI音乐</span>
+          <span class="tool-tag">办公效率</span>
+        </div>
+        <p class="phase-desc">每天横评1类AI工具，同类型选最火的5款对比测试。从生成质量到使用成本，从上手难度到国内可用性，给出每类工具的推荐排名。</p>
+      </div>
+      <div class="phase-card phase-3">
+        <div class="phase-num">03</div>
+        <h3 class="phase-title">AI插件排名</h3>
+        <div class="phase-time">Day 21 - Day 30</div>
+        <div class="phase-tools">
+          <span class="tool-tag">浏览器插件</span>
+          <span class="tool-tag">IDE插件</span>
+          <span class="tool-tag">PS插件</span>
+          <span class="tool-tag">Office插件</span>
+          <span class="tool-tag">效率插件</span>
+          <span class="tool-tag">+5类</span>
+        </div>
+        <p class="phase-desc">每天测评1类AI插件，同类5款排名。每阶段结束做总结排名，30天最终大榜：从夯到拉，一目了然。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 作品案例 ===== -->
+<section class="section" id="works">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">PORTFOLIO</div>
+      <h2 class="section-title">作品案例</h2>
+      <p class="section-desc">以下全部使用AI工具完成 — 这就是AI的力量</p>
+    </div>
+    <div class="works-grid">
+
+      <div class="work-card work-1">
+        <div class="work-preview">
+          <span class="work-badge badge-pdf">PDF</span>
+          📊
+        </div>
+        <div class="work-body">
+          <h3 class="work-title">30天AI测评计划书</h3>
+          <p class="work-desc">20页完整计划书PDF，三阶段每日工具+任务+评分标准，带分类插图。</p>
+          <div class="work-meta">
+            <span class="tool-used">🤖 WorkBuddy + Puppeteer</span>
+            <span>20页 · 1.2MB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card work-2">
+        <div class="work-preview">
+          <span class="work-badge badge-pdf">PDF</span>
+          📋
+        </div>
+        <div class="work-body">
+          <h3 class="work-title">自媒体起步方案</h3>
+          <p class="work-desc">11章完整方案PDF：设备/软件/平台/制作流程/30天计划/分发/数据/避坑/变现。</p>
+          <div class="work-meta">
+            <span class="tool-used">🤖 WorkBuddy + Puppeteer</span>
+            <span>11章 · 1.1MB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card work-3">
+        <div class="work-preview">
+          <span class="work-badge badge-png">PNG</span>
+          🎨
+        </div>
+        <div class="work-body">
+          <h3 class="work-title">账号头像设计</h3>
+          <p class="work-desc">深蓝星空风AI测评头像，放大镜图标+名称，经历3轮迭代设计定稿。</p>
+          <div class="work-meta">
+            <span class="tool-used">🤖 WorkBuddy + Puppeteer</span>
+            <span>500×500 · 高清</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card work-4">
+        <div class="work-preview">
+          <span class="work-badge badge-png">PNG</span>
+          📱
+        </div>
+        <div class="work-body">
+          <h3 class="work-title">朋友圈/抖音海报</h3>
+          <p class="work-desc">1080×1350宣传海报，含30天计划概览+昵称+联系方式+服务标签。</p>
+          <div class="work-meta">
+            <span class="tool-used">🤖 WorkBuddy + Puppeteer</span>
+            <span>1080×1350 · 2.3MB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card work-5">
+        <div class="work-preview">
+          <span class="work-badge badge-web">小程序</span>
+          🎂
+        </div>
+        <div class="work-body">
+          <h3 class="work-title">蛋糕店微信小程序</h3>
+          <p class="work-desc">完整小程序模板：首页+产品列表+商品详情+联系我们，4页面全功能。</p>
+          <div class="work-meta">
+            <span class="tool-used">🤖 WorkBuddy</span>
+            <span>WXML/WXSS/JS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-card work-6">
+        <div class="work-preview">
+          <span class="work-badge badge-code">报表</span>
+          💰
+        </div>
+        <div class="work-body">
+          <h3 class="work-title">小程序商城成本报表</h3>
+          <p class="work-desc">三方案详细成本对比（个人展示型/个体户/第三方SaaS），含域名服务器认证等全费用。</p>
+          <div class="work-meta">
+            <span class="tool-used">🤖 WorkBuddy</span>
+            <span>3方案 · 详细</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== 社交账号 ===== -->
+<section class="section" id="socials">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">FOLLOW ME</div>
+      <h2 class="section-title">社交账号矩阵</h2>
+      <p class="section-desc">全平台同名「AI-小康同学」，关注不迷路</p>
+    </div>
+    <div class="socials-grid">
+      <a class="social-card s-douyin" href="#contact">
+        <div class="social-icon">🎵</div>
+        <div class="social-info">
+          <div class="social-name">抖音</div>
+          <div class="social-id">xiaokangsc · AI-小康同学</div>
+        </div>
+        <span class="social-arrow">›</span>
+      </a>
+      <a class="social-card s-bilibili" href="#contact">
+        <div class="social-icon">📺</div>
+        <div class="social-info">
+          <div class="social-name">B站</div>
+          <div class="social-id">AI-小康同学</div>
+        </div>
+        <span class="social-arrow">›</span>
+      </a>
+      <a class="social-card s-xhs" href="#contact">
+        <div class="social-icon">📕</div>
+        <div class="social-info">
+          <div class="social-name">小红书</div>
+          <div class="social-id">AI-小康同学</div>
+        </div>
+        <span class="social-arrow">›</span>
+      </a>
+      <a class="social-card s-kuaishou" href="#contact">
+        <div class="social-icon">⚡</div>
+        <div class="social-info">
+          <div class="social-name">快手</div>
+          <div class="social-id">AI-小康同学</div>
+        </div>
+        <span class="social-arrow">›</span>
+      </a>
+      <a class="social-card s-video" href="#contact">
+        <div class="social-icon">💬</div>
+        <div class="social-info">
+          <div class="social-name">微信视频号</div>
+          <div class="social-id">AI-小康同学</div>
+        </div>
+        <span class="social-arrow">›</span>
+      </a>
+      <a class="social-card s-zhihu" href="#contact">
+        <div class="social-icon">📝</div>
+        <div class="social-info">
+          <div class="social-name">知乎</div>
+          <div class="social-id">AI-小康同学</div>
+        </div>
+        <span class="social-arrow">›</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 服务 ===== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">SERVICES</div>
+      <h2 class="section-title">服务项目</h2>
+      <p class="section-desc">有问题随时找我，有问必答</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <div class="service-info">
+          <h4>AI工具安装调试</h4>
+          <p>Claude Code、Cursor、WorkBuddy等各类AI工具安装配置，远程帮装包教包会。</p>
+          <div class="service-price">50-200元/次</div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-info">
+          <h4>AI测评咨询</h4>
+          <p>不知道用哪个AI工具？根据你的需求推荐最适合的方案，省时间省Token。</p>
+          <div class="service-price">免费咨询</div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <div class="service-info">
+          <h4>网站/小程序制作</h4>
+          <p>用AI工具快速搭建网站、小程序、个人主页，比传统方式快10倍成本更低。</p>
+          <div class="service-price">按需报价</div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <div class="service-info">
+          <h4>AI学习陪跑</h4>
+          <p>从零开始学AI，手把手教你用AI做报表、PPT、图片、视频，持续答疑。</p>
+          <div class="service-price">私聊详谈</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 联系 ===== -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-section">
+      <div class="contact-left">
+        <h3>联系我 📩</h3>
+        <p>有AI相关的问题随时找我，有问必答！</p>
+        <div class="contact-items">
+          <div class="contact-row">
+            <span class="c-icon">👤</span>
+            <span class="c-label">姓名：</span>
+            <span>许仁康</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-icon">📞</span>
+            <span class="c-label">电话：</span>
+            <span>13656428093</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-icon">💬</span>
+            <span class="c-label">微信：</span>
+            <span>Single（山东青岛）</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-icon">🎵</span>
+            <span class="c-label">抖音号：</span>
+            <span>xiaokangsc（AI-小康同学）</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-icon">🌐</span>
+            <span class="c-label">个人主页：</span>
+            <span>cake-tianye.xyz</span>
+          </div>
+          <div class="contact-row">
+            <span class="c-icon">💡</span>
+            <span class="c-label">服务承诺：</span>
+            <span>帮安装AI工具 / 测评咨询 / 有问必答</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-qr">
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <div style="text-align:center;">
+            <div class="qr-placeholder" style="width:120px;height:120px;">
+              <img src="qr-wechat.jpg" alt="微信二维码" style="width:120px;height:120px;border-radius:8px;object-fit:cover;">
+            </div>
+            <div class="qr-label" style="font-size:11px;">扫码加微信</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="qr-placeholder" style="width:120px;height:120px;">
+              <img src="qr-douyin.jpg" alt="抖音二维码" style="width:120px;height:120px;border-radius:8px;object-fit:cover;">
+            </div>
+            <div class="qr-label" style="font-size:11px;">扫码关注抖音</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>© 2026 AI-小康同学 · AI工具测评博主</p>
+  <p>Made with <span class="heart">♥</span> by AI Tools · 30天测遍市面最火AI工具</p>
+</footer>
 
 </body>
 </html>
