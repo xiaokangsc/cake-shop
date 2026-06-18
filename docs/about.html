@@ -609,6 +609,143 @@ body {
   .works-grid { grid-template-columns: 1fr; }
 }
 
+/* ===== AI实战战绩 ===== */
+.achieve-stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.achieve-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  text-align: center;
+  min-width: 140px;
+  flex: 1;
+  transition: all 0.3s;
+}
+
+.achieve-stat:hover {
+  border-color: rgba(79, 124, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.achieve-num {
+  font-size: 32px;
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.achieve-num span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.achieve-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.section-subtitle {
+  font-size: 15px;
+  color: var(--text-gray);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.projects-table {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.pt-head, .pt-row {
+  display: flex;
+  padding: 12px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pt-head {
+  background: rgba(79, 124, 255, 0.08);
+  color: var(--accent-cyan);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.pt-row {
+  color: var(--text-gray);
+  transition: background 0.2s;
+}
+
+.pt-row:hover {
+  background: rgba(79, 124, 255, 0.05);
+}
+
+.pt-row:last-child {
+  border-bottom: none;
+}
+
+.pt-col-1 { width: 40px; flex-shrink: 0; color: var(--text-dim); }
+.pt-col-2 { width: 140px; flex-shrink: 0; color: var(--text-white); font-weight: 600; }
+.pt-col-3 { flex: 1; min-width: 0; }
+.pt-col-4 { width: 80px; flex-shrink: 0; text-align: right; }
+
+.pt-done { color: #00ff88; font-weight: 600; font-size: 12px; }
+.pt-more { background: rgba(79, 124, 255, 0.05); }
+
+.token-card {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(79, 124, 255, 0.08));
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.token-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.token-info { flex: 1; }
+
+.token-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-bottom: 4px;
+}
+
+.token-desc {
+  font-size: 13px;
+  color: var(--text-gray);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .achieve-stats { gap: 10px; }
+  .achieve-stat { min-width: 100px; padding: 16px 12px; }
+  .achieve-num { font-size: 24px; }
+  .pt-head, .pt-row { font-size: 11px; padding: 10px 12px; }
+  .pt-col-2 { width: 100px; }
+  .pt-col-4 { width: 60px; }
+  .token-card { flex-direction: column; text-align: center; }
+}
+
 /* ===== 社交账号 ===== */
 .socials-grid {
   display: grid;
@@ -968,13 +1105,13 @@ body {
   .contact-items { align-items: center; }
   .contact-row { justify-content: center; flex-wrap: wrap; }
   .contact-qr { margin: 0 auto; max-width: 100%; overflow: hidden; }
-  .contact-qr > div { justify-content: center !important; max-width: 100%; flex-wrap: wrap; }
+  .contact-qr > div { justify-content: center !important; max-width: 100%; flex-wrap: nowrap !important; }
 }
 
 @media (max-width: 480px) {
-  .contact-qr > div { flex-direction: column !important; gap: 16px !important; }
-  .qr-placeholder { width: 130px !important; height: 130px !important; }
-  .qr-placeholder img { width: 120px !important; height: 120px !important; }
+  .contact-qr > div { flex-direction: row !important; gap: 12px !important; flex-wrap: nowrap !important; }
+  .qr-placeholder { width: 100px !important; height: 100px !important; }
+  .qr-placeholder img { width: 90px !important; height: 90px !important; }
   .hero-glow { width: 300px; height: 300px; }
 }
 
@@ -1048,7 +1185,9 @@ body {
       <a href="#help">我能帮你</a>
       <a href="#plan">测评计划</a>
       <a href="#works">作品案例</a>
+      <a href="#achievement">AI战绩</a>
       <a href="#socials">社交账号</a>
+      <a href="#services">服务项目</a>
       <a href="#contact">联系</a>
     </div>
     <a href="#contact" class="nav-cta">联系我</a>
@@ -1075,20 +1214,20 @@ body {
     </div>
     <div class="hero-stats fade-in delay-4">
       <div class="stat-item">
-        <div class="stat-num">30+</div>
-        <div class="stat-label">AI工具测评</div>
+        <div class="stat-num">13</div>
+        <div class="stat-label">完成项目</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">6</div>
-        <div class="stat-label">社交平台</div>
+        <div class="stat-num">500<span>+</span></div>
+        <div class="stat-label">AI对话</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">6</div>
-        <div class="stat-label">维度评分</div>
+        <div class="stat-num">6<span>天</span></div>
+        <div class="stat-label">持续服务</div>
       </div>
       <div class="stat-item">
-        <div class="stat-num">∞</div>
-        <div class="stat-label">每日更新</div>
+        <div class="stat-num">¥14<span>.79</span></div>
+        <div class="stat-label">实际费用</div>
       </div>
     </div>
   </div>
@@ -1484,6 +1623,108 @@ body {
   </div>
 </section>
 
+<!-- ===== AI实战战绩 ===== -->
+<section class="section" id="achievement">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">AI ACHIEVEMENTS</div>
+      <h2 class="section-title">🔥 AI实战战绩</h2>
+      <p class="section-desc">6天 · 500+对话 · 13个项目 · 总费用¥14.79</p>
+    </div>
+
+    <!-- 核心数据 -->
+    <div class="achieve-stats">
+      <div class="achieve-stat">
+        <div class="achieve-num">500<span>+</span></div>
+        <div class="achieve-label">AI对话次数</div>
+      </div>
+      <div class="achieve-stat">
+        <div class="achieve-num">13</div>
+        <div class="achieve-label">完成项目</div>
+      </div>
+      <div class="achieve-stat">
+        <div class="achieve-num">6<span>天</span></div>
+        <div class="achieve-label">持续服务</div>
+      </div>
+      <div class="achieve-stat">
+        <div class="achieve-num">¥14<span>.79</span></div>
+        <div class="achieve-label">实际总费用</div>
+      </div>
+      <div class="achieve-stat">
+        <div class="achieve-num">2.83<span>亿</span></div>
+        <div class="achieve-label">Token缓存命中</div>
+      </div>
+    </div>
+
+    <!-- 项目清单 -->
+    <div class="achieve-projects">
+      <div class="section-subtitle">已完成项目（部分展示）</div>
+      <div class="projects-table">
+        <div class="pt-head">
+          <span class="pt-col-1">#</span>
+          <span class="pt-col-2">项目</span>
+          <span class="pt-col-3">内容</span>
+          <span class="pt-col-4">状态</span>
+        </div>
+        <div class="pt-row">
+          <span class="pt-col-1">1</span>
+          <span class="pt-col-2">🎂 H5商城</span>
+          <span class="pt-col-3">40款产品，7大分类，轮播/筛选/购物车</span>
+          <span class="pt-col-4 pt-done">✅ 上线</span>
+        </div>
+        <div class="pt-row">
+          <span class="pt-col-1">2</span>
+          <span class="pt-col-2">📱 微信小程序</span>
+          <span class="pt-col-3">原生小程序，40款产品，分类/详情/拨号</span>
+          <span class="pt-col-4 pt-done">✅ 审核中</span>
+        </div>
+        <div class="pt-row">
+          <span class="pt-col-1">3</span>
+          <span class="pt-col-2">🌐 域名+部署</span>
+          <span class="pt-col-3">cake-tianye.xyz + 阿里云DNS + GitHub Pages</span>
+          <span class="pt-col-4 pt-done">✅ 上线</span>
+        </div>
+        <div class="pt-row">
+          <span class="pt-col-1">4</span>
+          <span class="pt-col-2">👤 个人主页</span>
+          <span class="pt-col-3">暗黑科技风，服务/案例/技能，线上可访问</span>
+          <span class="pt-col-4 pt-done">✅ 上线</span>
+        </div>
+        <div class="pt-row">
+          <span class="pt-col-1">5</span>
+          <span class="pt-col-2">📖 Claude Code教程</span>
+          <span class="pt-col-3">手机版教程：安装/配置/Skills/技巧/FAQ</span>
+          <span class="pt-col-4 pt-done">✅ 上线</span>
+        </div>
+        <div class="pt-row">
+          <span class="pt-col-1">6</span>
+          <span class="pt-col-2">🎬 抖音AI计划书</span>
+          <span class="pt-col-3">30天执行计划，3阶段，70+工具，分享卡片</span>
+          <span class="pt-col-4 pt-done">✅ v3</span>
+        </div>
+        <div class="pt-row pt-more">
+          <span class="pt-col-1">+</span>
+          <span class="pt-col-2">还有7个项目...</span>
+          <span class="pt-col-3">公众号配置 / 手机小游戏 / 朋友圈文案 / 配图设计 / 图片处理 / 数据库后端 / 文档生成</span>
+          <span class="pt-col-4 pt-done">✅ 全部完成</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Token效率说明 -->
+    <div class="achieve-token">
+      <div class="token-card">
+        <div class="token-icon">⚡</div>
+        <div class="token-info">
+          <div class="token-title">超高Token效率 · 缓存命中率99.8%</div>
+          <div class="token-desc">输入171万tokens · 输出45万tokens · 缓存命中<strong>2.83亿</strong>tokens · 总费用仅<strong>¥14.79</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ===== 社交账号 ===== -->
 <section class="section" id="socials">
   <div class="container">
@@ -1595,13 +1836,13 @@ body {
   <div class="container">
     <div class="contact-section">
       <div class="contact-left">
-        <h3>联系我 📩</h3>
-        <p>有AI相关的问题随时找我，有问必答！</p>
+        <h3>联系我 · 获取AI服务 🚀</h3>
+        <p>6天完成13个项目，AI实战经验丰富，有AI相关问题随时找我！</p>
         <div class="contact-items">
           <div class="contact-row">
             <span class="c-icon">👤</span>
             <span class="c-label">姓名：</span>
-            <span>许仁康</span>
+            <span>许仁康（AI-小康同学）</span>
           </div>
           <div class="contact-row">
             <span class="c-icon">📞</span>
@@ -1615,34 +1856,34 @@ body {
           </div>
           <div class="contact-row">
             <span class="c-icon">🎵</span>
-            <span class="c-label">抖音号：</span>
+            <span class="c-label">抖音：</span>
             <span>xiaokangsc（AI-小康同学）</span>
           </div>
           <div class="contact-row">
             <span class="c-icon">🌐</span>
             <span class="c-label">个人主页：</span>
-            <span>cake-tianye.xyz</span>
+            <span>cake-tianye.xyz/about.html</span>
           </div>
           <div class="contact-row">
             <span class="c-icon">💡</span>
-            <span class="c-label">服务承诺：</span>
-            <span>帮安装AI工具 / 测评咨询 / 有问必答</span>
+            <span class="c-label">提供服务：</span>
+            <span>AI工具安装调试 / 实战测评 / 网站开发 / 有问必答</span>
           </div>
         </div>
       </div>
       <div class="contact-qr">
-        <div style="display:flex;gap:12px;justify-content:center;">
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
           <div style="text-align:center;">
             <div class="qr-placeholder" style="width:120px;height:120px;">
               <img src="qr-wechat.jpg" alt="微信二维码" style="width:120px;height:120px;border-radius:8px;object-fit:cover;">
             </div>
-            <div class="qr-label" style="font-size:11px;">扫码加微信</div>
+            <div class="qr-label" style="font-size:11px;margin-top:4px;">📱 扫码加微信</div>
           </div>
           <div style="text-align:center;">
             <div class="qr-placeholder" style="width:120px;height:120px;">
               <img src="qr-douyin.jpg" alt="抖音二维码" style="width:120px;height:120px;border-radius:8px;object-fit:cover;">
             </div>
-            <div class="qr-label" style="font-size:11px;">扫码关注抖音</div>
+            <div class="qr-label" style="font-size:11px;margin-top:4px;">🎵 扫码关注抖音</div>
           </div>
         </div>
       </div>
